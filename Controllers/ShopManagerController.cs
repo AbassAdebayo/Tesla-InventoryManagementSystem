@@ -74,7 +74,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View();
         }
 
-        [HttpPost("{id}, Update")]
+        [HttpPost]
         public async Task<IActionResult> Update([FromRoute] int id,
             [FromBody] UpdateShopManagerRequestModel model)
         {
@@ -83,7 +83,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
         }
 
-        [HttpPost("DeleteSMR")]
+        [HttpPost]
         [Display(Name = "Delete Sales Manager report")]
         public async Task<IActionResult> DeleteSalesManagerReportConfirmed(int id)
         {
@@ -92,19 +92,22 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
 
 
-        [Authorize]
+        
         [HttpGet]
-        public async Task<IActionResult> Profile()
+        public async Task<IActionResult> Profile(int id)
         {
 
-            var id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            if (id == 0)
+            var shopManager = await _shopManagerService.GetShopManagerById(id);
+            return View(new BaseResponse<ShopManagerDto>
             {
-                return RedirectToAction("Login");
-            }
+                Data = shopManager.Data
+            });
+            // if (user == null)
+            // {
+            //     return RedirectToAction("Login");
+            // }
 
-            var user = await _userService.GetUserById(id);
-            return View(user);
+            
         }
 
         [HttpGet]
@@ -113,15 +116,13 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View();
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginDto model)
         {
 
-            var response = await _userService.GetUserByEmail(model.email);
-
-            var hashPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-
-            if (response.Status == false || !BCrypt.Net.BCrypt.Verify(model.Password, hashPassword))
+            var response = await _userService.Login(model);
+            
+            if (response.Status == false)
             {
                 ViewBag.error = "Invalid email or password";
                 return View();
@@ -144,7 +145,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
                 }
             };
 
-            return RedirectToAction("Profile");
+            return RedirectToAction("Index", "ShopManager");
         }
         
         public IActionResult Logout()

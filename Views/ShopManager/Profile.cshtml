@@ -1,0 +1,41 @@
+﻿@model InventoryManagemenSystem_Ims.DTOs.BaseResponse<InventoryManagemenSystem_Ims.DTOs.ShopManagerDto>
+
+@{
+    Layout = "~/Views/Shared/_ShopManagerLayout.cshtml";
+    ViewData["Title"] = "ShopManager";
+}
+
+
+
+<div class="pf-cont">
+   
+    <div class="datas">
+        <table>
+            <tr>
+                <th>First Name</th>
+                <td>@Model.Data.FirstName</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>@Model.Data.LastName</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.Data.Email</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>@Model.Data.PhoneNumber</td>
+            </tr>
+            
+            <tr>
+                <th>Phone Number</th>
+                <td>@Model.Data.UserName</td>
+            </tr>
+            
+        </table>
+    </div>
+    <div class="form-group ">
+        <button class="btn"><a asp-action="Index">Back To Home</a></button>
+    </div>
+</div>

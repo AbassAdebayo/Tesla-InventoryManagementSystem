@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Include="wwwroot\index1.html" />
       <None Include="wwwroot\MyDesign\auth-sign-in.html" />
     </ItemGroup>
 
@@ -1154,10 +1155,29 @@
       <Content Include=".git\objects\35\8186054ffd5d05dea5162f2c71590a85a86611" />
       <Content Include=".git\objects\35\8b8bf311a15e7909bc8e91e5a28d577a0c2970" />
       <Content Include=".git\objects\35\986690d0cac5c7cf24600efd4b20d9df57617a" />
-      <Content Include="wwwroot\Ref\css\.DS_Store" />
       <Content Include="wwwroot\Ref\fonts\.DS_Store" />
       <Content Include="wwwroot\Ref\js\.DS_Store" />
       <Content Include="wwwroot\Ref\scss\.DS_Store" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css1\bootstrap-colorpicker.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\bootstrap-datepicker.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\bootstrap-theme.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\bootstrap.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\daterangepicker.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\elegant-icons-style.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\font-awesome.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\font-awesome.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\fullcalendar.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\jquery-jvectormap-1.2.2.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\jquery-ui-1.10.4.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\line-icons.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\owl.carousel.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\style-responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\style.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\widgets.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css1\xcharts.min.css" />
     </ItemGroup>
 
 </Project>

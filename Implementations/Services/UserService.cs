@@ -22,10 +22,20 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         }
         public async Task<BaseResponse<UserDto>> Login(LoginDto model)
         {
-            var hashPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-            var user = await _userRepository.GetUserByEmail(model.email);
+           
+            var user = await _userRepository.GetUserByEmail(model.Email);
 
-            if (user==null || !BCrypt.Net.BCrypt.Verify(model.Password, hashPassword))
+            if (user==null)
+            {
+                return new BaseResponse<UserDto>
+                {
+                    Message = "Invalid username or password",
+                    Status = false
+                };
+            }
+            
+            var userVerify = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
+            if (userVerify==false)
             {
                 return new BaseResponse<UserDto>
                 {

@@ -30,10 +30,7 @@ namespace InventoryManagemenSystem_Ims.DTOs
 
     public class LoginDto
     {
-        [Required]
-        [StringLength(maximumLength:25, MinimumLength = 8)]
-        public string email { get; set; }
-        
+
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
