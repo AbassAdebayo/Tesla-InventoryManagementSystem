@@ -19,7 +19,6 @@
     <ItemGroup>
       <Folder Include="Views\Shared\images" />
       <Folder Include="wwwroot\MyDesign\assets\vendor\@fortawesome" />
-      <Folder Include="wwwroot\MyDesign\MyDesign" />
     </ItemGroup>
 
     <ItemGroup>
