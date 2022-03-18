@@ -1,19 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-@* <div class="text-center"> *@
-@*     <h1 class="display-4">Welcome</h1> *@
-@*     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
-@* </div> *@
-
-<div>
-    <div class="wrapper">
-        <div class="login-content">
-            <ul style="list-style: none;">
-                <li button class="btn"><a asp-controller="ShopManager" asp-action="Login"><button class="btn" >SignIn As ShopManager</button></a></li>
-                @* <li button class="btn"><a asp-controller="Plumber" asp-action="Login"><button class="btn" >SignIn As Plumber</button></a></li> *@
-            </ul>
-        </div>
+@* <link rel="stylesheet" type="text/css" href="~/css/MyCss.css" xmlns="http://www.w3.org/1999/html"> *@
+<link rel="stylesheet" href="~/css/_MyLayout.cs">
+<div class="Greeting">
+    <h1 class="G-4" style="color: white">Welcome</h1>
+    <div style="color: skyblue">
+        <h2>
+            <p><a style="color: gold">Our Company makes dreams come to life..</a>.</p>
+        </h2>
+        <h6><a style="color: gold"> (Simple Solutions for Complex Connections)...</a>.</h6>
     </div>
 </div>
+
+@* <div class="cnt"> *@
+@*     <div class=""><center> *@
+@*             <ul style="list-style: none"> *@
+@*                 <li button class="btn"><a asp-controller="ShopManager" asp-action="Login"><button class="btn">Login as Admin</button></a></li> *@
+@*                 <li button class="btn"><a asp-controller="ShopManager" asp-action="Register"><button class="btn">SignIn as Employee</button></a></li> *@
+@*             </ul> *@
+@*         </center> *@
+@*     </div> *@
+@* </div> *@

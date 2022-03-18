@@ -1,0 +1,45 @@
+
+.Greeting{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../LayoutPhotos/NNPC1.jpg');
+    background-color: #180202;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    fill: #180202;
+    page: auto;
+    
+}
+
+.position-sticky{
+    height: 70vh;
+    border-right: 15px;
+    presentation-level: inherit;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: inherit;
+    background-blend-mode: color;
+}
+
+.btn{
+    background-color: black;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    justify-items: center;
+    
+}
+.btn:hover{
+    background-color: gold;
+    transform: translate(0.3);
+    color: black;
+}
+.cnt{
+    margin-top: 50px;
+}

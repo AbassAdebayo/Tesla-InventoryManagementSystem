@@ -17,12 +17,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Views\Shared\images" />
       <Folder Include="wwwroot\MyDesign\assets\vendor\@fortawesome" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="wwwroot\index1.html" />
       <None Include="wwwroot\MyDesign\auth-sign-in.html" />
     </ItemGroup>
 
@@ -1155,9 +1153,7 @@
       <Content Include=".git\objects\35\8186054ffd5d05dea5162f2c71590a85a86611" />
       <Content Include=".git\objects\35\8b8bf311a15e7909bc8e91e5a28d577a0c2970" />
       <Content Include=".git\objects\35\986690d0cac5c7cf24600efd4b20d9df57617a" />
-      <Content Include="wwwroot\Ref\fonts\.DS_Store" />
-      <Content Include="wwwroot\Ref\js\.DS_Store" />
-      <Content Include="wwwroot\Ref\scss\.DS_Store" />
+      <Content Include="wwwroot\assets1\.DS_Store" />
     </ItemGroup>
 
     <ItemGroup>
@@ -1178,6 +1174,65 @@
       <_ContentIncludedByDefault Remove="wwwroot\css1\style.css" />
       <_ContentIncludedByDefault Remove="wwwroot\css1\widgets.css" />
       <_ContentIncludedByDefault Remove="wwwroot\css1\xcharts.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\additional-methods.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\bootstrap-colorpicker.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\bootstrap-datepicker.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\bootstrap-switch.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\bootstrap-wysiwyg-custom.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\bootstrap-wysiwyg.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\bootstrap.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\bootstrap.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\calendar-custom.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\chartjs-custom.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\charts-flot.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\charts-other.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\charts-xcharts.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\charts.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\daterangepicker.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\dynamic-table.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\easy-pie-chart.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\excanvas.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\form-component.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\form-validation-script.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\fullcalendar.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\fullcalendar.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\ga.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\gdp-data.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\gritter.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\html5shiv.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\index.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery-1.8.3.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery-jvectormap-1.2.2.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery-jvectormap-world-mill-en.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery-ui-1.10.4.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery-ui-1.9.2.custom.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.autosize.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.customSelect.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.flot.pie.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.hotkeys.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.localscroll.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.nicescroll.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.placeholder.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.rateit.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.scrollTo.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.slimscroll.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.smartWizard.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.sparkline-11.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.sparkline.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.stepy.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.tagsinput.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\jquery.validate.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\lte-ie7.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\moment.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\morris-script.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\morris.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\owl.carousel.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\scripts.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\sliders.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\sparkline-chart.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\sparklines.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js1\xcharts.min.js" />
     </ItemGroup>
 
 </Project>
