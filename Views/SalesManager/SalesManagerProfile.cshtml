@@ -1,0 +1,55 @@
+﻿@model InventoryManagemenSystem_Ims.DTOs.SalesManagerDto
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "SalesManager's Profile";
+}
+
+
+<dl class="row">
+    <dt class="col-sm-2">
+        FirstName:
+    </dt>
+    <dd class="col-sm-10">
+        @Model.FirstName
+    </dd>
+    
+    <dt class="col-sm-2">
+        LastName:
+    </dt>
+    <dd class="col-sm-10">
+        @Model.LastName
+    </dd>
+    
+    <dt class="col-sm-2">
+            Email:
+        </dt>
+    <dd class="col-sm-10">
+        @Model.Email
+    </dd>
+    
+    <dt class="col-sm-2">
+        Address:
+    </dt>
+    
+    <dd class="col-sm-10">
+        @Model.Address
+    </dd>
+    
+    <dt class="col-sm-2">
+            Phone No:
+        </dt>
+    <dd class="col-sm-10">
+        @Model.PhoneNumber
+    </dd>
+    
+    <dt class="col-sm-2">
+            UserName:
+        </dt>
+        <dd class="col-sm-10">
+            @Model.UserName
+        </dd>
+    
+</dl>
+
+<button style="background-color:darkblue;"><a asp-action="GetAllSalesManagers">Back to List</a></button>

@@ -6,6 +6,7 @@ using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.Interfaces.Repositories;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
+using InventoryManagemenSystem_Ims.Models;
 
 namespace InventoryManagemenSystem_Ims.Implementations.Services
 {
@@ -62,7 +63,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                     UserId = newUser.Id,
-                    User = user
+                    User = user,
+                    DateCreated = DateTime.UtcNow
                 };
                 await _salesManagerRepository.AddSalesManagerAsync(salesManager);
             
@@ -144,37 +146,29 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             
         }
 
-        public async Task<BaseResponse<SalesManagerDto>> GetSalesManagerById(int id)
+        public async Task<SalesManagerDto> GetSalesManagerById(int id)
         {
             try
             {
                 var checkSalesManager = await _salesManagerRepository.GetSalesManagerByIdAsync(id);
-                if (checkSalesManager == null)
+                if (checkSalesManager !=null)
                 {
-                    return new BaseResponse<SalesManagerDto>
+                    return new SalesManagerDto
                     {
-                        Message = $"The user with id {id} does not exist",
-                        Status = false
-                    };
-                }
-
-                return new BaseResponse<SalesManagerDto>
-                {
-
-                    Message = $"The user with id {id} retrieved",
-                    Status = true,
-                    Data = new SalesManagerDto
-                    {
-
+                        Id = checkSalesManager.Id,
                         Address = checkSalesManager.Address,
                         Email = checkSalesManager.Email,
                         FirstName = checkSalesManager.FirstName,
                         LastName = checkSalesManager.LastName,
                         PhoneNumber = checkSalesManager.PhoneNumber,
-                        Id = checkSalesManager.Id,
-                        UserName = checkSalesManager.User.UserName
-                    }
-                };
+                        DateCreated = checkSalesManager.DateCreated
+                        
+                        //UserName = checkSalesManager.User.UserName
+                    
+                    };
+                }
+                
+                throw new Exception("Information doesn't exist!");
             }
             catch
             {
@@ -182,28 +176,23 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<IList<SalesManagerDto>>> GetAllSalesManagers()
+        public async Task<IEnumerable<SalesManagerDto>> GetAllSalesManagers()
         {
             try
             {
                 var salesManagers = await _salesManagerRepository.GetAllSalesManagers();
-                return new BaseResponse<IList<SalesManagerDto>>
+                return new List<SalesManagerDto>(salesManagers.Select(s => new SalesManagerDto
                 {
-                    Message = "Users retrieved",
-                    Status = true,
-                    Data = salesManagers.Select(s=>new SalesManagerDto
-                    {
-                        Address = s.Address,
-                        Email = s.Email,
-                        Id = s.Id,
-                        FirstName = s.FirstName,
-                        LastName = s.LastName,
-                        PhoneNumber = s.PhoneNumber,
-                        UserName = s.User.UserName
-                    
-                    }).ToList()
-                
-                };
+                    Id = s.Id,
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    Address = s.Address,
+                    Email = s.Email,
+                    PhoneNumber = s.PhoneNumber,
+                    //UserName = s.User.UserName
+
+                }).ToList());
+
             }
             catch
             {

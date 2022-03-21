@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.DTOs;
+using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagemenSystem_Ims.Controllers
@@ -14,13 +17,14 @@ namespace InventoryManagemenSystem_Ims.Controllers
             _roleService = roleService;
         }
         
+        [Authorize(Roles = "ShopManager")]
         public async Task<IActionResult> Index()
         {
             var roles = await _roleService.GetAllRoles();
             return View(roles);
         }
         
-        
+       [Authorize(Roles = "ShopManager")]
         public IActionResult CreateRole()
         {
             return View();
@@ -28,7 +32,9 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
         
+       
         [HttpPost]
+        
         public async Task<IActionResult> CreateRole(CreateRoleRequestModel model)
         {
             await _roleService.AddRoleAsync(model);
@@ -36,7 +42,9 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
         }
         
+        
         [HttpGet]
+        [Authorize(Roles = "ShopManager")]
         public async Task<IActionResult> Get(string roleName)
         {
             var role = await _roleService.GetRoleByNameAsync(roleName);
@@ -44,7 +52,9 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
         }
         
+        
         [HttpGet]
+        [Authorize(Roles = "ShopManager")]
         public async Task<IActionResult> Update(string roleName)
         {
             var role = await _roleService.GetRoleByNameAsync(roleName);
@@ -55,7 +65,9 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View();
         }
         
+       
         [HttpPost]
+        [Authorize(Roles = "ShopManager")]
         public async Task<IActionResult> UpdateRole(string roleName, UpdateRoleRequestModel model)
         {
             var role = await _roleService.GetRoleByNameAsync(roleName);
@@ -64,7 +76,9 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
         }
         
+        
         [HttpGet]
+        [Authorize(Roles = "ShopManager")]
         public async Task<IActionResult> Delete(string roleName)
         {
             var role = await _roleService.GetRoleByNameAsync(roleName);
@@ -75,6 +89,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View(role);
         }
         
+       
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {

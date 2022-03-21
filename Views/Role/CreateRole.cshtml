@@ -3,7 +3,7 @@
 <div class="container" xmlns="http://www.w3.org/1999/html">
     <div class="row justify-content-center">
         <div class=" card col-md-6">
-            < class="card-body ">
+            <div class="card-body ">
                 <div class="bg-light">
                     <h1 class="tagcolor" style="color:mediumblue">Create</h1>
                     <p class="tagcolor" style="color:mediumblue">Please use this box to create a Role.</p>
@@ -32,13 +32,14 @@
                 </form>
             
                 
+            </div>
+
         </div>
 
+
+
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }</div>
     </div>
-
-
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}</div>

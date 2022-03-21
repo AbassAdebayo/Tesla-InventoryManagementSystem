@@ -22,5 +22,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         Task<BaseResponse<bool>> DeleteUser(string userName);
 
         Task<BaseResponse<UserDto>> UpdateUser(int id, UpdateUserRequestModel model);
+
+        bool GetUserByRole(string roleName);
     }
 }

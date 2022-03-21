@@ -45,7 +45,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<User> GetUserById(int id)
         {
-            return await _imsContext.Users.FindAsync(id);
+            return await _imsContext.Users.Include(x=>x.UserRoles).ThenInclude(x=>x.Role).FirstOrDefaultAsync(s=>s.Id==id);
             
         }
 
@@ -64,7 +64,13 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<User> GetUserByEmail(string email)
         {
-            return await _imsContext.Users.FirstOrDefaultAsync(e => e.Email == email);
+            return await _imsContext.Users.Include(e => e.UserRoles).ThenInclude(x=>x.Role).FirstOrDefaultAsync(u=>u.Email.ToLower()==email.ToLower());
+        }
+
+        public bool GetUserByRole(string roleName)
+        {
+            return _imsContext.UserRoles.Any(x => x.Role.Name == roleName);
+             
         }
     }
 }

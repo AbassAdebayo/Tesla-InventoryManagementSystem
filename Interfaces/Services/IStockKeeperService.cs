@@ -12,8 +12,11 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         
         public Task<BaseResponse<bool>> DeleteStockKeeper(int id);
         
-        public Task<BaseResponse<StockKeeperDto>> GetStockKeeperById(int id);
+        public Task<StockKeeperDto> GetStockKeeperByEmail(string email);
         
-        public Task<BaseResponse<IList<StockKeeperDto>>> GetAllStockKeepers();
+        
+        public Task<StockKeeperDto> GetStockKeeperById(int id);
+        
+        public Task<IList<StockKeeperDto>> GetAllStockKeepers();
     }
 }

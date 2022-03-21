@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagemenSystem_Ims.DTOs
 {
@@ -17,6 +19,12 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public string UserName { get; set; }
         
         public string Password { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
         
         public int Id { get; set; }
     }
@@ -50,6 +58,8 @@ namespace InventoryManagemenSystem_Ims.DTOs
         [Required]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+        
+        public IList<int> Roles { get; set; } = new List<int>();
         
     }
     

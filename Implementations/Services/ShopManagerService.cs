@@ -160,7 +160,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     return new BaseResponse<ShopManagerDto>
                     {
                         Message = $"The user with id {id} does not exist",
-                        Status = false
+                        Status = false,
+                        
                     };
                 }
 
@@ -177,7 +178,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         FirstName = checkShopManager.FirstName,
                         LastName = checkShopManager.LastName,
                         PhoneNumber = checkShopManager.PhoneNumber,
-                        UserName = checkShopManager.User.UserName,
+                        
                         
 
                     }
@@ -207,6 +208,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         FirstName = s.FirstName,
                         LastName = s.LastName,
                         PhoneNumber = s.PhoneNumber,
+                        
 
                     }).ToList()
                 

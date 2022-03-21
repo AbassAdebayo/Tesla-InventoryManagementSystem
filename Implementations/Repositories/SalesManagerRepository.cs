@@ -44,7 +44,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<SalesManager> GetSalesManagerByIdAsync(int id)
         {
-            return await _imsContext.SalesManagers.Include(x=>x.User).FirstOrDefaultAsync(x=>x.Id==id);
+            return await _imsContext.SalesManagers.FindAsync(id);
         }
 
         public async Task<IEnumerable<SalesManager>> GetAllSalesManagers()

@@ -39,6 +39,7 @@ namespace InventoryManagemenSystem_Ims.DTOs
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         
+        public IList<int> Roles { get; set; } = new List<int>();
        
     }
 

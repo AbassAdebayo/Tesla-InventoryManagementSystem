@@ -13,6 +13,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
         public Task<StockKeeper> DeleteStockKeeperAsync(StockKeeper stockKeeper);
         
         public Task<StockKeeper> GetStockKeeperByUsernameAsync(string userName);
+        public Task<StockKeeper> GetStockKeeperByEmailAsync(string email);
         
         public Task<StockKeeper> GetStockKeeperByIdAsync(int id);
         

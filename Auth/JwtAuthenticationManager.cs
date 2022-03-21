@@ -26,7 +26,7 @@ namespace InventoryManagemenSystem_Ims.Auth
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.GivenName, user.Username),
+                new Claim(ClaimTypes.Email, user.Email),
             };
 
             foreach (var role in user.Roles)

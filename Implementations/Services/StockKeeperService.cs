@@ -130,54 +130,64 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             };
         }
 
-        public async Task<BaseResponse<StockKeeperDto>> GetStockKeeperById(int id)
+        public async Task<StockKeeperDto> GetStockKeeperByEmail(string email)
         {
-            var checkStockKeeper = await _stockKeeperRepository.GetStockKeeperByIdAsync(id);
+            var checkStockKeeper = await _userRepository.GetUserByEmail(email);
             if (checkStockKeeper==null)
             {
-                return new BaseResponse<StockKeeperDto>
-                {
-                    Message = $"The user with id {id} does not exist",
-                    Status = false
-                };
+                throw new Exception("Information requested doesn't exist!");
             }
 
-            return new BaseResponse<StockKeeperDto>
+            return new StockKeeperDto
             {
+                Id = checkStockKeeper.Id,
+                Email = checkStockKeeper.Email,
+                DateCreated = checkStockKeeper.DateCreated,
+                //UserName = checkStockKeeper.UserName
                 
-                Message = $"The user with id {id} retrieved",
-                Status = true,
-                Data = new StockKeeperDto
+            };
+        }
+
+        public async Task<StockKeeperDto> GetStockKeeperById(int id)
+        {
+            var checkStockKeeper = await _stockKeeperRepository.GetStockKeeperByIdAsync(id);
+            if (checkStockKeeper!=null)
+            {
+                return new StockKeeperDto
                 {
-                    
+                    Id = checkStockKeeper.Id,
                     Address = checkStockKeeper.Address,
                     Email = checkStockKeeper.Email,
                     FirstName = checkStockKeeper.FirstName,
                     LastName = checkStockKeeper.LastName,
                     PhoneNumber = checkStockKeeper.PhoneNumber,
-                }
-            };
+                    DateCreated = checkStockKeeper.DateCreated,
+                    //UserName = checkStockKeeper.User.UserName
+                
+                };
+                
+            }
+
+            throw new Exception("Information requested doesn't exist!");
         }
 
-        public async Task<BaseResponse<IList<StockKeeperDto>>> GetAllStockKeepers()
+        public async Task<IList<StockKeeperDto>> GetAllStockKeepers()
         {
             var stockKeeper = await _stockKeeperRepository.GetAllStockKeepers();
-            return new BaseResponse<IList<StockKeeperDto>>
+
+
+            return stockKeeper.Select(s => new StockKeeperDto
             {
-                Message = "Users retrieved",
-                Status = true,
-                Data = stockKeeper.Select(s=>new StockKeeperDto()
-                {
-                    Address = s.Address,
-                    Email = s.Email,
-                    Id = s.Id,
-                    FirstName = s.FirstName,
-                    LastName = s.LastName,
-                    PhoneNumber = s.PhoneNumber
-                    
-                }).ToList()
-                
-            };
+                Address = s.Address,
+                Email = s.Email,
+                Id = s.Id,
+                FirstName = s.FirstName,
+                LastName = s.LastName,
+                PhoneNumber = s.PhoneNumber,
+                DateCreated = s.DateCreated
+            }).ToList();
+
+
         }
     }
 }

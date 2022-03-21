@@ -1,0 +1,108 @@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.DTOs.SalesManagerDto>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "SalesManagers";
+}
+
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">SalesManager</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            
+
+
+            <th>
+                Update
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var salesManager in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => salesManager.Id)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => salesManager.FirstName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => salesManager.LastName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => salesManager.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => salesManager.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => salesManager.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => salesManager.PhoneNumber)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => salesManager.DateCreated)
+            </td>
+            
+            <td>
+                <a asp-action="UpdateSalesManager" asp-route-id="@salesManager.Id">Update</a>
+            </td>
+            <td>
+                <a asp-action="SalesManagerProfile" asp-route-id="@salesManager.Id">Details</a>
+            </td>
+            <td>
+                <a asp-action="DeleteSalesManager" asp-route-id="@salesManager.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<button style="background-color: midnightblue"><a asp-controller="SalesManager"  asp-action="RegisterSalesManager">Create Role</a> </button>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to Index</a> </button>

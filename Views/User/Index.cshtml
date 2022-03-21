@@ -1,8 +1,9 @@
-﻿@model IEnumerable<InventoryManagemenSystem_Ims.DTOs.ShopManagerDto>
+﻿@using System.Security.Claims
+
 
 @{
-    Layout = "~/Views/Shared/_ShopManagerLayout.cshtml";
-    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "User";
 }
 
     <div class="pd-ltr-20">
@@ -13,7 +14,7 @@
                 </div>
                 <div class="col-md-8">
                     <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                        Welcome back <div class="weight-600 font-30 text-blue">@User.Identity.Name!</div>
+                        Welcome back!<div class="weight-600 font-30 text-blue">@User.Identity?.Name</div>
                     </h4>
                     <p class="font-18 max-width-600">The Outstanding Innovation Begins Here...</p>
                 </div>
@@ -21,7 +22,7 @@
         </div>
 
         <div class="footer-wrap pd-20 mb-20 card-box">
-            E-Inventory Admin Designed By Oscar Tesla
+            Inventory is Money, sitting around is another form...
         </div>
     </div>
 <!-- js -->

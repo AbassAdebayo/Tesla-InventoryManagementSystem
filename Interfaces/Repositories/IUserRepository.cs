@@ -22,6 +22,8 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
 
         Task<User> GetUserByEmail(string email);
 
+        bool GetUserByRole(string roleName);
+
 
     }
 }

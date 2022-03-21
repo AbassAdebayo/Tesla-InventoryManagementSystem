@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.Auth;
 using InventoryManagemenSystem_Ims.DTOs;
+using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -20,17 +21,17 @@ namespace InventoryManagemenSystem_Ims.Controllers
         private readonly IReportService _reportService;
         private readonly IRoleService _roleService;
         private readonly IUserService _userService;
-        private readonly IJwtAuthenticationManager _jwtAuthenticationManager;
+        
 
 
         public ShopManagerController(IShopManagerService shopManagerService, IReportService reportService,
-            IRoleService roleService, IUserService userService, IJwtAuthenticationManager jwtAuthenticationManager)
+            IRoleService roleService, IUserService userService)
         {
             _shopManagerService = shopManagerService;
             _reportService = reportService;
             _roleService = roleService;
             _userService = userService;
-            _jwtAuthenticationManager = jwtAuthenticationManager;
+            
         }
       
         
@@ -58,8 +59,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return RedirectToAction("Index");
         }
 
-
-
+        
         [HttpGet]
         [Authorize]
         public IActionResult Update()
@@ -82,6 +82,26 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return RedirectToAction("Profile");
 
         }
+        
+        [HttpGet]
+        public IActionResult DeleteShopManager(int id)
+        {
+            var shopManager = _shopManagerService.GetShopManagerById(id);
+            if (shopManager == null)
+            {
+                return NotFound();
+            }
+
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _shopManagerService.DeleteShopManager(id);
+            return RedirectToAction("Index");
+        }
+
 
         [HttpPost]
         [Display(Name = "Delete Sales Manager report")]
@@ -110,52 +130,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             
         }
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginDto model)
-        {
-
-            var response = await _userService.Login(model);
-            
-            if (response.Status == false)
-            {
-                ViewBag.error = "Invalid email or password";
-                return View();
-            }
-            
-            var token = _jwtAuthenticationManager.GenerateToken(response.Data);
-
-            var user = response.Data;
-
-            var r = new BaseResponse<LoginResponseDto>
-            {
-                Message = "Login successful",
-                Status = true,
-                Data = new LoginResponseDto
-                {
-                    Id = user.Id,
-                    Username = user.Email,
-                    Roles = user.Roles,
-                    Token = token
-                }
-            };
-
-            return RedirectToAction("Index", "ShopManager");
-        }
         
-        public IActionResult Logout()
-        {
-            HttpContext.SignOutAsync();
-            return RedirectToAction("Login");
-        }
-        
-        [HttpGet("users")]
-        [Authorize]
         public async Task<IActionResult> GetUsers()
         {
             var users = await _userService.GetAllUsers();
@@ -184,7 +159,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public IActionResult UpdateUser()
         {
             var id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -207,7 +182,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         
         [HttpPost]
         [Display(Name = "Delete Stock Keeper report")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> DeleteStockKeeperReportConfirmed(int id)
         {
             await _reportService.DeleteStockKeeperReport(id);
@@ -258,7 +233,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         public async Task<IActionResult> ViewVerifiedReports()
         {
             var verifiedReports = await _reportService.ViewStockKeeperVerifiedReports();
-            return View(verifiedReports);
+            return View(verifiedReports as IEnumerable<ReportDto>);
         }
         
         [HttpGet]

@@ -39,7 +39,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             {
                 Description = roleCheck.Description,
                 Name = roleCheck.Name,
-                DateCreated = roleCheck.DateCreated,
+                DateCreated = DateTime.UtcNow,
                 IsDeleted = false,
                 Id = roleCheck.Id
 
@@ -69,6 +69,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 Id = r.Id,
                 Description = r.Description,
                 Name = r.Name,
+                DateCreated = DateTime.UtcNow
             }).ToList());
         }
     }

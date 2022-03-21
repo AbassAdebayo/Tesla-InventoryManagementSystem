@@ -1,0 +1,108 @@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.DTOs.StockKeeperDto>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "StockKeepers";
+}
+
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">StockKeepers</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.UserName) *@
+            @* </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            
+
+
+            <th>
+                Update
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stockKeeper in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => stockKeeper.Id)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stockKeeper.FirstName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stockKeeper.LastName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stockKeeper.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => stockKeeper.Address)
+            </td>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => stockKeeper.UserName) *@
+            @* </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => stockKeeper.PhoneNumber)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stockKeeper.DateCreated)
+            </td>
+            
+            <td>
+                <a asp-action="UpdateStockKeeper" asp-route-id="@stockKeeper.Id">Update</a>
+            </td>
+            <td>
+                <a asp-action="StockKeeperProfile" asp-route-id="@stockKeeper.Id">Details</a>
+            </td>
+            <td>
+                <a asp-action="DeleteStockKeeper" asp-route-id="@stockKeeper.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<button style="background-color: midnightblue"><a asp-controller="SalesManager"  asp-action="RegisterSalesManager">Create Role</a> </button>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to Index</a> </button>

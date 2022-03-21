@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagemenSystem_Ims.Migrations
 {
     [DbContext(typeof(ImsContext))]
-    [Migration("20220315101655_first")]
+    [Migration("20220321002500_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

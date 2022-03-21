@@ -148,29 +148,24 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<CategoryDto>> GetCategoryById(int id)
+        public async Task<CategoryDto> GetCategoryById(int id)
         {
             try
             {
                 var categoryCheck = await _categoryRepository.GetCategoryById(id);
                 if (categoryCheck==null)
                 {
-                    return new BaseResponse<CategoryDto>
-                    {
-                        Message = "Unsuccessful request",
-                        Status = false
-                    };
+
+                    throw new Exception("Request not completed!");
+
                 }
-                return new BaseResponse<CategoryDto>
+                return new CategoryDto
                 {
-                    Message = "Data successfully fetched!",
-                    Status = true,
-                    Data = new CategoryDto
-                    {
-                        Id = categoryCheck.Id,
-                        Description = categoryCheck.Description,
-                        CategoryName = categoryCheck.CategoryName
-                    }
+
+                    Id = categoryCheck.Id,
+                    Description = categoryCheck.Description,
+                    CategoryName = categoryCheck.CategoryName,
+
                 };
             }
             catch (Exception e)
@@ -179,31 +174,24 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<IList<CategoryDto>>> GetAllCategories()
+        public async Task<IList<CategoryDto>> GetAllCategories()
         {
             try
             {
                 var categories = await _categoryRepository.GetAllCategories();
                 if (categories==null)
                 {
-                    return new BaseResponse<IList<CategoryDto>>
-                    {
-                        Message = "Unsuccessful request",
-                        Status = false
-                    };
+                    throw new Exception("Request unsuccessful!");
                 }
-                return new BaseResponse<IList<CategoryDto>>
+                
+                return categories.Select(c => new CategoryDto
                 {
-                    Message = "Data successfully fetched!",
-                    Status = true,
-                   Data = categories.Select(c=>new CategoryDto
-                   {
-                        Id = c.Id,
-                        Description = c.Description,
-                        CategoryName = c.CategoryName
-                   }).ToList()
-                   
-                };
+                    Id = c.Id,
+                    Description = c.Description,
+                    CategoryName = c.CategoryName
+                }).ToList();
+
+            
             }
             catch (Exception e)
             {

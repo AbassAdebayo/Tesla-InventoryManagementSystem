@@ -41,14 +41,19 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
            return await _imsContext.StockKeepers.FirstOrDefaultAsync(u => u.User.UserName == userName);
         }
 
+        public async Task<StockKeeper> GetStockKeeperByEmailAsync(string email)
+        {
+            return await _imsContext.StockKeepers.FirstOrDefaultAsync(u => u.User.Email == email);
+        }
+
         public async Task<StockKeeper> GetStockKeeperByIdAsync(int id)
         {
-            return await _imsContext.StockKeepers.Include(x=>x.User).FirstOrDefaultAsync(x=>x.Id==id);
+            return await _imsContext.StockKeepers.FindAsync(id);
         }
 
         public async Task<IEnumerable<StockKeeper>> GetAllStockKeepers()
         {
-            return await _imsContext.StockKeepers.Include(x=>x.User).Include(x=>x.FirstName).Include(x=>x.LastName).ToListAsync();
+            return await _imsContext.StockKeepers.ToListAsync();
         }
     }
 }

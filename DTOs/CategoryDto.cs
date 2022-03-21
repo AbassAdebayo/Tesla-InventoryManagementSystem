@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagemenSystem_Ims.DTOs
@@ -12,6 +13,12 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public string Description { get; set; }
 
         public ICollection<ItemDto> Items { get; set; } = new List<ItemDto>();
+        
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
     }
 
     public class CreateCategoryRequestModel

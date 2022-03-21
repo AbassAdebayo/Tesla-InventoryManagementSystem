@@ -49,7 +49,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 Status = true, 
                 Data = new UserDto
                 {
-                    Username = user.Email,
+                    Id = user.Id,
+                    Email = user.Email,
                     Roles = user.UserRoles.Select(r=>new RoleDto
                     {
                         Id = r.Role.Id,
@@ -129,7 +130,13 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 {
                     Id = user.Id,
                     Username = user.UserName,
-                    Email = user.Email
+                    Email = user.Email,
+                    Roles = user.UserRoles.Select(x=>new RoleDto
+                    {
+                        Id = x.Id,
+                        Name = x.Role.Name,
+                        Description = x.Role.Description
+                    }).ToList()
 
                 }
             };
@@ -232,6 +239,12 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     Email = user.Email
                 }
             };
+        }
+
+        public bool GetUserByRole(string roleName)
+        {
+            _userRepository.GetUserByRole(roleName);
+            return true;
         }
     }
 }

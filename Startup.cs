@@ -11,6 +11,7 @@ using InventoryManagemenSystem_Ims.Interfaces.Repositories;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
 using InventoryManagemenSystem_Ims.SendMail;
 using MailKit;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -65,31 +66,40 @@ namespace InventoryManagemenSystem_Ims
             services.AddScoped<ISalesItemService, SalesItemService>();
             services.AddScoped<ISalesService, SalesService>();
             services.AddScoped<IMailMessage, MailMessage>();
+            
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(config =>
+                {
+                    config.LoginPath = "/user/login";
+                    config.Cookie.Name = "InventoryManagemenSystem_Ims";
+                    config.LogoutPath = "/user/logout";
+                });
+            services.AddAuthorization();
 
             services.AddControllersWithViews();
             
-            var key = "This is our key that we are using to authorize our user";
+            //var key = "This is our key that we are using to authorize our user";
             
-            services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
-
-            services.AddAuthentication(x =>
-                {
-                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(x =>
-                {
-                    x.RequireHttpsMetadata = false;
-                    x.SaveToken = true;
-                    x.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
-                        ValidateIssuer = false,
-                        ValidateAudience = false
-                    };
-
-                });
+            // services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
+            //
+            // services.AddAuthentication(x =>
+            //     {
+            //         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //         x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //     })
+            //     .AddJwtBearer(x =>
+            //     {
+            //         x.RequireHttpsMetadata = false;
+            //         x.SaveToken = true;
+            //         x.TokenValidationParameters = new TokenValidationParameters
+            //         {
+            //             ValidateIssuerSigningKey = true,
+            //             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+            //             ValidateIssuer = false,
+            //             ValidateAudience = false
+            //         };
+            //
+            //     });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

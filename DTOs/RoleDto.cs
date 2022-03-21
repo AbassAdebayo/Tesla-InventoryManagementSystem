@@ -3,9 +3,9 @@ using InventoryManagemenSystem_Ims.Entities;
 
 namespace InventoryManagemenSystem_Ims.DTOs
 {
-    public class RoleDto
+    public class RoleDto:BaseEntity
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string Name { get; set; }
         
         public string Description { get; set; }

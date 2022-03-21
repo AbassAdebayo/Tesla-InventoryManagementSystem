@@ -1,0 +1,80 @@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.DTOs.CategoryDto>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Category";
+}
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">Category</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            
+
+
+            <th>
+                Update
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => category.Id)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => category.CategoryName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => category.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => category.DateCreated)
+            </td>
+            
+            <td>
+                <a asp-action="UpdateItemCategory" asp-route-id="@category.Id">Update</a>
+            </td>
+            <td>
+                <a asp-action="GetItemCategory" asp-route-id="@category.Id">Details</a>
+            </td>
+            <td>
+                <a asp-action="DeleteItemCategory" asp-route-id="@category.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<button style="background-color: midnightblue"><a asp-controller="Category"  asp-action="CreateItemCategory">Create ItemCategory</a> </button>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>

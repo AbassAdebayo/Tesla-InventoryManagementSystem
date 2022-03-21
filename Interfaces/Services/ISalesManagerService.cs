@@ -12,8 +12,8 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         
         public Task<BaseResponse<bool>> DeleteSalesManager(int id);
         
-        public Task<BaseResponse<SalesManagerDto>> GetSalesManagerById(int id);
+        public Task<SalesManagerDto> GetSalesManagerById(int id);
         
-        public Task<BaseResponse<IList<SalesManagerDto>>> GetAllSalesManagers();
+        public Task<IEnumerable<SalesManagerDto>> GetAllSalesManagers();
     }
 }

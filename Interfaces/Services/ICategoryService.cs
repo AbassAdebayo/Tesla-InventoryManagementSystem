@@ -15,8 +15,8 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         Task<BaseResponse<CategoryDto>> ExistsByName(string categoryName);
 
-        Task<BaseResponse<CategoryDto>> GetCategoryById(int id);
+        Task<CategoryDto> GetCategoryById(int id);
 
-        Task<BaseResponse<IList<CategoryDto>>> GetAllCategories();
+        Task<IList<CategoryDto>> GetAllCategories();
     }
 }
