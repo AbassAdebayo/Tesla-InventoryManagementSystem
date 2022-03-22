@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Entities;
+using Category = InventoryManagemenSystem_Ims.Controllers.Category;
 
 namespace InventoryManagemenSystem_Ims.Interfaces.Services
 {
@@ -17,6 +18,6 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         Task<CategoryDto> GetCategoryById(int id);
 
-        Task<IList<CategoryDto>> GetAllCategories();
+        Task<IEnumerable<CategoryDto>> GetAllCategories();
     }
 }

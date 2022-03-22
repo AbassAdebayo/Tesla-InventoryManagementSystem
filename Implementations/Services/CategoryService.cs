@@ -165,6 +165,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     Id = categoryCheck.Id,
                     Description = categoryCheck.Description,
                     CategoryName = categoryCheck.CategoryName,
+                    DateCreated = categoryCheck.DateCreated
 
                 };
             }
@@ -174,7 +175,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<IList<CategoryDto>> GetAllCategories()
+        public async Task<IEnumerable<CategoryDto>> GetAllCategories()
         {
             try
             {
@@ -188,7 +189,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 {
                     Id = c.Id,
                     Description = c.Description,
-                    CategoryName = c.CategoryName
+                    CategoryName = c.CategoryName,
+                    DateCreated = c.DateCreated
                 }).ToList();
 
             

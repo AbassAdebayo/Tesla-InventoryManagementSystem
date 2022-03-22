@@ -26,18 +26,18 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         }
 
-        public async Task<Item> UpdateItem(int Id, ItemDto item)
+        public async Task<Item> UpdateItem(int id, ItemDto item)
         {
-          var checkItem= await _imsContext.Items.FindAsync(Id);
+          var checkItem= await _imsContext.Items.FindAsync(id);
            _imsContext.Update(checkItem);
           await _imsContext.SaveChangesAsync();
           return checkItem;
 
         }
 
-        public async Task<bool> DeleteItem(int Id)
+        public async Task<bool> DeleteItem(int id)
         {
-            var checkItem = await _imsContext.Items.FindAsync(Id);
+            var checkItem = await _imsContext.Items.FindAsync(id);
              _imsContext.Items.Remove(checkItem);
             await _imsContext.SaveChangesAsync();
              return true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using InventoryManagemenSystem_Ims.Entities;
 
 namespace InventoryManagemenSystem_Ims.DTOs
@@ -8,8 +9,11 @@ namespace InventoryManagemenSystem_Ims.DTOs
     {
         public int Id { get; set; }
         
+        
+        [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
         
+        [DataType(DataType.Date)]
         public DateTime DateModified { get; set; }
         
         public bool IsDeleted { get; set; }
@@ -26,18 +30,29 @@ namespace InventoryManagemenSystem_Ims.DTOs
 
     public class CreateItemRequestModel
     {
+        [Required]
         public string ItemName { get; set; }
         
         public string Description { get; set; }
         
+        [DataType(DataType.Time)]
+        public DateTime DateCreated { get; set; }
+        
+        [Required]
         public DateTime ExpiryDate { get; set; }
         
+        [Required]
         public IList<int> Categories { get; set; } = new List<int>();
     }
     
     public class UpdateItemRequestModel
     {
         public string ItemName { get; set; }
+        
+        public string Description { get; set; }
+        
+        [DataType(DataType.Time)]
+        public DateTime DateModified { get; set; }
         
     }
 }

@@ -15,8 +15,8 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         Task<BaseResponse<Item>> ExistsByName(string stockName);
 
-        Task<BaseResponse<ItemDto>> GetItemById(int Id);
+        Task<ItemDto> GetItemById(int Id);
 
-        Task<BaseResponse<IList<ItemDto>>> GetAllItems();
+        Task<IList<ItemDto>> GetAllItems();
     }
 }

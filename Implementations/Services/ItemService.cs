@@ -41,7 +41,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     Description = model.Description,
                     ItemName = model.ItemName,
                     ExpiryDate = model.ExpiryDate,
-                    DateCreated = DateTime.UtcNow
+                    DateCreated = DateTime.UtcNow,
+                    
 
                 };
                 var categories = await _categoryRepository.GetSelectedCategories(model.Categories);
@@ -80,17 +81,19 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<ItemDto>> UpdateItem(int Id, UpdateItemRequestModel model)
+        public async Task<BaseResponse<ItemDto>> UpdateItem(int id, UpdateItemRequestModel model)
         {
             
-            var item= await _itemRepository.GetItemById(Id);
+            var item= await _itemRepository.GetItemById(id);
             if (item!=null)
             {
                 item.ItemName = model.ItemName;
+                item.Description = model.Description;
+                item.DateModified = DateTime.UtcNow;
 
             }
 
-            await _itemRepository.UpdateItem(Id, item);
+            await _itemRepository.UpdateItem(id, item);
             return new BaseResponse<ItemDto>
             {
                 Message = "Item successfully updated",
@@ -98,9 +101,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             };
         }
 
-        public async Task<BaseResponse<ItemDto>> DeleteItem(int Id)
+        public async Task<BaseResponse<ItemDto>> DeleteItem(int id)
         {
-            await _itemRepository.DeleteItem(Id);
+            await _itemRepository.DeleteItem(id);
 
             return new BaseResponse<ItemDto>
             {
@@ -146,46 +149,55 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<ItemDto>> GetItemById(int Id)
+        public async Task<ItemDto> GetItemById(int id)
         {
-            var itemCheck = await _itemRepository.GetItemById(Id);
+            var itemCheck = await _itemRepository.GetItemById(id);
             if (itemCheck!=null)
             {
                 
-                return new BaseResponse<ItemDto>
+                return new ItemDto
                 {
-                    Message = "Stock fetched!",
-                    Status = true,
-                    Data = new ItemDto
+
+                    ItemName = itemCheck.ItemName,
+                    Description = itemCheck.Description,
+                    DateCreated = itemCheck.DateCreated,
+                    Categories = itemCheck.Categories.Select(c=>new CategoryDto
                     {
-                        ItemName = itemCheck.ItemName,
-                    }
+                        CategoryName = c.CategoryName,
+                        Description = c.Description,
+                        Id = c.Id,
+                        
+                    }).ToList()
+                    
                 };
             }
-            
-            return new BaseResponse<ItemDto>
-            {
-                Status = false,
-                Message = "stock does not exist!"
-            };
+
+            throw new Exception("Item not found!");
+
         }
 
-        public async Task<BaseResponse<IList<ItemDto>>> GetAllItems()
+        public async Task<IList<ItemDto>>GetAllItems()
         {
             var items = await _itemRepository.GetAllItems();
-            return new BaseResponse<IList<ItemDto>>()
-            { 
-                Message = "Stocks retrieved successfully",
-                Status = true,
-                Data = items.Select(i=>new ItemDto
+
+
+            return items.Select(i => new ItemDto
+            {
+                ItemName = i.ItemName,
+                Id = i.Id,
+                Description = i.Description,
+                DateCreated = i.DateCreated,
+                DateModified = i.DateModified,
+                ExpiryDate = i.ExpiryDate,
+                Categories = i.ItemCategories.Select(c => new CategoryDto
                 {
-                    ItemName = i.ItemName,
-                    Id = i.Id,
-                    DateCreated = i.DateCreated,
-                    DateModified = i.DateModified,
-                    ExpiryDate = i.ExpiryDate
-                }).ToList()
-            };
+                    CategoryName = c.Category.CategoryName,
+                    Id = c.categoryId,
+                    Description = c.Category.Description
+
+                }).ToList(),
+            }).ToList();
+
         }
     }
 }

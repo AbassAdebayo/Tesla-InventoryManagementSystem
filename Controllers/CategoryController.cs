@@ -18,7 +18,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         [Authorize(Roles = "ShopManager, StockKeeper, SalesManager")]
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryService.GetAllCategories();
+            var categories =  await _categoryService.GetAllCategories();
             return View(categories);
         }
         
@@ -40,7 +40,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         public async Task<IActionResult> GetItemCategory(int id)
         {
             var category = await _categoryService.GetCategoryById(id);
-            return Ok(category);
+            return View(category);
         }
         
         [HttpGet]

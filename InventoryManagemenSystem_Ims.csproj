@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Views\Suppplier" />
       <Folder Include="wwwroot\MyDesign\assets\vendor\@fortawesome" />
     </ItemGroup>
 

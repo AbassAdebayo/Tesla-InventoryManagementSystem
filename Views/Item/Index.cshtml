@@ -1,0 +1,99 @@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.DTOs.ItemDto>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Item";
+}
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">Item</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiryDate)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Categories)
+            </th>
+            
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            
+
+
+            <th>
+                Update
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Categories)
+            </td>
+            
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            
+            <td>
+                <a asp-action="EditItem" asp-route-id="@item.Id">Update</a>
+            </td>
+            <td>
+                <a asp-action="GetItem" asp-route-id="@item.Id">Details</a>
+            </td>
+            <td>
+                <a asp-action="DeleteItem" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<button style="background-color: midnightblue"><a asp-controller="Item"  asp-action="AddItem">Create Item</a> </button>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>
