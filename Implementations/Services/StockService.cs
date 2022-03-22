@@ -61,6 +61,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             {
                 stock.Description = model.Description;
                 stock.StockName = model.StockName;
+                stock.SupplierId = model.SupplierId;
+                stock.DateModified=DateTime.UtcNow;
             }
 
             await _stockRepository.UpdateStock(id, stock);
@@ -98,54 +100,54 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             return await _stockRepository.ExistsByName(stockName);
         }
 
-        public async Task<BaseResponse<StockDto>> GetStockById(int id)
+        public async Task<StockDto> GetStockById(int id)
         {
             var stockCheck = await _stockRepository.GetStockById(id);
             if (stockCheck != null)
             {
-                return new BaseResponse<StockDto>
+                return new StockDto
                 {
-                    Message = "Stock fetched!",
-                    Status = true,
-                    Data = new StockDto
-                    {
-                        Id = stockCheck.Id,
-                        Description = stockCheck.Description,
-                        StockName = stockCheck.StockName,
-                        SupplierId = stockCheck.SupplierId
-                    }
+
+                    Id = stockCheck.Id,
+                    StockName = stockCheck.StockName,
+                    Description = stockCheck.Description,
+                    SupplierId = stockCheck.SupplierId,
+                    DateCreated = stockCheck.DateCreated
+                    
                 };
             }
 
-            return new BaseResponse<StockDto>
-            {
-                Status = false,
-                Message = "stock does not exist!"
-            };
+            throw new Exception("Stock doesn't exist!");
         }
 
-        public async Task<BaseResponse<StockItem>> GetStockItemById(int id)
+        public async Task<StockItem> GetStockItemById(int id)
         {
             var stockItem = await _stockRepository.GetStockItemById(id);
-            return new BaseResponse<StockItem>
+            return new StockItem
             {
-                Message = "Data fetched successfully",
-                Status = true,
-                Data = stockItem
+                Id = stockItem.Id,
+                 ItemId = stockItem.ItemId,
+                 StockId = stockItem.StockId,
+                 PricePerUnit = stockItem.PricePerUnit,
+                 Quantity = stockItem.Quantity,
+                 TotalPrice = stockItem.TotalPrice,
+                 DateCreated = stockItem.DateCreated
             };
         }
 
-        public async Task<BaseResponse<IList<StockDto>>> GetAllStocks()
+        public async Task<IEnumerable<StockDto>> GetAllStocks()
         {
             try
             {
                 var stocks = await _stockRepository.GetAllStocks();
-                return new BaseResponse<IList<StockDto>>
+                return stocks.Select(s => new StockDto
                 {
-                    Message = "Stocks retrieved successfully",
-                    Status = true,
-                    Data = stocks.ToList()
-                };
+                    Id = s.Id,
+                    StockName = s.StockName,
+                    Description = s.Description,
+                     SupplierId = s.SupplierId,
+                     DateCreated = s.DateCreated
+                }).ToList();
             }
             catch (Exception e)
             {
@@ -155,7 +157,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
         public async Task<BaseResponse<StockDto>> AddItemToStock(int id, AddItemToStockRequestModel model)
         {
-            var item = await _itemRepository.GetItemById(model.ItemId);
+            
             var stock = await _stockRepository.GetStockById(model.StockId);
             
             var itemInStock = await _stockRepository.GetStockItemsByItemId(model.ItemId);
@@ -173,6 +175,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         Quantity = model.Quantity,
                         PricePerUnit = model.PricePerUnit,
                         TotalPrice = model.PricePerUnit * model.Quantity,
+                        DateCreated = DateTime.UtcNow
                         
                     };
 
@@ -216,6 +219,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             itemInStock.TotalPrice = model.PricePerUnit * model.Quantity;
             itemInStock.ItemId = model.ItemId;
             itemInStock.StockId = model.StockId;
+            itemInStock.DateModified=DateTime.UtcNow;
             await _stockRepository.UpdateStockItem(stockId, itemInStock);
             return new BaseResponse<StockDto>
             {
@@ -237,6 +241,23 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 Status = true,
                 Data = grandTotal
             };
+        }
+
+        public async Task<IEnumerable<StockItem>> GetAllStockItems()
+        {
+            var stockItems = await _stockRepository.GetAllStockItems();
+
+             return stockItems.Select(stockItem => new StockItem()
+            {
+                Id = stockItem.Id,
+                ItemId = stockItem.ItemId,
+                StockId = stockItem.StockId,
+                PricePerUnit = stockItem.PricePerUnit,
+                Quantity = stockItem.Quantity,
+                TotalPrice = stockItem.TotalPrice,
+                DateCreated = stockItem.DateCreated
+
+            }).ToList();
         }
     }
 }

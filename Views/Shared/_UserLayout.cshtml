@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>Inventory User</title>
+    <title>Inventory- User Dashboard</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/vendors/images/apple-touch-icon.png">
@@ -258,7 +258,7 @@
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Role Management</span>
+                            <span class="micon dw dw-library"></span><span class="mtext">Role Mgt</span>
                         </a>
                         <ul class="submenu">
                             <li><a asp-controller="Role" asp-action="CreateRole">Add Role</a></li>
@@ -296,11 +296,49 @@
                         </ul>
                     </li>
                     
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-library"></span><span class="mtext">Supplier Mgt</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a asp-controller="Supplier" asp-action="RegisterSupplier">Register Supplier</a></li>
+                            <li><a asp-controller="Supplier" asp-action="DeleteSupplier">Delete Supplier</a></li>
+                            <li><a asp-controller="Supplier" asp-action="UpdateSupplier">Update Supplier</a></li>
+                            <li><a asp-controller="Supplier" asp-action="Index">Get Suppliers</a></li>
+                                                            
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-library"></span><span class="mtext">Stock Mgt</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a asp-controller="Stock" asp-action="CreateStock">Create Stock</a></li>
+                            <li><a asp-controller="Stock" asp-action="DeleteStock">Delete Stock</a></li>
+                            <li><a asp-controller="Stock" asp-action="UpdateStock">Update Stock</a></li>
+                            <li><a asp-controller="Stock" asp-action="Index">Get Stocks</a></li>
+                                                                                
+                        </ul>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-library"></span><span class="mtext">StockItem Mgt</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a asp-controller="Stock" asp-action="AddItemToStock">Add Item To Stock</a></li>
+                            <li><a asp-controller="Stock" asp-action="DeleteStockItem">Delete StockItem</a></li>
+                            <li><a asp-controller="Stock" asp-action="UpdateStockItem">Update StockItem</a></li>
+                            <li><a asp-controller="Stock" asp-action="StockItems">Get Items in Stock</a></li>
+                                                                                                    
+                        </ul>
+                    </li>
                     
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Report Management</span>
+                            <span class="micon dw dw-library"></span><span class="mtext">Report Mgt</span>
                         </a>
                         <ul class="submenu">
                             <li><a asp-controller="ShopManager" asp-action="ViewApprovedReports">Approved Reports</a></li>
@@ -311,7 +349,7 @@
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-apartment"></span><span class="mtext">SalesManager Management</span>
+                            <span class="micon dw dw-apartment"></span><span class="mtext">SalesManager Mgt</span>
                         </a>
                         <ul class="submenu">
                             <li><a asp-controller="SalesManager" asp-action="RegisterSalesManager">Register</a></li>
@@ -322,7 +360,7 @@
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-apartment"></span><span class="mtext">StockKeeper Management</span>
+                            <span class="micon dw dw-apartment"></span><span class="mtext">StockKeeper Mgt</span>
                         </a>
                         <ul class="submenu">
                             <li><a asp-controller="StockKeeper" asp-action="RegisterStockKeeper">Register</a></li>

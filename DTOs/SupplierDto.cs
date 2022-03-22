@@ -1,9 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagemenSystem_Ims.DTOs
 {
     public class SupplierDto
     {
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
          public string FirstName { get; set; }
         
         public string LastName { get; set; }
@@ -47,6 +53,9 @@ namespace InventoryManagemenSystem_Ims.DTOs
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
         
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
+        
     }
     
     public class UpdateSupplierRequestModel
@@ -74,5 +83,8 @@ namespace InventoryManagemenSystem_Ims.DTOs
         [Required]
         [StringLength(maximumLength:50, MinimumLength = 8)]
         public string CompanyName { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
     }
 }

@@ -71,11 +71,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             
             var newStockItem = new UpdateStockItemRequestModel
             {
-              StockItemId = stockItem.Data.Id,
-                Quantity = salesItem.Quantity + stockItem.Data.Quantity,
-                ItemId = stockItem.Data.ItemId,
-                PricePerUnit = stockItem.Data.PricePerUnit,
-                StockId = stockItem.Data.StockId,
+              StockItemId = stockItem.Id,
+                Quantity = salesItem.Quantity + stockItem.Quantity,
+                ItemId = stockItem.ItemId,
+                PricePerUnit = stockItem.PricePerUnit,
+                StockId = stockItem.StockId,
                 
             };
             

@@ -1,0 +1,62 @@
+﻿@model InventoryManagemenSystem_Ims.DTOs.UpdateStockRequestModel
+
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row justify-content-center">
+        <div class=" card col-md-6">
+            <div class="card-body ">
+                <div class="bg-light">
+                    <h1 class="tagcolor" style="color:mediumblue">Edit</h1>
+                    <p class="tagcolor" style="color:mediumblue">Please use this box to Edit Item.</p>
+                    <hr class="tagcolor" style="color:mediumblue">
+
+                </div>
+                <form asp-action="UpdateStock" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label asp-for="StockName" class="control-label" style="display-model: RoleName"></label>
+                            <input asp-for="StockName" class="form-control" />
+                            <span asp-validation-for="StockName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label asp-for="Description" class="control-label"></label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
+                            <label class="control-label">Suppliers</label>
+                            <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.Suppliers" multiple required>
+                                <option value="">--Select Supplier--</option>
+                            </select>
+                        </div>
+                        
+                        
+                        
+                        <div class="form-group col-sm-6">
+                            <label asp-for="DateModified" class="control-label"></label>
+                            <input asp-for="DateModified" class="form-control" />
+                            <span asp-validation-for="DateModified" class="text-danger"></span>
+                        </div>
+                        
+                        
+                    </div>
+
+                    <div class="form-group ">
+                        <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12" data-toggle="modal" />
+                    </div>
+
+                </form>
+            
+                
+            </div>
+
+        </div>
+
+
+
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }</div>
+    </div>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using InventoryManagemenSystem_Ims.Entities;
 
@@ -32,6 +33,7 @@ namespace InventoryManagemenSystem_Ims.DTOs
         [DataType(DataType.Currency)]
         public decimal TotalPrice { get; set; }
         
+        
     }
 
     public class CreateStockRequestModel
@@ -43,6 +45,12 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public int SupplierId { get; set; }
         
         public IList<int> Items { get; set; } = new List<int>();
+        
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
 
     }
 
@@ -51,6 +59,11 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public string StockName { get; set; }
         
         public string Description { get; set; }
+        
+        public int SupplierId { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
         
         
     }
@@ -65,7 +78,11 @@ namespace InventoryManagemenSystem_Ims.DTOs
         
         public int Quantity { get; set; }
         
-        
+         
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
+
+
     }
     
     public class UpdateStockItemRequestModel
@@ -79,6 +96,9 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public decimal PricePerUnit { get; set; }
         
         public int Quantity { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
         
         
     }

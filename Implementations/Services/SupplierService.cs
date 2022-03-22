@@ -39,7 +39,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     CompanyName = model.CompanyName,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    PhoneNumber = model.PhoneNumber
+                    PhoneNumber = model.PhoneNumber,
+                    DateCreated = DateTime.UtcNow
                 };
                 await _supplierRepository.AddSupplierAsync(newSupplier);
                 return new BaseResponse<bool>
@@ -118,36 +119,28 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<SupplierDto>> GetSupplierById(int id)
+        public async Task<SupplierDto> GetSupplierById(int id)
         {
             try
             {
                 var supplier = await _supplierRepository.GetSupplierByIdAsync(id);
                 if (supplier == null)
                 {
-                    return new BaseResponse<SupplierDto>
-                    {
-                        Message = $"The supplier with id {id} does not exist",
-                        Status = false
-                    };
+                    throw new Exception("Supplier not found!");
                 }
 
-                return new BaseResponse<SupplierDto>
+                return new SupplierDto
                 {
 
-                    Message = $"The supplier with id {id} retrieved",
-                    Status = true,
-                    Data = new SupplierDto
-                    {
-
-                        Address = supplier.Address,
-                        Email = supplier.Email,
-                        FirstName = supplier.FirstName,
-                        LastName = supplier.LastName,
-                        PhoneNumber = supplier.PhoneNumber,
-                        CompanyName = supplier.CompanyName,
-                        Id = supplier.Id
-                    }
+                    Address = supplier.Address,
+                    Email = supplier.Email,
+                    FirstName = supplier.FirstName,
+                    LastName = supplier.LastName,
+                    PhoneNumber = supplier.PhoneNumber,
+                    CompanyName = supplier.CompanyName,
+                    Id = supplier.Id,
+                    DateCreated = supplier.DateCreated
+                    
                 };
             }
             catch (Exception e)
@@ -156,28 +149,26 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<IList<SupplierDto>>> GetAllSuppliers()
+        public async Task<IEnumerable<SupplierDto>> GetAllSuppliers()
         {
             try
             {
                 var suppliers = await _supplierRepository.GetAllSuppliers();
-                return new BaseResponse<IList<SupplierDto>>
+
+                return suppliers.Select(s => new SupplierDto()
                 {
-                    Message = "Users retrieved",
-                    Status = true,
-                    Data = suppliers.Select(s=>new SupplierDto()
-                    {
-                        Address = s.Address,
-                        Email = s.Email,
-                        Id = s.Id,
-                        FirstName = s.FirstName,
-                        LastName = s.LastName,
-                        PhoneNumber = s.PhoneNumber,
-                        CompanyName = s.CompanyName
-                    
-                    }).ToList()
-                
-                };
+                    Address = s.Address,
+                    Email = s.Email,
+                    Id = s.Id,
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    PhoneNumber = s.PhoneNumber,
+                    CompanyName = s.CompanyName,
+                    DateCreated = s.DateCreated
+
+                }).ToList();
+
+            
             }
             catch (Exception e)
             {

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.DTOs.SupplierDto>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Supplier";
+}
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">Category</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            
+
+
+            <th>
+                Update
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var supplier in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => supplier.Id)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => supplier.FirstName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => supplier.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => supplier.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => supplier.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => supplier.CompanyName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => supplier.DateCreated)
+            </td>
+            
+            <td>
+                <a asp-action="UpdateSupplier" asp-route-id="@supplier.Id">Update</a>
+            </td>
+            <td>
+                <a asp-action="GetSupplier" asp-route-id="@supplier.Id">Details</a>
+            </td>
+            <td>
+                <a asp-action="DeleteSupplier" asp-route-id="@supplier.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<button style="background-color: midnightblue"><a asp-controller="Supplier"  asp-action="RegisterSupplier">Register Supplier</a> </button>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>

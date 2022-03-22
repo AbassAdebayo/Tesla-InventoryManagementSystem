@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,7 @@ namespace InventoryManagemenSystem_Ims
                     config.LoginPath = "/user/login";
                     config.Cookie.Name = "InventoryManagemenSystem_Ims";
                     config.LogoutPath = "/user/logout";
+                    
                 });
             services.AddAuthorization();
 

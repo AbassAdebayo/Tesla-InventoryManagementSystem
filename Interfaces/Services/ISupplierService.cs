@@ -12,9 +12,9 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         
         public Task<BaseResponse<bool>> DeleteSupplier(int id);
         
-        public Task<BaseResponse<SupplierDto>> GetSupplierById(int id);
+        public Task<SupplierDto> GetSupplierById(int id);
         
-        public Task<BaseResponse<IList<SupplierDto>>> GetAllSuppliers();
+        public Task<IEnumerable<SupplierDto>> GetAllSuppliers();
 
         public Task<BaseResponse<SupplierDto>> SupplierExistsByCompanyName(string companyName);
     }

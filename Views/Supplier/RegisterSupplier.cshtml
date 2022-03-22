@@ -1,0 +1,145 @@
+﻿@model InventoryManagemenSystem_Ims.DTOs.CreateSupplierRequestModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Supplier";
+}
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+      
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="MyDesign/assets/images/favicon.ico" />
+      <link rel="stylesheet" href="MyDesign/assets/css/backend-plugin.min.css">
+      <link rel="stylesheet" href="MyDesign/assets/css/backend.css?v=1.0.0">
+      <link rel="stylesheet" href="MyDesign/assets/vendor/fontawesome-free/css/all.min.css">
+      <link rel="stylesheet" href="MyDesign/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+      <link rel="stylesheet" href="MyDesign/assets/vendor/remixicon/fonts/remixicon.css">  </head>
+  <body class=" ">
+    <!-- loader Start -->
+    <div id="loading">
+          <div id="loading-center">
+          </div>
+    </div>
+    <!-- loader END -->
+    
+      <div class="wrapper">
+      <section class="login-content">
+         <div class="container">
+            <div class="row align-items-center justify-content-center height-self-center">
+               <div class="col-lg-8">
+                  <div class="card auth-card">
+                     <div class="card-body p-0">
+                        <div class="d-flex align-items-center auth-content">
+                           <div class="col-lg-7 align-self-center">
+                              <div class="p-3">
+                                 <h2 class="mb-2">Sign Up</h2>
+                                 <p>Register Company's Supplier here.</p>
+                                 <form asp-action="RegisterSupplier">
+                                 <div class="row">
+                                    <div class="col-lg-6">
+                                       <div class="floating-label form-group">
+                                          <input asp-for="FirstName" class="floating-input form-control" type="text" placeholder=" ">
+                                         <label asp-for="FirstName">First Name</label>
+                                         <span asp-validation-for="FirstName" class="text-danger"></span>
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                       <div class="floating-label form-group">
+                                          <input asp-for="LastName" class="floating-input form-control" type="text" placeholder=" ">
+                                          <label asp-for="LastName">Last Name</label>
+                                          <span asp-validation-for="LastName" class="text-danger"></span>
+                                       </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6">
+                                       <div class="floating-label form-group">
+                                          <input asp-for="Address" class="floating-input form-control" type="text" placeholder=" ">
+                                          <label asp-for="Address">Address</label>
+                                          <span asp-validation-for="Address" class="text-danger"></span>
+                                       </div>
+                                    </div>
+                                    
+
+                                    <div class="col-lg-6">
+                                       <div class="floating-label form-group">
+                                          <input asp-for="CompanyName" class="floating-input form-control" type="text" placeholder=" ">
+                                          <label asp-for="CompanyName">CompanyName</label>
+                                          <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                       </div>
+                                    </div>
+                                        
+                                    <div class="col-lg-6">
+                                       <div class="floating-label form-group">
+                                          <input asp-for="Email" class="floating-input form-control" type="email" placeholder="user@gmail.com">
+                                          <label asp-for="Email">Email</label>
+                                           <span asp-validation-for="Email" class="text-danger"></span>
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                       <div class="floating-label form-group">
+                                          <input  asp-for="PhoneNumber" class="floating-input form-control" type="text" placeholder=" ">
+                                          <label  asp-for="PhoneNumber" class="control-label">Phone No.</label>
+                                           <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                       </div>
+                                    </div>
+                                    
+                                 
+                                       <div class="col-lg-12">
+                                          <div class="custom-control custom-checkbox mb-3">
+                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                             <label class="custom-control-label" for="customCheck1">I agree with the terms of use</label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                                    <p class="mt-3">
+                                       @* <form asp-controller="User" asp-action="Login"> *@
+                                       @* Already have an Account <a class="text-primary">Sign In</a> *@
+                                       @* </form> *@
+                                    </form>
+                              </div>
+                           </div>
+                           <div class="col-lg-5 content-right">
+                              <img src="MyDesign/assets/images/login/01.png" class="img-fluid image-right" alt="">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      </div>
+    
+    <!-- Backend Bundle JavaScript -->
+    <script src="MyDesign/assets/js/backend-bundle.min.js"></script>
+    
+    <!-- Table Treeview JavaScript -->
+    <script src="MyDesign/assets/js/table-treeview.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script src="MyDesign/assets/js/customizer.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script async src="MyDesign/assets/js/chart-custom.js"></script>
+    
+    <!-- app JavaScript -->
+    <script src="MyDesign/assets/js/app.js"></script>
+    
+  </body>
+  
+</html>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

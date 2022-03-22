@@ -18,19 +18,21 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         Task<Stock> ExistsByName(string stockName);
 
-        Task<BaseResponse<StockDto>> GetStockById(int Id);
+        Task<StockDto> GetStockById(int id);
         
         
-        Task<BaseResponse<StockItem>> GetStockItemById(int Id);
+        Task<StockItem> GetStockItemById(int id);
 
-        Task<BaseResponse<IList<StockDto>>> GetAllStocks();
+        Task<IEnumerable<StockDto>> GetAllStocks();
 
         Task<BaseResponse<StockDto>> AddItemToStock(int id, AddItemToStockRequestModel model);
 
         Task<BaseResponse<StockDto>> UpdateItemInStock(int itemId, UpdateStockItemRequestModel model);
 
         Task<BaseResponse<decimal>> CalculateGrandTotalPriceOfAllStockItem();
-        
-        
+
+        Task<IEnumerable<StockItem>> GetAllStockItems();
+
+
     }
 }
