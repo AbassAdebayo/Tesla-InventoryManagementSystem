@@ -311,6 +311,20 @@
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-library"></span><span class="mtext">Customer Mgt</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a asp-controller="Customer" asp-action="RegisterCustomer">Register Customer</a></li>
+                            <li><a asp-controller="Customer" asp-action="DeleteCustomer">Delete Customer</a></li>
+                            <li><a asp-controller="Customer" asp-action="UpdateCustomer">Update Customer</a></li>
+                            <li><a asp-controller="Customer" asp-action="Index">Get Customers</a></li>
+                                                                                
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon dw dw-library"></span><span class="mtext">Stock Mgt</span>
                         </a>
                         <ul class="submenu">
@@ -334,6 +348,34 @@
                                                                                                     
                         </ul>
                     </li>
+                    
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-library"></span><span class="mtext">Sales Mgt</span>
+                        </a>
+                        <ul class="submenu">
+                            @* <li><a asp-controller="Sales" asp-action="Create">Create Sales</a></li> *@
+                            <li><a asp-controller="Sales" asp-action="StartSales">Start Sales</a></li>
+                            //<li><a asp-controller="Sales" asp-action="UpdateSalesItem">Update SalesItem</a></li>
+                            <li><a asp-controller="Sales" asp-action="Index">Get All Sales</a></li>
+                                                                                                                        
+                        </ul>
+                    </li>
+                    
+                     <li class="dropdown">
+                                            <a href="javascript:;" class="dropdown-toggle">
+                                                <span class="micon dw dw-library"></span><span class="mtext">SalesItem Mgt</span>
+                                            </a>
+                                            <ul class="submenu">
+                                                <li><a asp-controller="SalesItem" asp-action="CreateSalesItem">Create SalesItem</a></li>
+                                                <li><a asp-controller="Sales" asp-action="DeleteSalesItem">Delete SalesItem</a></li>
+                                                <li><a asp-controller="Sales" asp-action="UpdateSalesItem">Update SalesItem</a></li>
+                                                <li><a asp-controller="Sales" asp-action="Index">Get All Sales</a></li>
+                                                                                                                                            
+                                            </ul>
+                                        </li>
+                                        
+                    
                     
                     
                     <li class="dropdown">

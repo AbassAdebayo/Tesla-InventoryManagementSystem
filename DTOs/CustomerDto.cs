@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagemenSystem_Ims.DTOs
 {
@@ -17,6 +18,12 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public string CompanyName { get; set; }
         
         public int Id { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
     }
 
     public class CreateCustomerRequestModel

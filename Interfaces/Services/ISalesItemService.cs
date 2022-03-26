@@ -9,10 +9,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 {
     public interface ISalesItemService
     {
-        //public Task<SalesItem> CreateSalesItem(SalesItem salesItem);
-
-        public Task<SalesItem> UpdateSalesItem(UpdateSalesItemRequestModel model);
-
+        
         public Task<SalesItem> FindSalesItemById(int id);
 
         public Task<BaseResponse<bool>> DeleteSalesItem(int id, int stockItemId);
@@ -20,7 +17,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         public Task<BaseResponse<bool>> DeleteSalesItems();
         
         //public Task<IList<SalesItem>> GetAllSalesItems(IList<int> salesItemIds);
-        public Task<IList<SalesItem>> GetAllSalesItems();
+        public Task<List<SalesItem>> GetAllSalesItems();
 
         //public Task<IEnumerable<SalesItem>> GetAllSalesItemBySalesManagerId(int salesManagerId);
 

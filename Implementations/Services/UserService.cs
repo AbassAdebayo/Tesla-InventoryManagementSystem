@@ -23,7 +23,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         public async Task<BaseResponse<UserDto>> Login(LoginDto model)
         {
            
-            var user = await _userRepository.GetUserByEmail(model.Email);
+            var user = await _userRepository.GetUserByEmail(model.Email.ToLower());
 
             if (user==null)
             {

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.Entities.Sales>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "stock";
+}
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">Stock</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.SalesManagerId)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.ItemId)
+            </th>
+            
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.PricePerUnit)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            
+
+
+            <th>
+                Update
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sales in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => sales.Id)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => sales.CustomerId)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => sales.SalesManagerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => sales.ItemId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => sales.Description)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => sales.PricePerUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => sales.Quantity)
+            </td>
+            
+            
+            <td>
+                @Html.DisplayFor(modelItem => sales.DateCreated)
+            </td>
+            
+            @* <td> *@
+            @*     <a asp-action="UpdateStock" asp-route-id="@sales.Id">Update</a> *@
+            @* </td> *@
+            @* <td> *@
+            @*     <a asp-action="GetStock" asp-route-id="@sales.Id">Details</a> *@
+            @* </td> *@
+            @* <td> *@
+            @*     <a asp-action="DeleteStock" asp-route-id="@sales.Id">Delete</a> *@
+            @* </td> *@
+        </tr>
+        }
+    </tbody>
+</table>
+<button style="background-color: midnightblue"><a asp-controller="Sales"  asp-action="StartSales">Create Sales</a> </button>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>

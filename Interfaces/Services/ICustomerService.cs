@@ -12,9 +12,9 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         
         public Task<BaseResponse<bool>> DeleteCustomer(int id);
         
-        public Task<BaseResponse<CustomerDto>> GetCustomerById(int id);
+        public Task<CustomerDto> GetCustomerById(int id);
         
-        public Task<BaseResponse<IList<CustomerDto>>> GetAllCustomers();
+        public Task<IEnumerable<CustomerDto>> GetAllCustomers();
         
         public Task<BaseResponse<CustomerDto>> CustomerExistsByShopName(string shopName);
     }

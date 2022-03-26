@@ -80,28 +80,7 @@ namespace InventoryManagemenSystem_Ims
 
             services.AddControllersWithViews();
             
-            //var key = "This is our key that we are using to authorize our user";
             
-            // services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
-            //
-            // services.AddAuthentication(x =>
-            //     {
-            //         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //         x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //     })
-            //     .AddJwtBearer(x =>
-            //     {
-            //         x.RequireHttpsMetadata = false;
-            //         x.SaveToken = true;
-            //         x.TokenValidationParameters = new TokenValidationParameters
-            //         {
-            //             ValidateIssuerSigningKey = true,
-            //             IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
-            //             ValidateIssuer = false,
-            //             ValidateAudience = false
-            //         };
-            //
-            //     });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

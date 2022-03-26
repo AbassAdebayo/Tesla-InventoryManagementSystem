@@ -113,7 +113,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<decimal> GetGrandTotalOfAllSales()
         {
-            return await _imsContext.Sales.SumAsync(s => s.TotalPrice);
+            return await _imsContext.SalesItems.SumAsync(s => s.TotalPrice);
         }
 
         // public Task<IEnumerable<SalesItem>> GetAllSalesItemBySalesManagerId(int id)
@@ -124,7 +124,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
         public async Task<IList<Sales>> GetSalesItemByDate(DateTime date)
         {
             return await _imsContext.Sales.Include(c => c.Customer).ThenInclude(c => c.Email).Include(c => c.Customer)
-                .ThenInclude(c => c.FirstName).Include(c => c.Customer).ThenInclude(c => c.LastName)
+                .ThenInclude(c => c.FirstName).Include(c => c.Customer).ThenInclude(c => c.LastName).Include(x=>x.SalesItems).ThenInclude(t=>t.TotalPrice)
                 .Where(d => d.DateCreated == date).Select(s => new Sales()
                 {
                     Id = s.Id,
@@ -132,7 +132,10 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                     SalesManagerId = s.SalesManagerId,
                     DateCreated = s.DateCreated,
                     Description = s.Description,
-                    TotalPrice = s.TotalPrice
+                    ItemId =s.ItemId,
+                    PricePerUnit = s.PricePerUnit,
+                    Quantity = s.Quantity,
+
 
                 }).ToListAsync();
             

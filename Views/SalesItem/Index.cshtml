@@ -1,0 +1,92 @@
+﻿@* @model IEnumerable<InventoryManagemenSystem_Ims.Entities.SalesItem> *@
+@* *@
+@* @{ *@
+@*     Layout = "~/Views/Shared/_Layout.cshtml"; *@
+@*     ViewData["Title"] = "stock"; *@
+@* } *@
+@* *@
+@* <div class="card-header" style="background-color:midnightblue;"> *@
+@*     <div class="card-title"> *@
+@*         <h1 class="text-center">Stock</h1> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* <table class="table"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.Id) *@
+@*             </th> *@
+@* *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.SalesId) *@
+@*             </th> *@
+@* *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.ItemId) *@
+@*             </th> *@
+@*              *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.Quantity) *@
+@*             </th> *@
+@*              *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.PricePerUnit) *@
+@*             </th> *@
+@*              *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.DateCreated) *@
+@*             </th> *@
+@*              *@
+@* *@
+@* *@
+@*             <th> *@
+@*                 Update *@
+@*             </th> *@
+@*             <th> *@
+@*                 Details *@
+@*             </th> *@
+@*             <th> *@
+@*                 Delete *@
+@*             </th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*         @foreach (var salesItem in Model) *@
+@*         { *@
+@*         <tr> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => salesItem.Id) *@
+@*             </td> *@
+@*              *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => salesItem.SalesId) *@
+@*             </td> *@
+@*              *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => salesItem.Quantity) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => salesItem.PricePerUnit) *@
+@*             </td> *@
+@* *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => salesItem.DateCreated) *@
+@*             </td> *@
+@*              *@
+@*             $1$ <td> #1# *@
+@*             $1$     <a asp-action="UpdateStock" asp-route-id="@salesItem.Id">Update</a> #1# *@
+@*             $1$ </td> #1# *@
+@*             $1$ <td> #1# *@
+@*             $1$     <a asp-action="GetStock" asp-route-id="@salesItem.Id">Details</a> #1# *@
+@*             $1$ </td> #1# *@
+@*             $1$ <td> #1# *@
+@*             $1$     <a asp-action="DeleteStock" asp-route-id="@salesItem.Id">Delete</a> #1# *@
+@*             $1$ </td> #1# *@
+@*         </tr> *@
+@*         } *@
+@*     </tbody> *@
+@* </table> *@
+@* <button style="background-color: midnightblue"><a asp-controller="Sales"  asp-action="Create">Create Sales</a> </button> *@
+@* *@
+@* <button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button> *@

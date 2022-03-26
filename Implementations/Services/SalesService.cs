@@ -15,15 +15,16 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
     {
         private readonly ISalesRepository _salesRepository;
         private readonly IItemRepository _itemRepository;
+        private readonly IStockService _stockService;
         private readonly IStockRepository _stockRepository;
         private readonly IReturnGoodsRepository _returnGoodsRepository;
 
 
-        public SalesService(ISalesRepository salesRepository, IItemRepository itemRepository, 
-            IStockRepository stockRepository, IReturnGoodsRepository returnGoodsRepository)
+        public SalesService(ISalesRepository salesRepository, IItemRepository itemRepository, IStockService stockService, IStockRepository stockRepository, IReturnGoodsRepository returnGoodsRepository)
         {
             _salesRepository = salesRepository;
             _itemRepository = itemRepository;
+            _stockService = stockService;
             _stockRepository = stockRepository;
             _returnGoodsRepository = returnGoodsRepository;
         }
@@ -50,7 +51,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     
                     Description = sales.Description,
                     CustomerId = sales.CustomerId,
-                    TotalPrice = sales.TotalPrice,
+                    PricePerUnit = sales.PricePerUnit,
+                    Quantity = sales.Quantity,
+                    TotalPrice = sales.PricePerUnit * sales.Quantity,
                     Id = sales.Id,
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow
@@ -58,31 +61,50 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             };
         }
 
-        public async Task<BaseResponse<SalesDto>> UpdateSales(int id, Sales sales)
+        public async Task<Sales> UpdateSales(UpdateSalesRequestModel model)
         {
-            var checkSales = await _salesRepository.FindSalesById(id);
+            var sales = await _salesRepository.FindSalesById(model.SalesId);
+            var checkSalesItem = await _salesRepository.FindSalesItemById(model.SalesItemId);
+            
 
-            if (checkSales==null)
+            if (checkSalesItem==null)
             {
-                return new BaseResponse<SalesDto>
-                {
-                    Message = "Invalid request or null reference!",
-                    Status = false
-                };
+                return null;
             }
 
-            await _salesRepository.UpdateSales(id, sales);
-            return new BaseResponse<SalesDto>
-            {
-                Message = "Sales updated successfully",
-                Status = true
-            };
+            sales.ItemId = model.ItemId;
+            sales.Id = model.SalesId;
+            sales.PricePerUnit = model.PricePerUnit;
+            checkSalesItem.TotalPrice = sales.PricePerUnit * sales.Quantity;
+            await _salesRepository.UpdateSales(model.SalesId, sales);
+            await _salesRepository.UpdateSalesItem(model.SalesItemId, checkSalesItem);
+            return sales;
         }
 
-        public async Task<bool> DeleteSales(int id)
+        public async Task<bool> DeleteSales(int id, int stockItemId)
         {
-           await _salesRepository.DeleteSales(id);
-           return true;
+            var stockItem = await _stockService.GetStockItemById(stockItemId);
+            var sales = await _salesRepository.FindSalesById(id);
+
+            if (sales == null)
+            {
+                throw new Exception("Sales not found!");
+            }
+
+
+            var newStockItem = new UpdateStockItemRequestModel
+            {
+                StockItemId = stockItemId,
+                Quantity = sales.Quantity + stockItem.Quantity,
+                ItemId = stockItem.ItemId,
+                PricePerUnit = stockItem.PricePerUnit,
+                StockId = stockItem.StockId,
+
+            };
+
+            await _stockService.UpdateItemInStock(stockItemId, newStockItem);
+            await _salesRepository.DeleteSales(sales.Id);
+            return true;
         }
 
         public async Task<BaseResponse<bool>> ExistsById(int id)
@@ -95,60 +117,52 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             };
         }
 
-        public async Task<BaseResponse<IEnumerable<SalesDto>>> GetAllSales()
+        public async Task<IEnumerable<Sales>> GetAllSales()
         {
-            await _salesRepository.GetAllSales();
-            return new BaseResponse<IEnumerable<SalesDto>>
-            {
-                Message = "Sales retrieved",
-                Status = true
-            };
+            return await _salesRepository.GetAllSales();
+            
         }
 
-        public async Task<BaseResponse<IList<Sales>>> SalesItem(CreateSalesRequestModel model)
+         public async Task<Sales> StartSales(CreateSalesRequestModel model)
+               {
+                    var checkStockItem = await _stockRepository.GetStockItemsByItemId(model.StockItemId);
+                    
+                    var sales = new Sales
+                    {
+                        ItemId = checkStockItem.ItemId,
+                        Item = checkStockItem.Item,
+                        CustomerId = model.CustomerId,
+                        SalesManagerId = model.SalesManagerId,
+                        DateCreated = DateTime.UtcNow,
+                        PricePerUnit = model.PricePerUnit,
+                        Quantity = model.Quantity
+        
+                    };
+                        var pricePerUnit = sales.PricePerUnit;
+                        var quantity = sales.Quantity;
+                        var salesItem = new SalesItem
+                        {
+                           
+                            SalesId = sales.Id,
+                            Sales = sales,
+                            DateCreated = DateTime.UtcNow,
+        
+                        };
+                        
+                        salesItem.TotalPrice += pricePerUnit * quantity;
+                        sales.SalesItems.Add(salesItem);
+                        checkStockItem.Quantity = checkStockItem.Quantity - sales.Quantity;
+                        
+                    await _stockRepository.UpdateStockItem(model.StockItemId, checkStockItem);
+                    await _salesRepository.CreateSales(sales);
+
+                    return sales;
+               }
+
+        public async Task<Sales> Create(Sales sales)
         {
-            var checkStockItem = await _stockRepository.GetStockItemsByItemId(model.StockItemId);
-            var cart = model.SalesItems.Where(q=>q.Quantity > 0).ToDictionary(s => s.ItemId, s=>s.Quantity);
-            var cartItem = await _stockRepository.GetAllStockItems(cart.Keys);
-            var sales = new Sales
-            {
-                CustomerId = model.CustomerId,
-                SalesManagerId = model.SalesManagerId,
-                DateCreated = DateTime.UtcNow,
-                CustomerEmailAddress = model.CustomerEmailAddress,
-
-            };
-
-            foreach (var stockItem in cartItem)
-            {
-                var quantity = cart[stockItem.Id];
-                var pricePerUnit = stockItem.PricePerUnit;
-                var salesItem = new SalesItem
-                {
-                    ItemId = stockItem.ItemId,
-                    Item = stockItem.Item,
-                    Quantity = quantity,
-                    Sales = sales,
-                    PricePerUnit = pricePerUnit,
-                    DateCreated = DateTime.UtcNow
-
-                };
-                
-                sales.TotalPrice += pricePerUnit * quantity;
-                sales.SalesItems.Add(salesItem);
-                checkStockItem.Quantity = checkStockItem.Quantity - salesItem.Quantity;
-            }
-
-
-            await _stockRepository.UpdateStockItem(model.StockItemId, checkStockItem);
             await _salesRepository.CreateSales(sales);
-            
-            return new BaseResponse<IList<Sales>>
-            {
-                Message = "Sales created successfully",
-                Status = true,
-                
-            };
+            return sales;
         }
 
         public async Task<BaseResponse<IList<SalesDto>>> GetSalesItemByDate(DateTime date)
@@ -175,7 +189,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     CustomerId = sales.CustomerId,
                     SalesManagerId = sales.SalesManagerId,
                     DateCreated = DateTime.UtcNow,
-                    TotalPrice = sales.TotalPrice
+                   Quantity = sales.Quantity,
+                   PricePerUnit = sales.PricePerUnit,
+                   TotalPrice = sales.Quantity * sales.PricePerUnit
 
                 }).ToList()
             };
@@ -228,11 +244,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     DateCreated = DateTime.UtcNow
 
                 };
-                checkSalesItem.Quantity = checkSalesItem.Quantity - returnGoods.QuantityReturned;
-                sales.TotalPrice = checkSalesItem.Quantity * checkSalesItem.PricePerUnit;
-           
-                await _salesRepository.UpdateSalesItem(salesItemId, checkSalesItem);
+                sales.Quantity = sales.Quantity - returnGoods.QuantityReturned;
+                checkSalesItem.TotalPrice = sales.Quantity * sales.PricePerUnit;
+                
                 await _salesRepository.UpdateSales(sales.Id, sales);
+                await _salesRepository.UpdateSalesItem(salesItemId, checkSalesItem);
                 await _returnGoodsRepository.ReturnGoods(returnGoods);
 
 

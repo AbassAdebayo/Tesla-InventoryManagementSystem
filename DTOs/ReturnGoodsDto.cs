@@ -1,4 +1,6 @@
-﻿using InventoryManagemenSystem_Ims.Entities;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using InventoryManagemenSystem_Ims.Entities;
 
 namespace InventoryManagemenSystem_Ims.DTOs
 {
@@ -43,7 +45,8 @@ namespace InventoryManagemenSystem_Ims.DTOs
         
         public int SalesManagerId { get; set; }
         
-        
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
         
         
     }

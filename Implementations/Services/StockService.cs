@@ -231,16 +231,10 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         }
 
 
-        public async Task<BaseResponse<decimal>> CalculateGrandTotalPriceOfAllStockItem()
+        public async Task<decimal> CalculateGrandTotalPriceOfAllStockItem()
         {
-            var grandTotal = await _stockRepository.CalculateGrandTotalPriceOfAllStockItem();
-
-            return new BaseResponse<decimal>
-            {
-                Message = "Grand total fetched",
-                Status = true,
-                Data = grandTotal
-            };
+           return await _stockRepository.CalculateGrandTotalPriceOfAllStockItem();
+           
         }
 
         public async Task<IEnumerable<StockItem>> GetAllStockItems()

@@ -119,36 +119,29 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<CustomerDto>> GetCustomerById(int id)
+        public async Task<CustomerDto> GetCustomerById(int id)
         {
             try
             {
                 var customer = await _customerRepository.GetCustomerByIdAsync(id);
                 if (customer == null)
                 {
-                    return new BaseResponse<CustomerDto>
-                    {
-                        Message = $"The Customer with id {id} does not exist",
-                        Status = false
-                    };
+                    throw new Exception("Customer not found!");
+
                 }
 
-                return new BaseResponse<CustomerDto>
+                return new CustomerDto
                 {
 
-                    Message = $"The Customer with id {id} retrieved",
-                    Status = true,
-                    Data = new CustomerDto()
-                    {
-
-                        Address = customer.Address,
-                        Email = customer.Email,
-                        FirstName = customer.FirstName,
-                        LastName = customer.LastName,
-                        PhoneNumber = customer.PhoneNumber,
-                        CompanyName = customer.ShopName,
-                        Id = customer.Id
-                    }
+                    Address = customer.Address,
+                    Email = customer.Email,
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName,
+                    PhoneNumber = customer.PhoneNumber,
+                    CompanyName = customer.ShopName,
+                    Id = customer.Id,
+                    DateCreated = customer.DateCreated
+                    
                 };
             }
             catch (Exception e)
@@ -157,28 +150,28 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<IList<CustomerDto>>> GetAllCustomers()
+        public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
         {
             try
             {
-                var customer = await _customerRepository.GetAllCustomers();
-                return new BaseResponse<IList<CustomerDto>>
+                var customers = await _customerRepository.GetAllCustomers();
+
+
+
+                return customers.Select(s => new CustomerDto
                 {
-                    Message = "Customers retrieved",
-                    Status = true,
-                    Data = customer.Select(s=>new CustomerDto()
-                    {
-                        Address = s.Address,
-                        Email = s.Email,
-                        Id = s.Id,
-                        FirstName = s.FirstName,
-                        LastName = s.LastName,
-                        PhoneNumber = s.PhoneNumber,
-                        CompanyName = s.ShopName
-                    
-                    }).ToList()
-                
-                };
+                    Address = s.Address,
+                    Email = s.Email,
+                    Id = s.Id,
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    PhoneNumber = s.PhoneNumber,
+                    CompanyName = s.ShopName,
+                    DateCreated = s.DateCreated
+
+                }).ToList();
+
+
             }
             catch (Exception e)
             {

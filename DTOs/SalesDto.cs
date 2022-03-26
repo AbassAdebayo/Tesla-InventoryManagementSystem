@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using InventoryManagemenSystem_Ims.Entities;
 
 namespace InventoryManagemenSystem_Ims.DTOs
@@ -10,8 +12,12 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public int SalesManagerId { get; set; }
         public string Description { get; set; }
 
-        public ICollection<CheckOutSales> SalesItems { get; set; } = new List<CheckOutSales>();
+        //public ICollection<CheckOutSales> SalesItems { get; set; } = new List<CheckOutSales>();
         public decimal TotalPrice { get; set; }
+        
+        public int Quantity { get; set; }
+              
+        public decimal PricePerUnit { get; set; }
         
     }
 
@@ -22,25 +28,21 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public int SalesManagerId { get; set; }
         
         public string Description { get; set; }
-        public ICollection<CheckOutSales> SalesItems { get; set; } = new List<CheckOutSales>();
+        //public ICollection<SalesItem> SalesItems { get; set; } = new List<SalesItem>();
         
         public int StockItemId { get; set; }
         
-        public string CustomerEmailAddress { get; set; }
+        public int Quantity { get; set; }
+              
+        public decimal PricePerUnit { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
         
     }
     
-    public class UpdateSalesRequestModel:BaseEntity
-    {
-        public int CustomerId { get; set; }
 
-        
-        public string Description { get; set; }
-
-       
-    }
-
-    public class UpdateSalesItemRequestModel
+    public class UpdateSalesRequestModel
     {
         public int SalesItemId { get; set; }
         

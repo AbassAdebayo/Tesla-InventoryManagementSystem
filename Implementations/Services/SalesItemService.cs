@@ -23,32 +23,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             _stockService = stockService;
             _stockRepository = stockRepository;
         }
-        public async Task<SalesItem> CreateSalesItem(SalesItem salesItem)
-        {
-            await _salesRepository.CreateSalesItem(salesItem);
-            return salesItem;
-        }
-
-        public async Task<SalesItem> UpdateSalesItem(UpdateSalesItemRequestModel model)
-        {
-            var checkSalesItem = await _salesRepository.FindSalesItemById(model.SalesItemId);
-            var sales = await _salesRepository.FindSalesById(model.SalesId);
-
-            if (checkSalesItem==null)
-            {
-                return null;
-            }
-
-            checkSalesItem.ItemId = model.ItemId;
-            checkSalesItem.Quantity = model.Quantity;
-            checkSalesItem.SalesId = model.SalesId;
-            checkSalesItem.PricePerUnit = model.PricePerUnit;
-            sales.TotalPrice = checkSalesItem.PricePerUnit * checkSalesItem.Quantity;
-            await _salesRepository.UpdateSalesItem(model.SalesItemId, checkSalesItem);
-            await _salesRepository.UpdateSales(model.SalesId, sales);
-            return checkSalesItem;
-        }
-
+        
         public async Task<SalesItem> FindSalesItemById(int id)
         {
             return await _salesRepository.FindSalesItemById(id);
@@ -57,9 +32,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         public async Task<BaseResponse<bool>> DeleteSalesItem(int id, int stockItemId)
         {
             var stockItem = await _stockService.GetStockItemById(stockItemId);
-            var salesItem = await _salesRepository.GetSalesItemById(id);
+            var sales = await _salesRepository.FindSalesById(id);
             
-            if (salesItem==null)
+            if (sales==null)
             {
                 return new BaseResponse<bool>
                 {
@@ -71,8 +46,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             
             var newStockItem = new UpdateStockItemRequestModel
             {
-              StockItemId = stockItem.Id,
-                Quantity = salesItem.Quantity + stockItem.Quantity,
+                StockItemId = stockItem.Id,
+                Quantity = sales.Quantity + stockItem.Quantity,
                 ItemId = stockItem.ItemId,
                 PricePerUnit = stockItem.PricePerUnit,
                 StockId = stockItem.StockId,
@@ -80,7 +55,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             };
             
             await _stockService.UpdateItemInStock(stockItemId, newStockItem);
-            await _salesRepository.DeleteSalesItem(salesItem.Id);
+            await _salesRepository.DeleteSalesItem(sales.Id);
             
             return new BaseResponse<bool>
             {
@@ -108,7 +83,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                             StockId = stockItem.StockId,
                             ItemId = stockItem.ItemId,
                             PricePerUnit = stockItem.PricePerUnit,
-                            Quantity = stockItem.Quantity + sale.Quantity
+                            Quantity = stockItem.Quantity + sale.Sales.Quantity
                             
                             
                         };
@@ -126,9 +101,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             };
         }
 
-        public async Task<IList<SalesItem>> GetAllSalesItems()
+        public async Task<List<SalesItem>> GetAllSalesItems()
         {
-            return await _salesRepository.GetAllSalesItems();
+            return (List<SalesItem>) await _salesRepository.GetAllSalesItems();
         }
 
         // public Task<IEnumerable<SalesItem>> GetAllSalesItemBySalesManagerId(int salesManagerId)

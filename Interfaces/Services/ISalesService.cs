@@ -11,17 +11,21 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         public Task<BaseResponse<SalesDto>> FindSalesById(int id);
 
-        public Task<BaseResponse<SalesDto>> UpdateSales(int id, Sales sales);
+        public Task<Sales> UpdateSales(UpdateSalesRequestModel model);
 
-        public Task<bool> DeleteSales(int id);
+        public Task<bool> DeleteSales(int id, int stockItemId);
 
         public Task<BaseResponse<bool>> ExistsById(int id);
 
-        public Task<BaseResponse<IEnumerable<SalesDto>>> GetAllSales();
+        public Task<IEnumerable<Sales>> GetAllSales();
 
-        public Task<BaseResponse<IList<Sales>>> SalesItem(CreateSalesRequestModel model);
+        public Task<Sales> StartSales(CreateSalesRequestModel model);
         
+        public Task<Sales> Create(Sales sales);
+
         public Task<BaseResponse<IList<SalesDto>>> GetSalesItemByDate(DateTime date);
+
+       
         
         public Task<BaseResponse<decimal>> GetGrandTotalOfAllSales();
         

@@ -29,7 +29,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         Task<BaseResponse<StockDto>> UpdateItemInStock(int itemId, UpdateStockItemRequestModel model);
 
-        Task<BaseResponse<decimal>> CalculateGrandTotalPriceOfAllStockItem();
+        Task<decimal> CalculateGrandTotalPriceOfAllStockItem();
 
         Task<IEnumerable<StockItem>> GetAllStockItems();
 

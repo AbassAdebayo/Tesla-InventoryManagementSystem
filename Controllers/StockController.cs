@@ -130,7 +130,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         
        
         [HttpGet]
-        [Authorize(Roles = "StockKeeper")]
+        [Authorize(Roles = "StockKeeper, SalesManager")]
         public async Task<IActionResult> UpdateStockItem()
         {
             var items =  await _itemService.GetAllItems();
@@ -141,7 +141,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> UpdateStockItem(int id, [FromBody]UpdateStockItemRequestModel model)
+        public async Task<IActionResult> UpdateStockItem(int id, UpdateStockItemRequestModel model)
         {
             await _stockService.UpdateItemInStock(id, model);
             return RedirectToAction("StockItems");
