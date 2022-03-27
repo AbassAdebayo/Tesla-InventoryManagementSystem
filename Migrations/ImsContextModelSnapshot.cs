@@ -270,7 +270,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.Property<string>("ReturnType")
                         .HasColumnType("text");
 
-                    b.Property<int>("SalesItemId")
+                    b.Property<int>("SalesId")
                         .HasColumnType("int");
 
                     b.Property<int>("SalesManagerId")
@@ -280,7 +280,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("SalesItemId");
+                    b.HasIndex("SalesId");
 
                     b.HasIndex("SalesManagerId");
 
@@ -319,9 +319,6 @@ namespace InventoryManagemenSystem_Ims.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CustomerEmailAddress")
-                        .HasColumnType("text");
-
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
@@ -337,15 +334,23 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("SalesManagerId")
+                    b.Property<int>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
+                    b.Property<decimal>("PricePerUnit")
                         .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalesManagerId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ItemId");
 
                     b.HasIndex("SalesManagerId");
 
@@ -367,21 +372,13 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PricePerUnit")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.Property<int>("SalesId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.HasIndex("ItemId");
+                    b.HasKey("Id");
 
                     b.HasIndex("SalesId");
 
@@ -724,9 +721,9 @@ namespace InventoryManagemenSystem_Ims.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagemenSystem_Ims.Entities.SalesItem", "SalesItem")
+                    b.HasOne("InventoryManagemenSystem_Ims.Entities.Sales", "Sales")
                         .WithMany()
-                        .HasForeignKey("SalesItemId")
+                        .HasForeignKey("SalesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -738,7 +735,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
                     b.Navigation("Customer");
 
-                    b.Navigation("SalesItem");
+                    b.Navigation("Sales");
 
                     b.Navigation("SalesManager");
                 });
@@ -751,6 +748,12 @@ namespace InventoryManagemenSystem_Ims.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("InventoryManagemenSystem_Ims.Entities.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("InventoryManagemenSystem_Ims.Entities.SalesManager", "SalesManager")
                         .WithMany("Sales")
                         .HasForeignKey("SalesManagerId")
@@ -759,24 +762,18 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
                     b.Navigation("Customer");
 
+                    b.Navigation("Item");
+
                     b.Navigation("SalesManager");
                 });
 
             modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.SalesItem", b =>
                 {
-                    b.HasOne("InventoryManagemenSystem_Ims.Entities.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("InventoryManagemenSystem_Ims.Entities.Sales", "Sales")
                         .WithMany("SalesItems")
                         .HasForeignKey("SalesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Item");
 
                     b.Navigation("Sales");
                 });

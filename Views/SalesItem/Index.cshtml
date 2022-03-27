@@ -1,92 +1,200 @@
-﻿@* @model IEnumerable<InventoryManagemenSystem_Ims.Entities.SalesItem> *@
-@* *@
-@* @{ *@
-@*     Layout = "~/Views/Shared/_Layout.cshtml"; *@
-@*     ViewData["Title"] = "stock"; *@
-@* } *@
-@* *@
-@* <div class="card-header" style="background-color:midnightblue;"> *@
-@*     <div class="card-title"> *@
-@*         <h1 class="text-center">Stock</h1> *@
-@*     </div> *@
-@* </div> *@
-@* *@
-@* <table class="table"> *@
-@*     <thead> *@
-@*         <tr> *@
-@*             <th> *@
-@*                 @Html.DisplayNameFor(model => model.Id) *@
-@*             </th> *@
-@* *@
-@*             <th> *@
-@*                 @Html.DisplayNameFor(model => model.SalesId) *@
-@*             </th> *@
-@* *@
-@*             <th> *@
-@*                 @Html.DisplayNameFor(model => model.ItemId) *@
-@*             </th> *@
-@*              *@
-@*             <th> *@
-@*                 @Html.DisplayNameFor(model => model.Quantity) *@
-@*             </th> *@
-@*              *@
-@*             <th> *@
-@*                 @Html.DisplayNameFor(model => model.PricePerUnit) *@
-@*             </th> *@
-@*              *@
-@*             <th> *@
-@*                 @Html.DisplayNameFor(model => model.DateCreated) *@
-@*             </th> *@
-@*              *@
-@* *@
-@* *@
-@*             <th> *@
-@*                 Update *@
-@*             </th> *@
-@*             <th> *@
-@*                 Details *@
-@*             </th> *@
-@*             <th> *@
-@*                 Delete *@
-@*             </th> *@
-@*         </tr> *@
-@*     </thead> *@
-@*     <tbody> *@
-@*         @foreach (var salesItem in Model) *@
-@*         { *@
-@*         <tr> *@
-@*             <td> *@
-@*                 @Html.DisplayFor(modelItem => salesItem.Id) *@
-@*             </td> *@
-@*              *@
-@*             <td> *@
-@*                 @Html.DisplayFor(modelItem => salesItem.SalesId) *@
-@*             </td> *@
-@*              *@
-@*             <td> *@
-@*                 @Html.DisplayFor(modelItem => salesItem.Quantity) *@
-@*             </td> *@
-@*             <td> *@
-@*                 @Html.DisplayFor(modelItem => salesItem.PricePerUnit) *@
-@*             </td> *@
-@* *@
-@*             <td> *@
-@*                 @Html.DisplayFor(modelItem => salesItem.DateCreated) *@
-@*             </td> *@
-@*              *@
-@*             $1$ <td> #1# *@
-@*             $1$     <a asp-action="UpdateStock" asp-route-id="@salesItem.Id">Update</a> #1# *@
-@*             $1$ </td> #1# *@
-@*             $1$ <td> #1# *@
-@*             $1$     <a asp-action="GetStock" asp-route-id="@salesItem.Id">Details</a> #1# *@
-@*             $1$ </td> #1# *@
-@*             $1$ <td> #1# *@
-@*             $1$     <a asp-action="DeleteStock" asp-route-id="@salesItem.Id">Delete</a> #1# *@
-@*             $1$ </td> #1# *@
-@*         </tr> *@
-@*         } *@
-@*     </tbody> *@
-@* </table> *@
-@* <button style="background-color: midnightblue"><a asp-controller="Sales"  asp-action="Create">Create Sales</a> </button> *@
-@* *@
-@* <button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button> *@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.Entities.SalesItem>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "SalesItem";
+}
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">SalesItem</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.SalesId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            
+
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+
+
+
+            <th>
+                Update
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var salesItem in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => salesItem.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => salesItem.SalesId)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => salesItem.TotalPrice)
+            </td>
+           
+
+            <td>
+                @Html.DisplayFor(modelItem => salesItem.DateCreated)
+            </td>
+
+            <td>
+                <a asp-action="UpdateStock" asp-route-id="@salesItem.Id">Update</a>
+            </td>
+            <td>
+                <a asp-action="GetStock" asp-route-id="@salesItem.Id">Details</a>
+            </td>
+            <td>
+                <a asp-action="DeleteStock" asp-route-id="@salesItem.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>
+<button style="background-color: midnightblue"><link rel="stylesheet" href="/bootstrap/js/bootstrap.js"> Generate Receipt</button> 
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 main">
+            <div class="col-md-12">
+               <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-fluid" alt="Invoce Template" src="https://www.prepbootstrap.com/Content/images/template/productslider/product_004.jpg" />
+                    </div>
+                    <div class="col-md-8 text-xs-right">
+                        <h4 style="color: #F81D2D;"><strong>Tesla Inventory</strong></h4>
+                        <p>No 3, Gbonagun strt.,Unity Abk </p>
+                        <p>+1 888 455 6677</p>
+                        <p>Teslaims@gmail.com</p>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12 text-xs-center">
+                        <h2>INVOICE</h2>
+                        <h5>00000846382</h5>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><h5>Description</h5></th>
+                                <th><h5>Amount</h5></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-md-9">Apple iPhone 8 64 GB</td>
+                                <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> 759,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-9">Apple iPhone 7 Plus 128 GB</td>
+                                <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> 1023,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-9">Apple iPhone 6s Plus 16GB</td>
+                                <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> 595,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-9">Apple iPhone 6s Plus 64 GB</td>
+                                <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> 1052,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="text-xs-right">
+                                <p>
+                                    <strong>Total Amount: </strong>
+                                </p>
+                                <p>
+                                    <strong>Late Fees: </strong>
+                                </p>
+							    <p>
+                                    <strong>Payable Amount: </strong>
+                                </p>
+							    <p>
+                                    <strong>Balance Due: </strong>
+                                </p>
+							    </td>
+                                <td>
+                                <p>
+                                    <strong><i class="fa fa-usd" aria-hidden="true"></i> 2569,00 </strong>
+                                </p>
+                                <p>
+                                    <strong><i class="fa fa-usd" aria-hidden="true"></i> 700,00</strong>
+                                </p>
+							    <p>
+                                    <strong><i class="fa fa-usd" aria-hidden="true"></i> 159,00 </strong>
+                                </p>
+							    <p>
+                                    <strong><i class="fa fa-usd" aria-hidden="true"></i> 5010,00 </strong>
+                                </p>
+							    </td>
+                            </tr>
+                            <tr style="color: #F81D2D;">
+                                <td class="text-xs-right"><h4><strong>Total:</strong></h4></td>
+                                <td class="text-xs-left"><h4><strong><i class="fa fa-usd" aria-hidden="true"></i> 2365,00 </strong></h4></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div class="col-md-12">
+                        <p><b>Date :</b> 28 June 2017</p>
+                        <br />
+                        <p><b>Signature</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .main {
+        background: #ffffff;
+        border-bottom: 15px solid #F81D2D;
+        border-top: 15px solid #1E1F23;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 40px 30px !important;
+        position: relative;
+        box-shadow: 0 1px 21px #808080;
+        font-size:10px;
+    }
+
+    .main thead {
+		background: #1E1F23;
+        color: #fff;
+		}
+</style>

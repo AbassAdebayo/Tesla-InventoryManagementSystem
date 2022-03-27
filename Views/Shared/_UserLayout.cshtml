@@ -356,24 +356,25 @@
                         <ul class="submenu">
                             @* <li><a asp-controller="Sales" asp-action="Create">Create Sales</a></li> *@
                             <li><a asp-controller="Sales" asp-action="StartSales">Start Sales</a></li>
-                            //<li><a asp-controller="Sales" asp-action="UpdateSalesItem">Update SalesItem</a></li>
+                            <li><a asp-controller="Sales" asp-action="ReturnGoods">Return Goods</a></li>
                             <li><a asp-controller="Sales" asp-action="Index">Get All Sales</a></li>
                                                                                                                         
                         </ul>
                     </li>
                     
-                     <li class="dropdown">
-                                            <a href="javascript:;" class="dropdown-toggle">
-                                                <span class="micon dw dw-library"></span><span class="mtext">SalesItem Mgt</span>
-                                            </a>
-                                            <ul class="submenu">
-                                                <li><a asp-controller="SalesItem" asp-action="CreateSalesItem">Create SalesItem</a></li>
-                                                <li><a asp-controller="Sales" asp-action="DeleteSalesItem">Delete SalesItem</a></li>
-                                                <li><a asp-controller="Sales" asp-action="UpdateSalesItem">Update SalesItem</a></li>
-                                                <li><a asp-controller="Sales" asp-action="Index">Get All Sales</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-library"></span><span class="mtext">SalesItem Mgt</span>
+                        </a>
+                        <ul class="submenu">
+                            @* <li><a asp-controller="SalesItem" asp-action="ReturnGoods">Return Goods</a></li> *@
+                            <li><a asp-controller="Sales" asp-action="DeleteSalesItem">Delete SalesItem</a></li>
+                            <li><a asp-controller="Sales" asp-action="UpdateSalesItem">Update SalesItem</a></li>
+                            <li><a asp-controller="SalesItem" asp-action="Index">Get All SalesItem</a></li>
                                                                                                                                             
-                                            </ul>
-                                        </li>
+                        </ul>
+                    </li>
+                    
                                         
                     
                     

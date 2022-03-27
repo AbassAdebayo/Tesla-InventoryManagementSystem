@@ -1,6 +1,6 @@
 ﻿namespace InventoryManagemenSystem_Ims.Entities
 {
-    public class Payment:BaseEntity
+    public class InvoiceDetails:BaseEntity
     {
         public int PaymentReference { get; set; }
         

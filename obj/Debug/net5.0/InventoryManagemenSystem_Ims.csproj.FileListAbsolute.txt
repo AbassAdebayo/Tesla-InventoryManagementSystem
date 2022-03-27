@@ -195,7 +195,10 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\Sales\Create.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\Sales\SalesItems.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Home\ViewCart.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\SalesItem\CreateSalesItem.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\SalesItem\Index.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\Sales\StartSales.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Sales\StartSales.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\Sales\ReturnGoods.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\SalesItem\ReturnGoods.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\Sales\DeleteSales.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Sales\ReturnGoods.cshtml.g.cs

@@ -106,21 +106,25 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             await _salesRepository.DeleteSales(sales.Id);
             return true;
         }
-
-        public async Task<BaseResponse<bool>> ExistsById(int id)
-        {
-            await _salesRepository.ExistsById(id);
-            return new BaseResponse<bool>
-            {
-                Message = "Request successful",
-                Status = true
-            };
-        }
+        
 
         public async Task<IEnumerable<Sales>> GetAllSales()
         {
-            return await _salesRepository.GetAllSales();
-            
+            var sales = await _salesRepository.GetAllSales();
+
+            return sales.Select(s => new Sales()
+            { 
+                Id = s.Id,
+                CustomerId = s.CustomerId,
+                ItemId = s.ItemId,
+                SalesManagerId = s.SalesManagerId,
+                PricePerUnit = s.PricePerUnit,
+                Quantity = s.Quantity,
+                Description = s.Description,
+                DateCreated = s.DateCreated
+
+            }).ToList();
+
         }
 
          public async Task<Sales> StartSales(CreateSalesRequestModel model)
@@ -135,18 +139,17 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         SalesManagerId = model.SalesManagerId,
                         DateCreated = DateTime.UtcNow,
                         PricePerUnit = model.PricePerUnit,
-                        Quantity = model.Quantity
+                        Quantity = model.Quantity,
+                        Description = model.Description
         
                     };
                         var pricePerUnit = sales.PricePerUnit;
                         var quantity = sales.Quantity;
                         var salesItem = new SalesItem
                         {
-                           
                             SalesId = sales.Id,
                             Sales = sales,
                             DateCreated = DateTime.UtcNow,
-        
                         };
                         
                         salesItem.TotalPrice += pricePerUnit * quantity;
@@ -155,15 +158,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         
                     await _stockRepository.UpdateStockItem(model.StockItemId, checkStockItem);
                     await _salesRepository.CreateSales(sales);
-
                     return sales;
                }
-
-        public async Task<Sales> Create(Sales sales)
-        {
-            await _salesRepository.CreateSales(sales);
-            return sales;
-        }
+         
 
         public async Task<BaseResponse<IList<SalesDto>>> GetSalesItemByDate(DateTime date)
         {
@@ -210,20 +207,20 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
            };
         }
 
-        public async Task<BaseResponse<ReturnGoodsDto>> ReturnGoods(int salesItemId, ReturnGoodsRequestModel model)
+        public async Task<BaseResponse<ReturnGoodsDto>> ReturnGoods(ReturnGoodsRequestModel model)
         {
-            var checkSalesItem = await _salesRepository.FindSalesItemById(salesItemId);
-            var sales = await _salesRepository.FindSalesById(model.SalesId);
-            if (checkSalesItem==null)
+            var checkSalesItem = await _salesRepository.FindSalesItemById(model.SalesItemId);
+            var sales = await _salesRepository.FindSalesById(checkSalesItem.SalesId);
+            if (sales==null)
             {
                 return new BaseResponse<ReturnGoodsDto>
                 {
-                    Message = "SalesItem not found!",
+                    Message = "Sales not found!",
                     Status = false
                 };
             }
             
-            if (DateTime.UtcNow > checkSalesItem.DateCreated.AddDays(7))
+            if (DateTime.UtcNow > sales.DateCreated.AddDays(7))
             {
                 return new BaseResponse<ReturnGoodsDto>
                 {
@@ -231,7 +228,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     Status = false
                 };
             }
-            else if (DateTime.UtcNow <= checkSalesItem.DateCreated.AddDays(7))
+            else if (DateTime.UtcNow <= sales.DateCreated.AddDays(7))
             {
                 var returnGoods = new ReturnGoods
                 {
@@ -247,8 +244,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 sales.Quantity = sales.Quantity - returnGoods.QuantityReturned;
                 checkSalesItem.TotalPrice = sales.Quantity * sales.PricePerUnit;
                 
+                
                 await _salesRepository.UpdateSales(sales.Id, sales);
-                await _salesRepository.UpdateSalesItem(salesItemId, checkSalesItem);
+                await _salesRepository.UpdateSalesItem(checkSalesItem.Id, checkSalesItem);
                 await _returnGoodsRepository.ReturnGoods(returnGoods);
 
 

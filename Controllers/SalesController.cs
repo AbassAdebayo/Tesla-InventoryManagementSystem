@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagemenSystem_Ims.Controllers
 {
-    public class SalesController:Controller
+    public class SalesController : Controller
     {
         private readonly ISalesService _salesService;
         private readonly IItemService _itemService;
@@ -19,8 +19,9 @@ namespace InventoryManagemenSystem_Ims.Controllers
         private readonly ISalesManagerService _salesManagerService;
         private readonly ISalesItemService _salesItemService;
 
-        public SalesController(ISalesService salesService, IItemService itemService, 
-            IStockService stockService, ICustomerService customerService, ISalesManagerService salesManagerService, ISalesItemService salesItemService)
+        public SalesController(ISalesService salesService, IItemService itemService,
+            IStockService stockService, ICustomerService customerService, ISalesManagerService salesManagerService,
+            ISalesItemService salesItemService)
         {
             _salesService = salesService;
             _itemService = itemService;
@@ -29,16 +30,16 @@ namespace InventoryManagemenSystem_Ims.Controllers
             _salesManagerService = salesManagerService;
             _salesItemService = salesItemService;
         }
-        
-        
+
+
         [HttpGet]
         [Authorize(Roles = "SalesManager, ShopManager")]
         public async Task<IActionResult> Index()
         {
-            
+
             return View(await _salesService.GetAllSales());
         }
-        
+
         [HttpGet]
         [Authorize(Roles = "SalesManager")]
         public async Task<IActionResult> StartSales()
@@ -49,22 +50,22 @@ namespace InventoryManagemenSystem_Ims.Controllers
             ViewData["Items"] = new SelectList(items, "Id", "ItemName");
             ViewData["Customers"] = new SelectList(customers, "Id", "CompanyName");
             ViewData["SalesManagers"] = new SelectList(salesManagers, "Id", "FirstName");
- 
+
             return View();
-            
-           
+
+
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> StartSales(CreateSalesRequestModel model)
         {
-             await _salesService.StartSales(model);
-             return RedirectToAction("Index");
+            await _salesService.StartSales(model);
+            return RedirectToAction("Index");
 
         }
-        
+
         [HttpGet]
-        [Authorize(Roles = "StockKeeper")]
+        [Authorize(Roles = "ShopManager,StockKeeper")]
         public async Task<IActionResult> ReturnGoods()
         {
             var customers = await _customerService.GetAllCustomers();
@@ -76,25 +77,24 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
             return View();
         }
-        
+
         [HttpPost]
-        public async Task<IActionResult> ReturnGoods(int salesItemId, ReturnGoodsRequestModel model)
+        public async Task<IActionResult> ReturnGoods(ReturnGoodsRequestModel model)
         {
-            var checkSalesItem = await _salesItemService.FindSalesItemById(salesItemId);
-            var sales = await _salesService.FindSalesById(model.SalesId);
+           string errorMessage = "The time interval for returning goods has elapsed";
+           
+            var check = await _salesService.ReturnGoods(model);
 
-            if (sales == null)
+            if (check.Status == true)
             {
-                throw new Exception("Sales not found!");
-            }
-            else if (checkSalesItem==null)
-            {
-                throw new Exception("SalesItem not found!");
+                return RedirectToAction("Index");
             }
 
-            await _salesService.ReturnGoods(salesItemId, model);
-            return RedirectToAction("Index");
+            TempData["data"] = errorMessage;
+           return View();
+            
+
+
         }
-       
     }
 }

@@ -2,12 +2,12 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "stock";
+    ViewData["Title"] = "Sales";
 }
 
 <div class="card-header" style="background-color:midnightblue;">
     <div class="card-title">
-        <h1 class="text-center">Stock</h1>
+        <h1 class="text-center">Sales</h1>
     </div>
 </div>
 
@@ -58,6 +58,10 @@
             <th>
                 Delete
             </th>
+            <th>
+                Return Goods
+            </th>
+            
         </tr>
     </thead>
     <tbody>
@@ -101,12 +105,15 @@
             @*     <a asp-action="GetStock" asp-route-id="@sales.Id">Details</a> *@
             @* </td> *@
             @* <td> *@
-            @*     <a asp-action="DeleteStock" asp-route-id="@sales.Id">Delete</a> *@
-            @* </td> *@
+            @*     <a asp-action="DeleteSales" asp-route-id="@sales.Id">Delete</a> *@
+            @* </td>  *@
+            <td>
+                <a asp-action="ReturnGoods" asp-route-id="@sales.Id">Return</a>
+            </td>
         </tr>
         }
     </tbody>
 </table>
 <button style="background-color: midnightblue"><a asp-controller="Sales"  asp-action="StartSales">Create Sales</a> </button>
-
+<button style="background-color: midnightblue"><a asp-controller="Sales"  asp-action="ReturnGoods">Return Goods</a> </button>
 <button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>

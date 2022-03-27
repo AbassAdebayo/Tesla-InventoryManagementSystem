@@ -35,7 +35,7 @@ namespace InventoryManagemenSystem_Ims.IMS_DbContext
         
         public DbSet<User> Users { get; set; }
         
-        public DbSet<Payment> Payments { get; set; }
+        public DbSet<InvoiceDetails> InvoiceDetails { get; set; }
         
         public DbSet<UserRole> UserRoles { get; set; }
 
