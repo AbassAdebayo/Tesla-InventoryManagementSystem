@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kfsz9gVTyxfpdxPM7oj51c3dF3Sw/3u6awgq44ccEPwxgh1SIaykUVgKaEgyGd7bQBOgpRX5qvzNWqqbSEjUVA==",
+  "dgSpecHash": "fEYFmdFuVb2f2XAFIS11phREF+I0WdjHBqkoqjw9Rst6srMkruIRlAhamcLOIvGw/VeBfK2JI8RQF7G9RwhOrg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\InventoryManagementSystemProj\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,7 @@
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\mimekit\\2.13.0\\mimekit.2.13.0.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\mysql.data\\8.0.27\\mysql.data.8.0.27.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\mysql.entityframeworkcore\\5.0.8\\mysql.entityframeworkcore.5.0.8.nupkg.sha512",
+    "C:\\Users\\Dejik Concepts\\.nuget\\packages\\ncrontab.signed\\3.3.2\\ncrontab.signed.3.3.2.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\portable.bouncycastle\\1.8.10\\portable.bouncycastle.1.8.10.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",

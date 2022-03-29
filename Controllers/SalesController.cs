@@ -96,5 +96,13 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
 
         }
+        
+        [HttpGet]
+        [Authorize(Roles = "SalesManager")]
+        public async Task <IActionResult> GenerateInvoice(int id)
+        {
+            return View(await _salesService.GenerateInvoice(id));
+        }
+
     }
 }

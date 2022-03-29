@@ -257,5 +257,10 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 Status = true
             };
         }
+        
+        public async Task<List<Sales>> GenerateInvoice(int id)
+        {
+            return await _salesRepository.GenerateInvoice(id);
+        }
     }
 }

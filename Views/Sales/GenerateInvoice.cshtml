@@ -1,0 +1,136 @@
+﻿@using System.Security.Cryptography
+@using System.Security.Principal
+@using Google.Protobuf.WellKnownTypes
+@model IEnumerable<InventoryManagemenSystem_Ims.Entities.Sales>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "SalesItem";
+}
+
+<div class="container" style="background-image: url('images/images(9).jpeg')">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 main">
+            <div class="col-md-12">
+               <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-fluid" alt="Invoce Template" src="/images/images (9).jpeg" />
+                    </div>
+                   <div class="col-md-8 text-xs-right">
+                       <strong>
+                       <h4 style="color: #F81D2D;"><strong>Tesla Inventory</strong></h4>
+                       <h6>No 3, Gbonagun street Unity Abk</h6>
+                       <h6>+234 9014 698 926</h6>
+                       <h6>Teslaims@gmail.com</h6>
+                       </strong>
+                   </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12 text-xs-center">
+                        <h1>Invoice No.</h1>
+                        <h2>
+                            <b>
+                            <script type="text/javascript" src="js/TeslaInvoice.js"> </script>
+                            <div id="myInvoice"></div>
+                            <p id="yourInvoice"></p>
+                            </b>
+                        </h2>
+                    </div >
+                </div>
+                <br />
+                <div>
+                    <table class="table">
+                        <thead>
+                        <tr style="color: whitesmoke">
+                            <th><h5>Details</h5></th>
+                            <th><h5>Value</h5></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var sales in Model)
+                        {
+
+
+                            <tr>
+                                <strong>
+                                    <td class="col-md-9">Id</td>
+                                    <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modelItem=>sales.Id) </td>
+                                </strong>
+                            </tr>
+                            <tr>
+                                <strong>
+                                    <td class="col-md-9">CustomerId</td>
+                                    <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modelItem=>sales.CustomerId)</td>
+                                </strong>
+                            </tr>
+                            <tr>
+                                <strong>
+                                    <td class="col-md-9">SalesManagerId</td>
+                                    <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modelItem=>sales.SalesManagerId)</td>
+                                </strong>
+                            </tr>
+                            <tr>
+                                <strong>
+                                    <td class="col-md-9">ItemId</td>
+                                    <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modlItem=>sales.ItemId)</td>
+                                </strong>
+                            </tr>
+
+                            <tr>
+                                <strong>
+                                    <td class="col-md-9">PricePerUnit</td>
+                                    <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modelItem=>sales.PricePerUnit) </td>
+                                </strong>
+                            </tr>
+
+                            <tr>
+                                <strong>
+                                    <td class="col-md-9">Quantity</td>
+                                    <td class="col-md-3"><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modelItem=>sales.Quantity) </td>
+                                </strong>
+                            </tr>
+
+
+                            <tr style="color: #F81D2D;">
+                                <td class="text-xs-right"><h4><strong>Total:</strong></h4></td>
+                                @* <td class="text-xs-left"><h4><strong><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modelItem=>sales.PricePerUnit * sales.Quantity) </strong></h4></td> *@
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                @foreach (var sales in Model)
+                {
+                    
+                    <div>
+                        <div class="col-md-12">
+                            <p><b>Date :</b> @Html.DisplayFor(modelItem=>sales.DateCreated)</p>
+                            <br />
+                            <p><b>Signature</b></p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .main {
+        background: #a19191;
+        border-bottom: 15px solid #F81D2D;
+        border-top: 15px solid #1E1F23;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 40px 30px !important;
+        position: relative;
+        box-shadow: 0 1px 21px #808080;
+        font-size:14px;
+    }
+
+    .main thead {
+		background: #424356;
+        color: #fff;
+		}
+</style>

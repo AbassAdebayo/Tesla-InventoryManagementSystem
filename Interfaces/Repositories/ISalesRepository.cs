@@ -39,5 +39,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
         public Task<decimal> GetGrandTotalOfAllSales();
         
         public Task<IList<Sales>> GetSalesItemByDate(DateTime date);
+
+        public Task<List<Sales>> GenerateInvoice(int id);
     }
 }

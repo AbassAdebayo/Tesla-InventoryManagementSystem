@@ -63,6 +63,10 @@
             "MySql.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.8, )"
+            },
+            "NCrontab.Signed": {
+              "target": "Package",
+              "version": "[3.3.2, )"
             }
           },
           "imports": [

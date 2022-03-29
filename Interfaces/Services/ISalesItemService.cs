@@ -21,6 +21,8 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         //public Task<IEnumerable<SalesItem>> GetAllSalesItemBySalesManagerId(int salesManagerId);
 
+        
+
 
     }
 }

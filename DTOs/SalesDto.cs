@@ -19,6 +19,12 @@ namespace InventoryManagemenSystem_Ims.DTOs
               
         public decimal PricePerUnit { get; set; }
         
+        public int SalesId { get; set; }
+
+        public int ItemId { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateCreated { get; set; }
     }
 
     public class CreateSalesRequestModel

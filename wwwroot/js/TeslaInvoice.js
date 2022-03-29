@@ -1,0 +1,20 @@
+
+function invoiceNumber(minRange, maxRange)
+{
+    return Math.floor(Math.random() * (maxRange + 1) + minRange);
+
+
+}
+
+let window;
+window.onload = function (){
+    
+    document.getElementById("yourInvoice").innerHTML = invoiceNumber(0, 10000000);
+    $('#myInvoice').html(rand);
+    return false;
+
+};
+
+    
+   
+    

@@ -106,9 +106,6 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             return (List<SalesItem>) await _salesRepository.GetAllSalesItems();
         }
 
-        // public Task<IEnumerable<SalesItem>> GetAllSalesItemBySalesManagerId(int salesManagerId)
-        // {
-        //     throw new NotImplementedException();
-        // }
+        
     }
 }

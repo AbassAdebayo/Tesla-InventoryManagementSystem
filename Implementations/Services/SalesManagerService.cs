@@ -163,7 +163,6 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         PhoneNumber = checkSalesManager.PhoneNumber,
                         DateCreated = checkSalesManager.DateCreated
                         
-                        //UserName = checkSalesManager.User.UserName
                     
                     };
                 }
@@ -199,5 +198,29 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 throw new Exception();
             }
         }
+
+        public async Task<SalesManagerDto> GetSalesManagerByUserName(string userName)
+        {
+            var checkSalesManager = await _salesManagerRepository.GetSalesManagerByUsernameAsync(userName);
+            if (checkSalesManager==null)
+            {
+                throw new Exception("Information requested doesn't exist!");
+            }
+
+            return new SalesManagerDto
+            {
+                Id = checkSalesManager.Id,
+                Email = checkSalesManager.Email,
+                DateCreated = checkSalesManager.DateCreated,
+                FirstName = checkSalesManager.FirstName,
+                Address = checkSalesManager.Address,
+                LastName = checkSalesManager.LastName,
+                PhoneNumber = checkSalesManager.PhoneNumber,
+                
+                
+            };
+        }
+
+        
     }
 }

@@ -39,6 +39,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.13",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.13",
           "MySql.EntityFrameworkCore": "5.0.8",
+          "NCrontab.Signed": "3.3.2",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -810,6 +811,17 @@
         },
         "compile": {
           "lib/netstandard2.1/MySql.EntityFrameworkCore.dll": {}
+        }
+      },
+      "NCrontab.Signed/3.3.2": {
+        "runtime": {
+          "lib/netstandard2.0/NCrontab.Signed.dll": {
+            "assemblyVersion": "3.3.2.0",
+            "fileVersion": "3.3.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NCrontab.Signed.dll": {}
         }
       },
       "Portable.BouncyCastle/1.8.10": {
@@ -3001,6 +3013,13 @@
       "sha512": "sha512-34F52zm294inqAEMaqySeHJ62XMjJFcOR35whUqjpvoBZ3XmkKDK5du87JBUHdXM12iLhbQYaX+XpVibP5qUjA==",
       "path": "mysql.entityframeworkcore/5.0.8",
       "hashPath": "mysql.entityframeworkcore.5.0.8.nupkg.sha512"
+    },
+    "NCrontab.Signed/3.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ef9nJs/iIkM3hAcAEDD5dZy0cDFfmmPlhRAt/IPYcsWdMUHZ6MQLuqv5oA6TZrpvO6Sj8lq/B5njbJUMnxedLg==",
+      "path": "ncrontab.signed/3.3.2",
+      "hashPath": "ncrontab.signed.3.3.2.nupkg.sha512"
     },
     "Portable.BouncyCastle/1.8.10": {
       "type": "package",

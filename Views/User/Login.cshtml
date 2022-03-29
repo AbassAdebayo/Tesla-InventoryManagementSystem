@@ -1,51 +1,48 @@
 ﻿@model InventoryManagemenSystem_Ims.DTOs.LoginDto
 
+
 @{
- 
-   Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
     ViewData["Title"] = "Login";
 }
 
+<link rel="stylesheet" href="/hotel/css/style.css"/>
 
 
+<div style="display: flex; height: 100vh; justify-content: center; align-content: center; align-items: center">
+
+    <div class=" card">
+        <div class="card-body ">
+            <div class="bg-light">
+                <h1 class="tagcolor" style="color:mediumblue"></h1>
+                <p class="tagcolor" style="color:mediumblue">Please fill in this form to login as User.</p>
+                <hr class="tagcolor" style="color:mediumblue">
+
+            </div>
+            <h3>Login Page</h3>
+            <form asp-action="Login" class="needs-validation">
+                @if (!string.IsNullOrEmpty(ViewBag.Message))
+                {
+                    <p class="alert alert-warning alert-dismissible" role="alert"> @ViewBag.Message</p>
+                }
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label class="control-label"> Email</label>
+                        <input class="form-control" placeholder="Enter Email" name="email" type="text" required/>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="control-label"> Password</label>
+                        <input class="form-control" placeholder="Enter Password" name="password" type="password" required/>
+                    </div>
 
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class=" card col-md-6">
-      <div class="card-body ">
-        <div class="bg-light">
-          <h1 class="tagcolor" style="color:mediumblue"></h1>
-          <p class="tagcolor" style="color:mediumblue">Please fill in this form to login as User.</p>
-          <hr class="tagcolor" style="color:mediumblue">
+                </div>
 
+                <div class="form-group ">
+                    <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12" data-toggle="modal"/>
+                </div>
+            </form>
         </div>
-        <h3>Login Page</h3>
-        <form asp-action="Login" class="needs-validation">
-          @if (!string.IsNullOrEmpty(ViewBag.Message))
-          {
-            <p  class="alert alert-warning alert-dismissible" role="alert"> @ViewBag.Message</p>
-          }
-          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          <div class="form-row">
-            <div class="form-group col-sm-6">
-              <label class="control-label"> Email</label>
-              <input class="form-control" placeholder="Enter Email" name="email" type="text" required/>
-            </div>
-            <div class="form-group col-sm-6">
-              <label class="control-label"> Password</label>
-              <input class="form-control" placeholder="Enter Password" name="password" type="password" required />
-            </div>
-                        
-
-          </div>
-                    
-          <div class="form-group ">
-            <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12" data-toggle="modal" />
-          </div>
-        </form>
-      </div>
     </div>
-
-  </div>
 </div>

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.Auth;
+using InventoryManagemenSystem_Ims.BackgroundTask;
+using InventoryManagemenSystem_Ims.DTOs;
+using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.Implementations.Repositories;
 using InventoryManagemenSystem_Ims.Implementations.Services;
 using InventoryManagemenSystem_Ims.IMS_DbContext;
@@ -40,6 +43,10 @@ namespace InventoryManagemenSystem_Ims
             services.AddDbContext<ImsContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("ConnectionContext")));
             
+            
+           
+           services.Configure<ReminderMailsConfig>(Configuration.GetSection("ReminderMailsConfig"));
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
@@ -67,6 +74,7 @@ namespace InventoryManagemenSystem_Ims
             services.AddScoped<ISalesItemService, SalesItemService>();
             services.AddScoped<ISalesService, SalesService>();
             services.AddScoped<IMailMessage, MailMessage>();
+            //services.AddHostedService<ReminderMails>();
             
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(config =>

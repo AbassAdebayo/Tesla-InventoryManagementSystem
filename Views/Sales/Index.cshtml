@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<InventoryManagemenSystem_Ims.Entities.Sales>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
     ViewData["Title"] = "Sales";
 }
 
@@ -61,6 +61,10 @@
             <th>
                 Return Goods
             </th>
+            <th>
+                Generate Invoice
+            </th>
+            
             
         </tr>
     </thead>
@@ -98,18 +102,22 @@
                 @Html.DisplayFor(modelItem => sales.DateCreated)
             </td>
             
-            @* <td> *@
-            @*     <a asp-action="UpdateStock" asp-route-id="@sales.Id">Update</a> *@
-            @* </td> *@
-            @* <td> *@
-            @*     <a asp-action="GetStock" asp-route-id="@sales.Id">Details</a> *@
-            @* </td> *@
-            @* <td> *@
-            @*     <a asp-action="DeleteSales" asp-route-id="@sales.Id">Delete</a> *@
-            @* </td>  *@
+            <td>
+                <a asp-action="UpdateStock" asp-route-id="@sales.Id">Update</a>
+            </td>
+            <td>
+                <a asp-action="GetStock" asp-route-id="@sales.Id">Details</a>
+            </td>
+            <td>
+                <a asp-action="DeleteSales" asp-route-id="@sales.Id">Delete</a>
+            </td>
             <td>
                 <a asp-action="ReturnGoods" asp-route-id="@sales.Id">Return</a>
             </td>
+            <td>
+                <a asp-action="GenerateInvoice" asp-route-id="@sales.Id">Generate Invoice</a>
+            </td>
+            
         </tr>
         }
     </tbody>

@@ -58,6 +58,7 @@ namespace InventoryManagemenSystem_Ims.IMS_DbContext
         public DbSet<ReturnGoods> ReturnGoods { get; set; }
         
         
+        
        
         
         

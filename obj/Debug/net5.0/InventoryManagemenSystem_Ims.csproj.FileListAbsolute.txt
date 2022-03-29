@@ -202,3 +202,7 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\SalesItem\ReturnGoods.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\Sales\DeleteSales.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Sales\ReturnGoods.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\SalesItem\GenerateInvoice.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Sales\GenerateInvoice.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\bin\Debug\net5.0\NCrontab.Signed.dll
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Shared\_LoginLayout.cshtml.g.cs

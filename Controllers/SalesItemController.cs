@@ -30,10 +30,11 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View(await _salesItemService.GetAllSalesItems());
 
         }
-       
-      
-              
+
         
-       
+        
+
+
+
     }
 }

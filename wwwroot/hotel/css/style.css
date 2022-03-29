@@ -74,7 +74,9 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem; 
+  position: absolute;
+}
 
 abbr[title],
 abbr[data-original-title] {
@@ -1334,12 +1336,12 @@ pre {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #212529; }
+  color: #050d15; }
   .table th,
   .table td {
     padding: 0.75rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6; }
+    border-top: 1px solid #032f5c; }
   .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6; }
@@ -1599,7 +1601,7 @@ pre {
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid #f0eded;
   border-radius: 0.25rem;
   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -2121,9 +2123,9 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5); }
 
 .btn-success {
-  color: #fff;
-  background-color: #28a745;
-  border-color: #28a745; }
+  color: #cfd3e2;
+  background-color: #2851a7e0;
+  border-color: #191d36; }
   .btn-success:hover {
     color: #fff;
     background-color: #218838;
@@ -3778,7 +3780,7 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #b7bad3;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem; }
@@ -8137,11 +8139,11 @@ html {
 
 body {
   font-family: "Poppins", Arial, sans-serif;
-  background: #fff;
+  background: #300ad82b;
   font-size: 15px;
   line-height: 1.8;
   font-weight: 400;
-  color: #666666;
+  color: #0b338c;
   overflow-x: hidden; }
   body.menu-show {
     overflow: hidden;
@@ -8161,9 +8163,9 @@ a {
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.5;
-  color: #000000;
+  color: #092581eb;
   font-weight: 400;
-  font-family: "Playfair Display", Arial, serif; }
+  font-family: "Playfair Display", Italic, serif; }
 
 .text-primary {
   color: #b69100 !important; }
@@ -8567,7 +8569,7 @@ h1, h2, h3, h4, h5,
       font-size: 30px; }
 
 .bg-light {
-  background: #f8f9fa !important; }
+  background: #4067acdb !important; }
 
 .bg-primary {
   background: #b69100; }
@@ -9171,8 +9173,8 @@ h1, h2, h3, h4, h5,
 
 .form-control {
   height: 52px !important;
-  background: #fff !important;
-  color: #000000 !important;
+  background: #150101;
+  color: #ded4e9c4;
   font-size: 18px;
   border-radius: 0px;
   -webkit-box-shadow: none !important;
@@ -9235,7 +9237,7 @@ textarea.form-control {
 .ftco-footer {
   font-size: 16px;
   padding: 7em 0;
-  background: #232323; }
+  background: #160808; }
   .ftco-footer .ftco-footer-logo {
     text-transform: uppercase;
     letter-spacing: .1em; }
@@ -10219,3 +10221,25 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+.login-img4-body{
+ background-image: url("/img/login2.jpg");
+  min-height: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+@media only screen and (max-width: 767px) {
+  html {
+    background-image: url("/img/login.jpg");
+  }
+}
+.container2 .card{
+  
+  position: center;
+}

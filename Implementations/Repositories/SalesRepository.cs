@@ -140,5 +140,22 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                 }).ToListAsync();
             
         }
+
+        public async Task<List<Sales>> GenerateInvoice(int id)
+        {
+            var sales = await _imsContext.Sales.Where(s=>s.Id==id).Select(s => new Sales
+            {
+                CustomerId = s.CustomerId,
+                SalesManagerId = s.SalesManagerId,
+                Description = s.Description,
+                ItemId = s.Item.Id,
+                PricePerUnit = s.PricePerUnit,
+                Quantity = s.Quantity,
+                DateCreated = s.DateCreated,
+                Id = s.Id,
+                
+            }).ToListAsync();
+            return sales;
+        }
     }
 }

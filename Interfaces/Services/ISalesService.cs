@@ -25,5 +25,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         public Task<BaseResponse<decimal>> GetGrandTotalOfAllSales();
         
         public Task<BaseResponse<ReturnGoodsDto>> ReturnGoods(ReturnGoodsRequestModel model);
+        
+        public Task<List<Sales>> GenerateInvoice(int id);
     }
 }
