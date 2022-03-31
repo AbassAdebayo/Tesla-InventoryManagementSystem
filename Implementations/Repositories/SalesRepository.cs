@@ -6,6 +6,7 @@ using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.IMS_DbContext;
 using InventoryManagemenSystem_Ims.Interfaces.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagemenSystem_Ims.Implementations.Repositories
@@ -156,6 +157,12 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                 
             }).ToListAsync();
             return sales;
+        }
+
+        public JsonResult ManageCustomersPatronage(int customerId)
+        {
+            var customerIdCount = _imsContext.Sales.Count(c => c.CustomerId == customerId);
+            return new JsonResult(new {myCutomerIdCount = customerIdCount});
         }
     }
 }

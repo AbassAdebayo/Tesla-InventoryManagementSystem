@@ -7,18 +7,22 @@ using InventoryManagemenSystem_Ims.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using InventoryManagemenSystem_Ims.Models;
+using InventoryManagemenSystem_Ims.Entities;
 
 namespace InventoryManagemenSystem_Ims.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IStockService _stockService;
+        private readonly ISalesService _salesService;
+        private readonly ICustomerService _customerService;
 
-        public HomeController(ILogger<HomeController> logger, IStockService stockService)
+        public HomeController(ILogger<HomeController> logger, ISalesService salesService, 
+        ICustomerService customerService)
         {
             _logger = logger;
-            _stockService = stockService;
+            _salesService = salesService;
+            _customerService = customerService;
         }
 
         public IActionResult Index()
@@ -37,9 +41,8 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
         
-        public IActionResult ViewCart()
-        {
-            return View();
-        }
+       
+        
+        		
     }
 }

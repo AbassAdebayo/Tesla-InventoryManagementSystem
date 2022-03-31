@@ -7,7 +7,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 {
     public interface IReportService
     {
-        Task<BaseResponse<ReportDto>> SubmitSalesManagerReport(CreateSalesManagerReportModel report, string userName);
+        Task<BaseResponse<ReportDto>> SubmitSalesManagerReport(CreateSalesManagerReportModel report, int id);
 
         Task<BaseResponse<ReportDto>> SubmitStockKeeperReport(CreateStockKeeperReportModel report);
         
@@ -15,21 +15,21 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         Task<BaseResponse<ReportDto>> DeleteStockKeeperReport(int id);
 
-        Task<BaseResponse<IList<ReportDto>>> GetAllStockKeeperReports();
+        Task<IList<ReportDto>> GetAllStockKeeperReports();
          
-        Task<BaseResponse<IList<ReportDto>>> GetAllSalesManagerReports();
+        Task<IList<ReportDto>> GetAllSalesManagerReports();
 
         Task<BaseResponse<bool>> UpdateReportStatusToVerified(int id);
         
         Task<BaseResponse<bool>> UpdateReportStatusToApproved(int id);
         
-        Task<BaseResponse<IEnumerable<ReportDto>>> ViewStockKeeperVerifiedReports();
+        Task<IEnumerable<ReportDto>> ViewStockKeeperVerifiedReports();
         
-        Task<BaseResponse<IEnumerable<ReportDto>>> ViewSalesManagerVerifiedReports();
+        Task<IEnumerable<ReportDto>> ViewSalesManagerVerifiedReports();
 
-        Task<BaseResponse<IEnumerable<ReportDto>>> ViewStockKeeperApprovedReports();
+        Task<IEnumerable<ReportDto>> ViewStockKeeperApprovedReports();
         
-        Task<BaseResponse<IEnumerable<ReportDto>>> ViewSalesManagerApprovedReports();
+        Task<IEnumerable<ReportDto>> ViewSalesManagerApprovedReports();
         
     }
 }

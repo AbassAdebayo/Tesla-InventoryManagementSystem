@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "fEYFmdFuVb2f2XAFIS11phREF+I0WdjHBqkoqjw9Rst6srMkruIRlAhamcLOIvGw/VeBfK2JI8RQF7G9RwhOrg==",
+  "dgSpecHash": "7V6+Kx/bwTtZRNeM7apWqxennoPRHTqattEL7zuedlCVQ37mWA7Ri+tZOxnztXPtRc7agme5I3C7t9WL5HQYug==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\InventoryManagementSystemProj\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
+    "C:\\Users\\Dejik Concepts\\.nuget\\packages\\chart.js\\2.9.3\\chart.js.2.9.3.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",

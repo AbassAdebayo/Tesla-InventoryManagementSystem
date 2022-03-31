@@ -16,13 +16,16 @@ namespace InventoryManagemenSystem_Ims.Controllers
     public class UserController:Controller
     {
         private readonly IUserService _userService;
-       
-
-        public UserController(IUserService userService)
+        private readonly ISalesService _salesService;
+        private readonly ICustomerService _customerService;
+        
+        public UserController(IUserService userService, ISalesService salesService, ICustomerService customerService)
         {
             _userService = userService;
-            
+            _salesService = salesService;
+            _customerService = customerService;
         }
+        
         [HttpGet]
         public IActionResult Login()
         {
@@ -71,10 +74,32 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var sales = await _salesService.GetAllSales();
+            var customers = await _customerService.GetAllCustomers();
+
+            var numOfSales = sales.Count();
+            List<int> salesItem = new List<int>();
+            List<int> customerNumbersById = new List<int>();
+            var numbOfCustomer = customers.Count();
+
+            foreach(var item in sales)
+            {
+                salesItem.Add(item.ItemId);
+                customerNumbersById.Add(item.CustomerId);
+            }
+            var sItem = salesItem;
+            var customerNum = customerNumbersById;
+
+            ViewBag.SALESITEM = sItem;
+            ViewBag.CUSTOMERNUMBERS = customerNum;
+            ViewBag.CUSTOMERS = customers;
+            ViewBag.SALES = numOfSales;
             return View();
         }
+        
+       
       
     }
 }

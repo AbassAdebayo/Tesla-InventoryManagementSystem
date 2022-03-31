@@ -20,31 +20,33 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         private readonly ISalesManagerRepository _salesManagerRepository;
         private readonly IStockKeeperRepository _stockKeeperRepository;
         private readonly IMailMessage _mailMessage;
+        private readonly IUserService _userService;
 
-        public ReportService(IReportRepository reportRepository, ISalesManagerRepository salesManagerRepository, 
-            IStockKeeperRepository stockKeeperRepository, IMailMessage mailMessage)
+        public ReportService(IReportRepository reportRepository, ISalesManagerRepository 
+            salesManagerRepository, IStockKeeperRepository stockKeeperRepository, IMailMessage mailMessage, IUserService userService)
         {
             _reportRepository = reportRepository;
             _salesManagerRepository = salesManagerRepository;
             _stockKeeperRepository = stockKeeperRepository;
             _mailMessage = mailMessage;
+            _userService = userService;
         }
 
-        public async Task<BaseResponse<ReportDto>> SubmitSalesManagerReport(CreateSalesManagerReportModel report, string salesManagerUserName)
+        public async Task<BaseResponse<ReportDto>> SubmitSalesManagerReport(CreateSalesManagerReportModel report, int id)
         {
             
             try
             {
-                var getUserName = await _salesManagerRepository.GetSalesManagerByUsernameAsync(salesManagerUserName); 
+                var getById = await _salesManagerRepository.GetSalesManagerByIdAsync(id); 
                 var newReport = new Report
                 {
-                    Description = report.Description,
+                    Subject = report.Subject,
                     SalesManagerReport = report.SalesManagerReport,
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow,
 
                 };
-                _mailMessage.SendEmailAddressFromSalesManager(getUserName.Email, report.Content, report.Subject);
+                //_mailMessage.SendEmailAddressFromSalesManager(getById.Email, report.Subject, report.SalesManagerReport);
                 await _reportRepository.CreateReport(newReport);
                 return new BaseResponse<ReportDto>
                 {
@@ -52,10 +54,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     ReportStatus = ReportStatus.Sent,
                     Data = new ReportDto
                     {
+                        Subject = newReport.Subject,
                         Description = newReport.Description,
                         SalesManagerReport = report.SalesManagerReport,
                         DateCreated = DateTime.UtcNow,
-                        DateModified = DateTime.UtcNow,
+                       
                     }
                 };
 
@@ -73,6 +76,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 //var getUserName = await _stockKeeperRepository.GetStockKeeperByUsernameAsync(stockKeeperUserName); 
                 var newReport = new Report
                 {
+                    Subject = report.Subject,
                     Description = report.Description,
                     StockKeeperReport = report.StockKeeperReport,
                     DateCreated = DateTime.UtcNow,
@@ -140,44 +144,41 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<IList<ReportDto>>> GetAllStockKeeperReports()
+        public async Task<IList<ReportDto>> GetAllStockKeeperReports()
         {
             var stockKeepersReports = await _reportRepository.GetAllReports();
-            return new BaseResponse<IList<ReportDto>>
-            {
-                Message = "Data fetched successfully",
-                Status = true,
-                Data = stockKeepersReports.Select(s => new ReportDto()
-                {
-                    Description = s.Description,
-                    Id = s.Id,
-                    StockKeeperReport = s.StockKeeperReport,
-                    DateCreated = s.DateCreated,
-                    DateModified = s.DateModified
 
-                }).ToList()
-            };
+
+
+            return stockKeepersReports.Select(s => new ReportDto()
+            {
+                Description = s.Description,
+                Id = s.Id,
+                StockKeeperReport = s.StockKeeperReport,
+                DateCreated = s.DateCreated,
+                DateModified = s.DateModified
+
+            }).ToList();
+
         }
 
-        public async Task<BaseResponse<IList<ReportDto>>> GetAllSalesManagerReports()
+        public async Task<IList<ReportDto>> GetAllSalesManagerReports()
         {
             try
             {
                 var salesManagerReport = await _reportRepository.GetAllReports();
-                return new BaseResponse<IList<ReportDto>>
+                
+                return salesManagerReport.Select(s => new ReportDto
                 {
-                    Message = "Data fetched successfully",
-                    Status = true,
-                    Data = salesManagerReport.Select(s => new ReportDto()
-                    {
-                        Description = s.Description,
-                        Id = s.Id,
-                        SalesManagerReport = s.SalesManagerReport,
-                        DateCreated = s.DateCreated,
-                        DateModified = s.DateModified
+                    Subject = s.Subject,
+                    Description = s.Description,
+                    Id = s.Id,
+                    SalesManagerReport = s.SalesManagerReport,
+                    DateCreated = s.DateCreated,
+                    DateModified = s.DateModified,
 
-                    }).ToList()
-                };
+
+                }).ToList();
             }
             catch (Exception e)
             {
@@ -227,88 +228,82 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             };
         }
 
-        public async Task<BaseResponse<IEnumerable<ReportDto>>> ViewStockKeeperVerifiedReports()
+        public async Task<IEnumerable<ReportDto>> ViewStockKeeperVerifiedReports()
         {
             var reports= await _reportRepository.ViewStockKeeperVerifiedReports();
 
-            return new BaseResponse<IEnumerable<ReportDto>>
-            {
-                Message = "Request successful",
-                Status = true,
-                Data = reports.Select(report => new ReportDto()
-                {
-                    Content = report.Content,
-                    Description = report.Description,
-                    Id = report.Id,
-                    ReportStatus = ReportStatus.Verified,
-                    DateCreated = report.DateCreated,
-                    DateModified = report.DateModified
 
-                }).ToList()
-            };
+
+            return reports.Select(report => new ReportDto()
+            {
+                Content = report.Content,
+                Description = report.Description,
+                Id = report.Id,
+                ReportStatus = ReportStatus.Verified,
+                DateCreated = report.DateCreated,
+                DateModified = report.DateModified
+
+            }).ToList();
+
         }
 
-        public async Task<BaseResponse<IEnumerable<ReportDto>>> ViewSalesManagerVerifiedReports()
+        public async Task<IEnumerable<ReportDto>> ViewSalesManagerVerifiedReports()
         {
             var reports= await _reportRepository.ViewSalesManagerVerifiedReports();
 
-            return new BaseResponse<IEnumerable<ReportDto>>
-            {
-                Message = "Request successful",
-                Status = true,
-                Data = reports.Select(report => new ReportDto()
-                {
-                    Content = report.Content,
-                    Description = report.Description,
-                    Id = report.Id,
-                    ReportStatus = ReportStatus.Verified,
-                    DateCreated = report.DateCreated,
-                    DateModified = report.DateModified
 
-                }).ToList()
-            };
+
+
+            return reports.Select(report => new ReportDto()
+            {
+                Content = report.Content,
+                Description = report.Description,
+                Id = report.Id,
+                ReportStatus = ReportStatus.Verified,
+                DateCreated = report.DateCreated,
+                DateModified = report.DateModified
+
+            }).ToList();
+
         }
 
-        public async Task<BaseResponse<IEnumerable<ReportDto>>> ViewStockKeeperApprovedReports()
+        public async Task<IEnumerable<ReportDto>> ViewStockKeeperApprovedReports()
         {
             var reports= await _reportRepository.ViewStockKeeperApprovedReports();
 
-            return new BaseResponse<IEnumerable<ReportDto>>
-            {
-                Message = "Request successful",
-                Status = true,
-                Data = reports.Select(report => new ReportDto()
-                {
-                    Content = report.Content,
-                    Description = report.Description,
-                    Id = report.Id,
-                    ReportStatus = ReportStatus.Approved,
-                    DateCreated = report.DateCreated,
-                    DateModified = report.DateModified
 
-                }).ToList()
-            };
+
+            return reports.Select(report => new ReportDto()
+            {
+                Content = report.Content,
+                Description = report.Description,
+                Id = report.Id,
+                ReportStatus = ReportStatus.Approved,
+                DateCreated = report.DateCreated,
+                DateModified = report.DateModified
+
+            }).ToList();
+
         }
 
-        public async Task<BaseResponse<IEnumerable<ReportDto>>> ViewSalesManagerApprovedReports()
+        public async Task<IEnumerable<ReportDto>> ViewSalesManagerApprovedReports()
         {
             var reports= await _reportRepository.ViewSalesManagerApprovedReports();
 
-            return new BaseResponse<IEnumerable<ReportDto>>
-            {
-                Message = "Request successful",
-                Status = true,
-                Data = reports.Select(report => new ReportDto()
-                {
-                    Content = report.Content,
-                    Description = report.Description,
-                    Id = report.Id,
-                    ReportStatus = ReportStatus.Approved,
-                    DateCreated = report.DateCreated,
-                    DateModified = report.DateModified
 
-                }).ToList()
-            };
+
+
+            return reports.Select(report => new ReportDto()
+            {
+                Content = report.Content,
+                Description = report.Description,
+                Id = report.Id,
+                ReportStatus = ReportStatus.Approved,
+                DateCreated = report.DateCreated,
+                DateModified = report.DateModified
+
+            }).ToList();
+
         }
     }
 }

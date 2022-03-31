@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagemenSystem_Ims.Interfaces.Services
 {
@@ -27,5 +28,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         public Task<BaseResponse<ReturnGoodsDto>> ReturnGoods(ReturnGoodsRequestModel model);
         
         public Task<List<Sales>> GenerateInvoice(int id);
+        
+        public JsonResult ManageCustomersPatronage(int customerId);
     }
 }

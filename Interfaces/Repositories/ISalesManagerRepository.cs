@@ -13,6 +13,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
         public Task<SalesManager> DeleteSalesManagerAsync(SalesManager salesManager);
         
         public Task<SalesManager> GetSalesManagerByUsernameAsync(string userName);
+        public Task<SalesManager> GetSalesManagerByEmailAsync(string email);
         
         public Task<SalesManager> GetSalesManagerByIdAsync(int id);
         

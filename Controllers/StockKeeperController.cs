@@ -114,6 +114,26 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
 
         }
+        
+        [HttpGet]
+        [Authorize(Roles = "StockKeeper, SalesManager")]
+        public IActionResult SubmitReport()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> SubmitReport(CreateStockKeeperReportModel model)
+        {
+            await _reportService.SubmitStockKeeperReport(model);
+            return RedirectToAction("Index", "User");
+        }
+
+        [Authorize(Roles = "ShopManager")]
+        public async Task<IActionResult> ViewReports()
+        {
+            return View(await _reportService.GetAllStockKeeperReports());
+        }
     }
 
 

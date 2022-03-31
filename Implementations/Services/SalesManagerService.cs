@@ -10,19 +10,20 @@ using InventoryManagemenSystem_Ims.Models;
 
 namespace InventoryManagemenSystem_Ims.Implementations.Services
 {
-    public class SalesManagerService:ISalesManagerService
+    public class SalesManagerService : ISalesManagerService
     {
         private readonly ISalesManagerRepository _salesManagerRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IUserRepository _userRepository;
 
-        public SalesManagerService(ISalesManagerRepository salesManagerRepository, 
+        public SalesManagerService(ISalesManagerRepository salesManagerRepository,
             IRoleRepository roleRepository, IUserRepository userRepository)
         {
             _salesManagerRepository = salesManagerRepository;
             _roleRepository = roleRepository;
             _userRepository = userRepository;
         }
+
         public async Task<BaseResponse<bool>> RegisterSalesManager(RegisterSalesManagerRequestModel model)
         {
             try
@@ -30,7 +31,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 var role = await _roleRepository.GetRoleByNameAsync("SalesManager");
                 var user = await _userRepository.GetUserByEmail(model.Email);
 
-                if (user!=null)
+                if (user != null)
                 {
                     return new BaseResponse<bool>
                     {
@@ -38,6 +39,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         Status = false
                     };
                 }
+
                 user = new User
                 {
                     UserName = model.UserName,
@@ -67,7 +69,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     DateCreated = DateTime.UtcNow
                 };
                 await _salesManagerRepository.AddSalesManagerAsync(salesManager);
-            
+
                 return new BaseResponse<bool>
                 {
                     Message = "Successfully created",
@@ -79,7 +81,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             {
                 throw new Exception();
             }
-            
+
         }
 
         public async Task<BaseResponse<bool>> UpdateSalesManager(int id, UpdateSalesManagerRequestModel model)
@@ -88,7 +90,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             {
                 var checkSalesManager = await _salesManagerRepository.GetSalesManagerByIdAsync(id);
 
-                if (checkSalesManager==null)
+                if (checkSalesManager == null)
                 {
                     return new BaseResponse<bool>
                     {
@@ -115,7 +117,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             {
                 throw new Exception();
             }
-            
+
         }
 
         public async Task<BaseResponse<bool>> DeleteSalesManager(int id)
@@ -123,7 +125,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             try
             {
                 var checkSalesManager = await _salesManagerRepository.GetSalesManagerByIdAsync(id);
-                if (checkSalesManager==null)
+                if (checkSalesManager == null)
                 {
                     return new BaseResponse<bool>
                     {
@@ -143,7 +145,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             {
                 throw new Exception();
             }
-            
+
         }
 
         public async Task<SalesManagerDto> GetSalesManagerById(int id)
@@ -151,7 +153,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             try
             {
                 var checkSalesManager = await _salesManagerRepository.GetSalesManagerByIdAsync(id);
-                if (checkSalesManager !=null)
+                if (checkSalesManager != null)
                 {
                     return new SalesManagerDto
                     {
@@ -162,11 +164,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         LastName = checkSalesManager.LastName,
                         PhoneNumber = checkSalesManager.PhoneNumber,
                         DateCreated = checkSalesManager.DateCreated
-                        
-                    
+
+
                     };
                 }
-                
+
                 throw new Exception("Information doesn't exist!");
             }
             catch
@@ -202,7 +204,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         public async Task<SalesManagerDto> GetSalesManagerByUserName(string userName)
         {
             var checkSalesManager = await _salesManagerRepository.GetSalesManagerByUsernameAsync(userName);
-            if (checkSalesManager==null)
+            if (checkSalesManager == null)
             {
                 throw new Exception("Information requested doesn't exist!");
             }
@@ -216,11 +218,31 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 Address = checkSalesManager.Address,
                 LastName = checkSalesManager.LastName,
                 PhoneNumber = checkSalesManager.PhoneNumber,
-                
-                
+
+
             };
         }
 
-        
+        public async Task<SalesManagerDto> GetSalesManagerByEmailName(string email)
+        {
+            var checkSalesManager = await _salesManagerRepository.GetSalesManagerByEmailAsync(email);
+            if (checkSalesManager == null)
+            {
+                throw new Exception("Information requested doesn't exist!");
+            }
+
+            return new SalesManagerDto
+            {
+                Id = checkSalesManager.Id,
+                Email = checkSalesManager.Email,
+                DateCreated = checkSalesManager.DateCreated,
+                FirstName = checkSalesManager.FirstName,
+                Address = checkSalesManager.Address,
+                LastName = checkSalesManager.LastName,
+                PhoneNumber = checkSalesManager.PhoneNumber,
+
+
+            };
+        }
     }
 }

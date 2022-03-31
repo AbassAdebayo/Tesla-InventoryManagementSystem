@@ -42,6 +42,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
             return await _imsContext.SalesManagers.FirstOrDefaultAsync(u => u.User.UserName == userName);
         }
 
+        public async Task<SalesManager> GetSalesManagerByEmailAsync(string email)
+        {
+            return await _imsContext.SalesManagers.FirstOrDefaultAsync(e => e.Email == email);
+        }
+
         public async Task<SalesManager> GetSalesManagerByIdAsync(int id)
         {
             return await _imsContext.SalesManagers.FindAsync(id);

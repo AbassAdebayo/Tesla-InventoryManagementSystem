@@ -5,12 +5,17 @@ using InventoryManagemenSystem_Ims.Entities;
 
 namespace InventoryManagemenSystem_Ims.DTOs
 {
-    public class SalesDto: BaseEntity
+    public class SalesDto
     {
+        public int Id { get; set; }
         public int CustomerId { get; set; }
         
         public int SalesManagerId { get; set; }
         public string Description { get; set; }
+        
+        
+        [DataType(DataType.Date)]
+        public DateTime DateModified { get; set; }
 
         //public ICollection<CheckOutSales> SalesItems { get; set; } = new List<CheckOutSales>();
         public decimal TotalPrice { get; set; }

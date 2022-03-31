@@ -354,13 +354,15 @@
                             <span class="micon dw dw-library"></span><span class="mtext">Sales Mgt</span>
                         </a>
                         <ul class="submenu">
-                            @* <li><a asp-controller="Sales" asp-action="Create">Create Sales</a></li> *@
+                           
                             <li><a asp-controller="Sales" asp-action="StartSales">Start Sales</a></li>
                             <li><a asp-controller="Sales" asp-action="ReturnGoods">Return Goods</a></li>
                             <li><a asp-controller="Sales" asp-action="Index">Get All Sales</a></li>
-                                                                                                                        
+                            
                         </ul>
                     </li>
+                    
+                    
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
@@ -386,6 +388,10 @@
                         <ul class="submenu">
                             <li><a asp-controller="ShopManager" asp-action="ViewApprovedReports">Approved Reports</a></li>
                             <li><a asp-controller="ShopManager" asp-action="ViewVerifiedReports">Verified Reports</a></li>
+                             <li><a asp-controller="SalesManager" asp-action="SubmitReport">Sales Report</a></li>
+                             <li><a asp-controller="SalesManager" asp-action="ViewReports">View All Sales Report</a></li>
+                             <li><a asp-controller="StockKeeper" asp-action="SubmitReport">Stock Report</a></li>
+                             <li><a asp-controller="StockKeeper" asp-action="ViewReports">View All Stock Report</a></li>
                     
                         </ul>
                     </li>

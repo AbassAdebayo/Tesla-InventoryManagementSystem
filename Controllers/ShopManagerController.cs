@@ -197,21 +197,21 @@ namespace InventoryManagemenSystem_Ims.Controllers
             {
                 Message = "Data fetched successfully", 
                 Status = true,
-                Data = stockKeeperReports.Data
+                Data = stockKeeperReports
             });
         }
         
-        [HttpGet]
-        public async Task<IActionResult> SalesManagerReportIndex()
-        {
-            var stockKeeperReports = await _reportService.GetAllSalesManagerReports();
-            return Ok(new BaseResponse<IList<ReportDto>>
-            {
-                Message = "Data fetched successfully", 
-                Status = true,
-                Data = stockKeeperReports.Data
-            });
-        }
+       
+        // public async Task<IActionResult> SalesManagerReportIndex()
+        // {
+        //     var stockKeeperReports = await _reportService.GetAllSalesManagerReports();
+        //     return Ok(new BaseResponse<IList<ReportDto>>
+        //     {
+        //         Message = "Data fetched successfully", 
+        //         Status = true,
+        //         Data = stockKeeperReports
+        //     });
+        // }
         
         [HttpPost]
         public async Task<IActionResult> UpdateReportToVerified(int id)
@@ -233,7 +233,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         public async Task<IActionResult> ViewVerifiedReports()
         {
             var verifiedReports = await _reportService.ViewStockKeeperVerifiedReports();
-            return View(verifiedReports as IEnumerable<ReportDto>);
+            return View(verifiedReports);
         }
         
         [HttpGet]

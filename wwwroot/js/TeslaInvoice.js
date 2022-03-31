@@ -6,7 +6,7 @@ function invoiceNumber(minRange, maxRange)
 
 }
 
-let window;
+
 window.onload = function (){
     
     document.getElementById("yourInvoice").innerHTML = invoiceNumber(0, 10000000);

@@ -17,6 +17,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         public Task<IEnumerable<SalesManagerDto>> GetAllSalesManagers();
         
         public Task<SalesManagerDto> GetSalesManagerByUserName(string userName);
+        public Task<SalesManagerDto> GetSalesManagerByEmailName(string email);
         
         
     }

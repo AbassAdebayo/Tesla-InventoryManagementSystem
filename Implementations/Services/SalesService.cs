@@ -8,6 +8,7 @@ using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.Interfaces.Repositories;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagemenSystem_Ims.Implementations.Services
 {
@@ -261,6 +262,12 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         public async Task<List<Sales>> GenerateInvoice(int id)
         {
             return await _salesRepository.GenerateInvoice(id);
+        }
+
+        public JsonResult ManageCustomersPatronage(int customerId)
+        {
+            var customerIdCount= _salesRepository.ManageCustomersPatronage(customerId);
+            return new JsonResult(new {myCutomerIdCount = customerIdCount});
         }
     }
 }
