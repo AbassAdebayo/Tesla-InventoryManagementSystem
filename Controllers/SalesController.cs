@@ -103,6 +103,26 @@ namespace InventoryManagemenSystem_Ims.Controllers
         {
             return View(await _salesService.GenerateInvoice(id));
         }
+        
 
+        [HttpGet]
+        [Authorize(Roles = "ShopManager")]
+        public async Task<IActionResult> DeleteSales(int id)
+        {
+            var sales = await _salesService.FindSalesById(id);
+            if (sales==null)
+            {
+                ViewBag.error = "Sales not found!";
+            }
+
+            return View(sales);
+        }
+    
+        [HttpPost]
+        public async Task<IActionResult> DeleteSales(int id, int stockItemId)
+        {
+           await _salesService.DeleteSales(id, stockItemId);
+           return RedirectToAction("Index");
+        }
     }
 }

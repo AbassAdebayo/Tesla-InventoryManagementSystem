@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.Auth;
 using InventoryManagemenSystem_Ims.DTOs;
+using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -56,7 +57,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
                 var authenticationProperties = new AuthenticationProperties();
                 var principal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
-
+                TempData["data"] = "Login successfully!";
                 return RedirectToAction("Index");
             }
 
@@ -79,12 +80,13 @@ namespace InventoryManagemenSystem_Ims.Controllers
             var sales = await _salesService.GetAllSales();
             var customers = await _customerService.GetAllCustomers();
 
-            var numOfSales = sales.Count();
+            var salesEnumerable = sales as Sales[] ?? sales.ToArray();
+            var numOfSales = salesEnumerable.Count();
             List<int> salesItem = new List<int>();
             List<int> customerNumbersById = new List<int>();
             var numbOfCustomer = customers.Count();
 
-            foreach(var item in sales)
+            foreach(var item in salesEnumerable)
             {
                 salesItem.Add(item.ItemId);
                 customerNumbersById.Add(item.CustomerId);

@@ -9,11 +9,10 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
     {
         Task<BaseResponse<ReportDto>> SubmitSalesManagerReport(CreateSalesManagerReportModel report, int id);
 
-        Task<BaseResponse<ReportDto>> SubmitStockKeeperReport(CreateStockKeeperReportModel report);
+        Task<BaseResponse<ReportDto>> SubmitStockKeeperReport(CreateStockKeeperReportModel report, string userName);
         
-        Task<BaseResponse<ReportDto>> DeleteSalesManagerReport(int id);
 
-        Task<BaseResponse<ReportDto>> DeleteStockKeeperReport(int id);
+        Task<BaseResponse<ReportDto>> DeleteReport(int id);
 
         Task<IList<ReportDto>> GetAllStockKeeperReports();
          

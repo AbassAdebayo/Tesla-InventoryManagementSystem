@@ -107,7 +107,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         [Display(Name = "Delete Sales Manager report")]
         public async Task<IActionResult> DeleteSalesManagerReportConfirmed(int id)
         {
-            await _reportService.DeleteSalesManagerReport(id);
+            await _reportService.DeleteReport(id);
             return Ok();
         }
 
@@ -152,14 +152,14 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
         [HttpPost]
-        public IActionResult DeleteConfirmed([FromRoute]string userName)
+        public async Task<IActionResult> DeleteConfirmed(string userName)
         {
-            _userService.DeleteUser(userName);
+            await _userService.DeleteUser(userName);
             return RedirectToAction("GetUsers");
         }
         
         [HttpGet]
-        //[Authorize]
+        [Authorize(Roles = "ShopManager")]
         public IActionResult UpdateUser()
         {
             var id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -180,64 +180,67 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
         
-        [HttpPost]
-        [Display(Name = "Delete Stock Keeper report")]
-        //[Authorize]
-        public async Task<IActionResult> DeleteStockKeeperReportConfirmed(int id)
-        {
-            await _reportService.DeleteStockKeeperReport(id);
-            return Ok();
-        }
-        
         [HttpGet]
-        public async Task<IActionResult> StockKeeperReportIndex()
+        public IActionResult Delete()
         {
-            var stockKeeperReports = await _reportService.GetAllStockKeeperReports();
-            return Ok(new BaseResponse<IList<ReportDto>>
-            {
-                Message = "Data fetched successfully", 
-                Status = true,
-                Data = stockKeeperReports
-            });
+            
+            return View();
         }
         
-       
-        // public async Task<IActionResult> SalesManagerReportIndex()
-        // {
-        //     var stockKeeperReports = await _reportService.GetAllSalesManagerReports();
-        //     return Ok(new BaseResponse<IList<ReportDto>>
-        //     {
-        //         Message = "Data fetched successfully", 
-        //         Status = true,
-        //         Data = stockKeeperReports
-        //     });
-        // }
         
         [HttpPost]
-        public async Task<IActionResult> UpdateReportToVerified(int id)
+        [Display(Name = "Delete Stock report")]
+        [Authorize(Roles = "ShopManager")]
+        public async Task<IActionResult> DeleteReport(int id)
+        {
+            await _reportService.DeleteReport(id);
+            return RedirectToAction("Index");
+        }
+        
+        
+        [HttpPost]
+        public async Task<IActionResult> UpdateSalesReportToVerified(int id)
         {
             await _reportService.UpdateReportStatusToVerified(id);
-            return RedirectToAction("ViewVerifiedReports");
+            return RedirectToAction("ViewSalesVerifiedReports");
 
         }
         
         [HttpPost]
-        public async Task<IActionResult> UpdateReportToApproved(int id)
+        [Authorize(Roles = "ShopManager")]
+        public async Task<IActionResult> UpdateSalesReportToApproved(int id)
         {
             await _reportService.UpdateReportStatusToApproved(id);
-            return RedirectToAction("ViewApprovedReports");
+            return RedirectToAction("ViewSalesApprovedReports");
+
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> UpdateStockReportToVerified(int id)
+        {
+            await _reportService.UpdateReportStatusToVerified(id);
+            return RedirectToAction("ViewSalesVerifiedReports");
+
+        }
+        
+        [HttpPost]
+        [Authorize(Roles = "ShopManager")]
+        public async Task<IActionResult> UpdateStockReportToApproved(int id)
+        {
+            await _reportService.UpdateReportStatusToApproved(id);
+            return RedirectToAction("ViewStockApprovedReports");
 
         }
         
         [HttpGet]
-        public async Task<IActionResult> ViewVerifiedReports()
+        public async Task<IActionResult> ViewStockVerifiedReports()
         {
             var verifiedReports = await _reportService.ViewStockKeeperVerifiedReports();
             return View(verifiedReports);
         }
         
         [HttpGet]
-        public async Task<IActionResult> ViewStockKeeperApprovedReports()
+        public async Task<IActionResult> ViewStockApprovedReports()
         {
             var approvedReports = await _reportService.ViewStockKeeperApprovedReports();
             return View(approvedReports);
@@ -254,11 +257,12 @@ namespace InventoryManagemenSystem_Ims.Controllers
         
 
         [HttpGet]
-        public async Task<IActionResult> ViewApprovedReports()
+        public async Task<IActionResult> ViewSalesApprovedReports()
         {
-            var approvedReports = await _reportService.ViewSalesManagerApprovedReports();
-            return View(approvedReports);
+            var salesApprovedReports = await _reportService.ViewSalesManagerApprovedReports();
+            return View(salesApprovedReports);
         }
+        
     }
     
 }

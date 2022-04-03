@@ -41,6 +41,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 var newReport = new Report
                 {
                     Subject = report.Subject,
+                    Description = report.Description,
                     SalesManagerReport = report.SalesManagerReport,
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow,
@@ -69,11 +70,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<ReportDto>> SubmitStockKeeperReport(CreateStockKeeperReportModel report)
+        public async Task<BaseResponse<ReportDto>> SubmitStockKeeperReport(CreateStockKeeperReportModel report, string userName)
         {
             try
             {
-                //var getUserName = await _stockKeeperRepository.GetStockKeeperByUsernameAsync(stockKeeperUserName); 
+                var getUserName = await _stockKeeperRepository.GetStockKeeperByUsernameAsync(userName); 
                 var newReport = new Report
                 {
                     Subject = report.Subject,
@@ -83,7 +84,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                    
 
                 };
-               // _mailMessage.SendEmailAddressFromStockKeeper(getUserName.Email, newReport.Content, newReport.Subject);
+                _mailMessage.SendEmailAddressFromStockKeeper(getUserName.Email, newReport.Content, newReport.Subject);
                 await _reportRepository.CreateReport(newReport);
                 return new BaseResponse<ReportDto>
                 {
@@ -91,6 +92,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     ReportStatus = ReportStatus.Sent,
                     Data = new ReportDto
                     {
+                        Subject = newReport.Subject,
                         Description = newReport.Description,
                         StockKeeperReport = report.StockKeeperReport,
                         DateCreated = DateTime.UtcNow,
@@ -105,27 +107,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             }
         }
 
-        public async Task<BaseResponse<ReportDto>> DeleteSalesManagerReport(int id)
-        {
-            try
-            {
-                var report = await _reportRepository.GetReport(id);
-                await _reportRepository.DeleteReport(report);
-            
-                return new BaseResponse<ReportDto>
-                {
-                    Message = "Data deleted!",
-                    Status = true
-                };
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            
-        }
+       
 
-        public async Task<BaseResponse<ReportDto>> DeleteStockKeeperReport(int id)
+        public async Task<BaseResponse<ReportDto>> DeleteReport(int id)
         {
             try
             {
@@ -152,9 +136,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
             return stockKeepersReports.Select(s => new ReportDto()
             {
+                Subject = s.Subject,
                 Description = s.Description,
                 Id = s.Id,
                 StockKeeperReport = s.StockKeeperReport,
+                ReportStatus = s.ReportStatus,
                 DateCreated = s.DateCreated,
                 DateModified = s.DateModified
 
@@ -174,6 +160,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     Description = s.Description,
                     Id = s.Id,
                     SalesManagerReport = s.SalesManagerReport,
+                    ReportStatus = s.ReportStatus,
                     DateCreated = s.DateCreated,
                     DateModified = s.DateModified,
 
@@ -232,12 +219,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         {
             var reports= await _reportRepository.ViewStockKeeperVerifiedReports();
 
-
-
             return reports.Select(report => new ReportDto()
             {
-                Content = report.Content,
+                Subject = report.Subject,
                 Description = report.Description,
+                StockKeeperReport = report.StockKeeperReport,
                 Id = report.Id,
                 ReportStatus = ReportStatus.Verified,
                 DateCreated = report.DateCreated,
@@ -250,13 +236,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         public async Task<IEnumerable<ReportDto>> ViewSalesManagerVerifiedReports()
         {
             var reports= await _reportRepository.ViewSalesManagerVerifiedReports();
-
-
-
-
+            
             return reports.Select(report => new ReportDto()
             {
-                Content = report.Content,
+                Subject = report.Subject,
+                SalesManagerReport = report.SalesManagerReport,
                 Description = report.Description,
                 Id = report.Id,
                 ReportStatus = ReportStatus.Verified,
@@ -270,13 +254,13 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         public async Task<IEnumerable<ReportDto>> ViewStockKeeperApprovedReports()
         {
             var reports= await _reportRepository.ViewStockKeeperApprovedReports();
-
-
+            
 
             return reports.Select(report => new ReportDto()
             {
-                Content = report.Content,
+                Subject = report.Subject,
                 Description = report.Description,
+                StockKeeperReport = report.StockKeeperReport,
                 Id = report.Id,
                 ReportStatus = ReportStatus.Approved,
                 DateCreated = report.DateCreated,
@@ -289,14 +273,13 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         public async Task<IEnumerable<ReportDto>> ViewSalesManagerApprovedReports()
         {
             var reports= await _reportRepository.ViewSalesManagerApprovedReports();
-
-
-
+            
 
             return reports.Select(report => new ReportDto()
             {
-                Content = report.Content,
+                Subject = report.Subject,
                 Description = report.Description,
+                SalesManagerReport = report.SalesManagerReport,
                 Id = report.Id,
                 ReportStatus = ReportStatus.Approved,
                 DateCreated = report.DateCreated,

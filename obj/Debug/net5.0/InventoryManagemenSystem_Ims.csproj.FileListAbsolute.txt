@@ -94,10 +94,8 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\Profile.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\wwwroot\index.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Shared\_MyLayout.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Shared\_MarketPlace.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Shared\_Resturant.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Role\Index.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Shared\_TableData.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\ShopManager\DeleteShopManager.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\DeleteShopManager.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\SalesManager\DeleteSalesManager.cshtml.g.cs
@@ -107,7 +105,6 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\SalesManager\UpdateSalesManager.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\SalesManager\RegisterSalesManager.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\SalesManager\SalesManagerProfile.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\ViewVerifiedReports.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\User\Login.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\StockKeeper\DeleteStockKeeper.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\StockKeeper\Login.cshtml.g.cs
@@ -209,8 +206,13 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\INVENTORYMANAGEMENSYSTEM_IMS\obj\Debug\net5.0\Razor\Pages\User\ManageCustomersPatronage.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\SalesManager\ViewReports.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\SalesManager\SubmitReport.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\SalesManager\ViewReports.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\StockKeeper\SubmitReport.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\StockKeeper\ViewReports.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\StockKeeper\SubmitReport.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\StockKeeper\ViewReports.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\SalesManager\ViewSalesReports.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\ShopManager\ViewSalesManagerApprovedReports.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\ShopManager\ViewStockApprovedReports.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\StockKeeper\ViewStockReports.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\SalesManager\ViewSalesReports.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\ViewSalesApprovedReports.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\ViewSalesVerifiedReports.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\DeleteReport.cshtml.g.cs

@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "Get Sales Report";
+}
+
+@model IEnumerable<InventoryManagemenSystem_Ims.DTOs.ReportDto>
+
+
+<div class="form-row">
+    @if (TempData["data"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>@TempData["data"]</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    }
+    @foreach (var report in Model)
+    {
+        <div class="form-group col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img style="border-radius: 30%;" src="~/images/TeslaLogo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <b>Report Subject: </b>
+                    <p>@Html.DisplayFor(data => report.Subject)</p>
+                    <b>Report Description: </b>
+                    <p>@Html.DisplayFor(data => report.Description)</p>
+                    <b>Report Content: </b>
+                    <p>@Html.DisplayFor(data => report.SalesManagerReport)</p>
+                    <b>Report Status: </b>
+                    <p>@Html.DisplayFor(data => report.ReportStatus)</p>
+                    <b>Creation Time: </b>
+                    <p>@Html.DisplayFor(data => report.DateCreated)</p>
+                    <a style="background-color: mediumseagreen;" asp-action="UpdateSalesReportToVerified" asp-controller="ShopManager" asp-route-id="@report.Id"
+                       class="btn btn-primary">Verify</a>
+                    <a style="background-color: yellowgreen;" asp-action="UpdateSalesReportToApproved" asp-controller="ShopManager" asp-route-id="@report.Id"
+                       class="btn btn-primary">Approve</a>
+                    <a style="background-color: tomato;"
+                       class="btn btn-primary">Return</a>
+
+
+                </div>
+            </div>
+        </div>
+    }
+</div>

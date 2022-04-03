@@ -8,9 +8,11 @@ using InventoryManagemenSystem_Ims.Interfaces.Services;
 using InventoryManagemenSystem_Ims.SendMail;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Routing;
+using MimeKit;
 
 namespace InventoryManagemenSystem_Ims.Controllers
 {
@@ -126,12 +128,17 @@ namespace InventoryManagemenSystem_Ims.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitReport(CreateSalesManagerReportModel model, int id)
         {
+            string successMessage = "Message sent successfully!";
             await _reportService.SubmitSalesManagerReport(model, id);
-            return RedirectToAction("Index", "User");
+            TempData["data"] = successMessage;
+            return RedirectToAction("ViewSalesReports");
+            
+            
+           
         }
 
-        [Authorize(Roles = "ShopManager")]
-        public async Task<IActionResult> ViewReports()
+        [Authorize(Roles = "ShopManager, SalesManager, StockKeeper")]
+        public async Task<IActionResult> ViewSalesReports()
         {
             return View(await _reportService.GetAllSalesManagerReports());
         }
