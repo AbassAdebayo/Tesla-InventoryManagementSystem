@@ -19,6 +19,8 @@ namespace InventoryManagemenSystem_Ims.DTOs
         public bool IsDeleted { get; set; }
         public string ItemName { get; set; }
         
+        public int TotalQuantity { get; set; }
+        
         public string Description { get; set; }
         
         public DateTime ExpiryDate { get; set; }
@@ -40,6 +42,8 @@ namespace InventoryManagemenSystem_Ims.DTOs
         
         [Required]
         public DateTime ExpiryDate { get; set; }
+        
+        public int TotalQuantity { get; set; }
         
         [Required]
         public IList<int> Categories { get; set; } = new List<int>();

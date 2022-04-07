@@ -9,13 +9,13 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
     {
         Task<BaseResponse<ItemDto>> CreateItem(CreateItemRequestModel model);
 
-        Task<BaseResponse<ItemDto>> UpdateItem(int Id, UpdateItemRequestModel model);
+        Task<BaseResponse<ItemDto>> UpdateItem(int id, UpdateItemRequestModel model);
 
-        Task<BaseResponse<ItemDto>> DeleteItem(int Id);
+        Task<BaseResponse<ItemDto>> DeleteItem(int id);
 
         Task<BaseResponse<Item>> ExistsByName(string stockName);
 
-        Task<ItemDto> GetItemById(int Id);
+        Task<ItemDto> GetItemById(int id);
 
         Task<IList<ItemDto>> GetAllItems();
     }

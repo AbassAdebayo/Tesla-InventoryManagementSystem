@@ -35,7 +35,9 @@ namespace InventoryManagemenSystem_Ims.IMS_DbContext
         
         public DbSet<User> Users { get; set; }
         
-        public DbSet<InvoiceDetails> InvoiceDetails { get; set; }
+        public DbSet<AllocateSalesItemToSalesManager> AllocateSalesItemToSalesManagers { get; set; } 
+        
+        public DbSet<Notification> Notifications { get; set; }
         
         public DbSet<UserRole> UserRoles { get; set; }
 

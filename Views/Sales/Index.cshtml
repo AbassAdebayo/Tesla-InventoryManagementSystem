@@ -19,15 +19,15 @@
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.CustomerId)
+                @Html.DisplayNameFor(model => model.Customer)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.SalesManagerId)
+                @Html.DisplayNameFor(model => model.SalesManager)
             </th>
             
             <th>
-                @Html.DisplayNameFor(model => model.ItemId)
+                @Html.DisplayNameFor(model => model.Item)
             </th>
             
             
@@ -77,14 +77,14 @@
             </td>
             
             <td>
-                @Html.DisplayFor(modelItem => sales.CustomerId)
+                @Html.DisplayFor(modelItem => sales.Customer)
             </td>
             
             <td>
-                @Html.DisplayFor(modelItem => sales.SalesManagerId)
+                @Html.DisplayFor(modelItem => sales.SalesManager)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => sales.ItemId)
+                @Html.DisplayFor(modelItem => sales.Item)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => sales.Description)
@@ -102,15 +102,6 @@
                 @Html.DisplayFor(modelItem => sales.DateCreated)
             </td>
             
-            <td>
-                <a asp-action="UpdateStock" asp-route-id="@sales.Id">Update</a>
-            </td>
-            <td>
-                <a asp-action="GetStock" asp-route-id="@sales.Id">Details</a>
-            </td>
-            <td>
-                <a asp-action="DeleteSales" asp-route-id="@sales.Id">Delete</a>
-            </td>
             <td>
                 <a asp-action="ReturnGoods" asp-route-id="@sales.Id">Return</a>
             </td>

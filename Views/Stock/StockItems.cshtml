@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<InventoryManagemenSystem_Ims.Entities.StockItem>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
     ViewData["Title"] = "stock";
 }
 
@@ -19,11 +19,11 @@
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.ItemId)
+                @Html.DisplayNameFor(model => model.Item)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.StockId)
+                @Html.DisplayNameFor(model => model.Stock)
             </th>
             
             <th>
@@ -63,11 +63,11 @@
             </td>
             
             <td>
-                @Html.DisplayFor(modelItem => stockItem.ItemId)
+                @Html.DisplayFor(modelItem => stockItem.Item)
             </td>
             
             <td>
-                @Html.DisplayFor(modelItem => stockItem.StockId)
+                @Html.DisplayFor(modelItem => stockItem.Stock)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => stockItem.PricePerUnit)
@@ -83,15 +83,15 @@
                 @Html.DisplayFor(modelItem => stockItem.DateCreated)
             </td>
             
+            @* <td> *@
+            @*     <a asp-action="UpdateStockItem" asp-route-id="@stockItem.Id">Update</a> *@
+            @* </td> *@
             <td>
-                <a asp-action="UpdateStockItem" asp-route-id="@stockItem.Id">Update</a>
+                <a asp-action="GetItem" asp-route-id="@stockItem.Id">Details</a>
             </td>
-            <td>
-                <a asp-action="GetStockItem" asp-route-id="@stockItem.Id">Details</a>
-            </td>
-            <td>
-                <a asp-action="DeleteStockItem" asp-route-id="@stockItem.Id">Delete</a>
-            </td>
+            @* <td> *@
+            @*     <a asp-action="DeleteStockItem" asp-route-id="@stockItem.Id">Delete</a> *@
+            @* </td> *@
         </tr>
         }
     </tbody>

@@ -59,7 +59,13 @@ namespace InventoryManagemenSystem_Ims.Controllers
         [HttpPost]
         public async Task<IActionResult> StartSales(CreateSalesRequestModel model)
         {
-            await _salesService.StartSales(model);
+            var sales = await _salesService.StartSales(model);
+            string alertMessage = "The quantity available cannot meet the request!";
+
+            if (sales==null)
+            {
+                ViewBag.error = alertMessage;
+            }
             return RedirectToAction("Index");
 
         }
@@ -105,24 +111,6 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
 
-        [HttpGet]
-        [Authorize(Roles = "ShopManager")]
-        public async Task<IActionResult> DeleteSales(int id)
-        {
-            var sales = await _salesService.FindSalesById(id);
-            if (sales==null)
-            {
-                ViewBag.error = "Sales not found!";
-            }
-
-            return View(sales);
-        }
-    
-        [HttpPost]
-        public async Task<IActionResult> DeleteSales(int id, int stockItemId)
-        {
-           await _salesService.DeleteSales(id, stockItemId);
-           return RedirectToAction("Index");
-        }
+       
     }
 }

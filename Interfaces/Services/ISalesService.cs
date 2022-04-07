@@ -14,7 +14,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         public Task<Sales> UpdateSales(UpdateSalesRequestModel model);
 
-        public Task<bool> DeleteSales(int id, int stockItemId);
+       // public Task<bool> DeleteSales(int id, int itemId);
         
         
         public Task<IEnumerable<Sales>> GetAllSales();

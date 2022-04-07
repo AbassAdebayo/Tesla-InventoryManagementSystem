@@ -8,7 +8,7 @@ namespace InventoryManagemenSystem_Ims.Entities
         
         public Sales Sales { get; set; }
         
-        public decimal TotalPrice { get; set; }
+        
         
     }
 }

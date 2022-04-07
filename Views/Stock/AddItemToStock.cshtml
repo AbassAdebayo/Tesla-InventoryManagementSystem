@@ -1,12 +1,17 @@
 ﻿@model InventoryManagemenSystem_Ims.DTOs.StockDto
 
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+   
+}
+
 <div class="container" xmlns="http://www.w3.org/1999/html">
     <div class="row justify-content-center">
         <div class=" card col-md-6">
             <div class="card-body ">
                 <div class="bg-light">
                     <h1 class="tagcolor" style="color:mediumblue">Create</h1>
-                    <p class="tagcolor" style="color:mediumblue">Please use this box to create Stock.</p>
+                    <p class="tagcolor" style="color:mediumblue">Please use this box to Add Item Stock.</p>
                     <hr class="tagcolor" style="color:mediumblue">
 
                 </div>
@@ -15,24 +20,24 @@
                     <div class="form-row">
                         <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
                             <label class="control-label">Items</label>
-                            <select asp-for="ItemId" class="form-control" asp-items="ViewBag.Items" multiple required>
+                            <select asp-for="ItemId" class="form-control" asp-items="ViewBag.Items"  required>
                                 <option value="">--Select Item--</option>
                             </select>
                         </div>
                         
                         <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
                             <label class="control-label">Stocks</label>
-                            <select asp-for="StockId" class="form-control" asp-items="ViewBag.Stocks" multiple required>
+                            <select asp-for="StockId" class="form-control" asp-items="ViewBag.Stocks" required>
                                 <option value="">--Select Stock--</option>
                             </select>
                         </div>
                         
-                        @* <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan"> *@
-                        @*     <label class="control-label">Stocks</label> *@
-                        @*     <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.Stocks" multiple required> *@
-                        @*         <option value="">--Select Stock--</option> *@
-                        @*     </select> *@
-                        @* </div> *@
+                        <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
+                            <label class="control-label">Stocks</label>
+                            <select asp-for="StockName" class="form-control" asp-items="ViewBag.Stocks" required>
+                                <option value="">--Select StockName--</option>
+                            </select>
+                        </div>
                         
                         <div class="form-group col-sm-6">
                             <label asp-for="PricePerUnit" class="control-label"></label>
@@ -52,12 +57,6 @@
                         @*     <span asp-validation-for="TotalPrice" class="text-danger"></span> *@
                         @* </div> *@
                         
-                        
-                        <div class="form-group col-sm-6">
-                            <label asp-for="DateCreated" class="control-label"></label>
-                            <input asp-for="DateCreated" class="form-control" />
-                            <span asp-validation-for="DateCreated" class="text-danger"></span>
-                        </div>
                         
                         
                     </div>

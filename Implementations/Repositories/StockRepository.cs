@@ -72,7 +72,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<StockItem> GetStockItemById(int id)
         {
-            return await _imsContext.StockItems.FindAsync(id);
+            return await _imsContext.StockItems.Include(x=>x.Item.ItemName).FirstOrDefaultAsync(x=>x.ItemId==id);
         }
 
         public async Task<IEnumerable<StockDto>> GetAllStocks()
@@ -103,7 +103,17 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<IEnumerable<StockItem>> GetAllStockItems()
         {
-            return await _imsContext.StockItems.ToListAsync();
+            return await _imsContext.StockItems.Include(i=>i.Item).Include(s=>s.Stock).Select(stockItem=>new StockItem
+            {
+                PricePerUnit = stockItem.PricePerUnit,
+                Id = stockItem.Id,
+                Quantity = stockItem.Quantity,
+                TotalPrice = stockItem.TotalPrice,
+                Item = stockItem.Item,
+                Stock = stockItem.Stock
+                
+
+            }).ToListAsync();
         }
         
         public async Task<StockItem> GetStockItemsByItemId(int itemId)

@@ -10,6 +10,8 @@ namespace InventoryManagemenSystem_Ims.Entities
         public string Description { get; set; }
         
         public DateTime ExpiryDate { get; set; }
+        
+        //public int TotalQuantity { get; set; }
 
         public ICollection<StockItem> StockItems { get; set; } = new List<StockItem>();
 

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.DTOs.AllocateSalesItemToSalesManagerDto>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "Allocated Items";
+}
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">SalesItemAllocated</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityAllocated)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.StockKeeper)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesManager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            
+            
+
+
+            <th>
+                Update
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stock in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => stock.Id)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stock.StockName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stock.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => stock.SupplierId)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stock.DateCreated)
+            </td>
+            
+            <td>
+                <a asp-action="UpdateStock" asp-route-id="@stock.Id">Update</a>
+            </td>
+            <td>
+                <a asp-action="GetStock" asp-route-id="@stock.Id">Details</a>
+            </td>
+            <td>
+                <a asp-action="DeleteStock" asp-route-id="@stock.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<button style="background-color: midnightblue"><a asp-controller="Supplier"  asp-action="RegisterSupplier">Register Supplier</a> </button>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>

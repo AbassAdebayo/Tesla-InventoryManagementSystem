@@ -169,6 +169,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 {
                     var newStockItem = new StockItem
                     {
+                        StockName = model.StockName,
                         ItemId = model.ItemId,
                         Stock = stock,
                         StockId = model.StockId,
@@ -184,6 +185,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 else
                 {
                     itemInStock.Quantity += model.Quantity;
+                    itemInStock.PricePerUnit = model.PricePerUnit;
                     itemInStock.TotalPrice += model.PricePerUnit * model.Quantity;
                     await _stockRepository.UpdateStockItem(id, itemInStock);
                 }
@@ -244,8 +246,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
              return stockItems.Select(stockItem => new StockItem()
             {
                 Id = stockItem.Id,
-                ItemId = stockItem.ItemId,
-                StockId = stockItem.StockId,
+                StockName = stockItem.StockName,
+                Item = stockItem.Item,
+                Stock = stockItem.Stock,
                 PricePerUnit = stockItem.PricePerUnit,
                 Quantity = stockItem.Quantity,
                 TotalPrice = stockItem.TotalPrice,

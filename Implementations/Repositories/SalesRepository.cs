@@ -54,7 +54,18 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<IEnumerable<Sales>> GetAllSales()
         {
-            return await _imsContext.Sales.ToListAsync();
+            return await _imsContext.Sales.Include(i=>i.Item).Include(c=>c.Customer).Include(s=>s.SalesManager).Select(sale=>new Sales
+            {
+                Customer = sale.Customer,
+                Id = sale.Id,
+                Description = sale.Description,
+                Item = sale.Item,
+                SalesManager = sale.SalesManager,
+                PricePerUnit = sale.PricePerUnit,
+                Quantity = sale.Quantity,
+                DateCreated = sale.DateCreated
+                
+            }).ToListAsync();
         }
 
         public async Task<SalesItem> CreateSalesItem(SalesItem salesItem)
@@ -114,7 +125,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<decimal> GetGrandTotalOfAllSales()
         {
-            return await _imsContext.SalesItems.SumAsync(s => s.TotalPrice);
+            return await _imsContext.Sales.SumAsync(s => s.TotalPrice);
         }
 
         // public Task<IEnumerable<SalesItem>> GetAllSalesItemBySalesManagerId(int id)
@@ -125,7 +136,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
         public async Task<IList<Sales>> GetSalesItemByDate(DateTime date)
         {
             return await _imsContext.Sales.Include(c => c.Customer).ThenInclude(c => c.Email).Include(c => c.Customer)
-                .ThenInclude(c => c.FirstName).Include(c => c.Customer).ThenInclude(c => c.LastName).Include(x=>x.SalesItems).ThenInclude(t=>t.TotalPrice)
+                .ThenInclude(c => c.FirstName).Include(c => c.Customer).ThenInclude(c => c.LastName).Include(x=>x.SalesItems)
                 .Where(d => d.DateCreated == date).Select(s => new Sales()
                 {
                     Id = s.Id,
@@ -136,6 +147,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                     ItemId =s.ItemId,
                     PricePerUnit = s.PricePerUnit,
                     Quantity = s.Quantity,
+                    TotalPrice = s.TotalPrice
 
 
                 }).ToListAsync();
@@ -144,16 +156,17 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<List<Sales>> GenerateInvoice(int id)
         {
-            var sales = await _imsContext.Sales.Where(s=>s.Id==id).Select(s => new Sales
+            var sales = await _imsContext.Sales.Include(c=>c.Customer).Include(i=>i.Item).Include(s=>s.SalesManager).Where(s=>s.Id==id).Select(s => new Sales
             {
-                CustomerId = s.CustomerId,
-                SalesManagerId = s.SalesManagerId,
+                Customer = s.Customer,
+                SalesManager = s.SalesManager,
                 Description = s.Description,
-                ItemId = s.Item.Id,
+                Item = s.Item,
                 PricePerUnit = s.PricePerUnit,
                 Quantity = s.Quantity,
                 DateCreated = s.DateCreated,
                 Id = s.Id,
+                TotalPrice = s.TotalPrice
                 
             }).ToListAsync();
             return sales;

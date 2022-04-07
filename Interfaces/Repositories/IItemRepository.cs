@@ -9,13 +9,13 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
     {
         Task<Item> CreateItem(Item item);
 
-        Task<Item> UpdateItem(int Id, ItemDto item);
+        Task<Item> UpdateItem(int id, ItemDto item);
 
-        Task<bool> DeleteItem(int Id);
+        Task<bool> DeleteItem(int id);
 
         Task<Item> ExistsByName(string itemName);
 
-        Task<ItemDto> GetItemById(int Id);
+        Task<ItemDto> GetItemById(int id);
 
         Task<IList<Item>> GetAllItems();
         

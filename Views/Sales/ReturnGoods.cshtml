@@ -28,8 +28,8 @@
                                 <option value="">--Select Customer--</option>
                             </select>
                         </div>
-
-
+                        
+                        
                         <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
                             <label class="control-label">Manager</label>
                             <select asp-for="SalesManagerId" class="form-control" asp-items="ViewBag.SalesManagers">
@@ -42,13 +42,7 @@
                             <input asp-for="Description" class="form-control"/>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
-
-                        <div class="form-group col-sm-6">
-                            <label asp-for="SalesItemId" class="control-label"></label>
-                            <input asp-for="SalesItemId" class="form-control"/>
-                            <span asp-validation-for="SalesItemId" class="text-danger"></span>
-                        </div>
-
+                        
 
                         <div class="form-group col-sm-6">
                             <label asp-for="ReturnType" class="control-label"></label>
@@ -62,12 +56,7 @@
                             <input asp-for="QuantityReturned" class="form-control"/>
                             <span asp-validation-for="QuantityReturned" class="text-danger"></span>
                         </div>
-
-                        <div>
-                            <label asp-for="DateCreated" class="control-label"></label>
-                            <label class="form-control">@DateTime.UtcNow.ToLongDateString()</label>
-                            <span asp-validation-for="DateCreated" class="text-danger"></span>
-                        </div>
+                        
 
                     </div>
 

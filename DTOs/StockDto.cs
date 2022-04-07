@@ -70,6 +70,7 @@ namespace InventoryManagemenSystem_Ims.DTOs
 
     public class AddItemToStockRequestModel
     {
+        public string StockName { get; set; }
         public int ItemId { get; set; }
         
         public int StockId { get; set; }

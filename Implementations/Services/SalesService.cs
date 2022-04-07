@@ -15,19 +15,20 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
     public class SalesService:ISalesService
     {
         private readonly ISalesRepository _salesRepository;
-        private readonly IItemRepository _itemRepository;
+      
         private readonly IStockService _stockService;
-        private readonly IStockRepository _stockRepository;
+       
         private readonly IReturnGoodsRepository _returnGoodsRepository;
+        private readonly IAllocateSalesItemToSalesManagerRepository _allocateSalesItemToSalesManager;
 
 
-        public SalesService(ISalesRepository salesRepository, IItemRepository itemRepository, IStockService stockService, IStockRepository stockRepository, IReturnGoodsRepository returnGoodsRepository)
+        public SalesService(ISalesRepository salesRepository,
+            IStockService stockService, IReturnGoodsRepository returnGoodsRepository, IAllocateSalesItemToSalesManagerRepository allocateSalesItemToSalesManager)
         {
             _salesRepository = salesRepository;
-            _itemRepository = itemRepository;
             _stockService = stockService;
-            _stockRepository = stockRepository;
             _returnGoodsRepository = returnGoodsRepository;
+            _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
         }
       
 
@@ -65,10 +66,10 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         public async Task<Sales> UpdateSales(UpdateSalesRequestModel model)
         {
             var sales = await _salesRepository.FindSalesById(model.SalesId);
-            var checkSalesItem = await _salesRepository.FindSalesItemById(model.SalesItemId);
+           // var checkSalesItem = await _salesRepository.FindSalesItemById(model.SalesItemId);
             
 
-            if (checkSalesItem==null)
+            if (sales==null)
             {
                 return null;
             }
@@ -76,37 +77,36 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             sales.ItemId = model.ItemId;
             sales.Id = model.SalesId;
             sales.PricePerUnit = model.PricePerUnit;
-            checkSalesItem.TotalPrice = sales.PricePerUnit * sales.Quantity;
+            sales.TotalPrice = sales.PricePerUnit * sales.Quantity;
             await _salesRepository.UpdateSales(model.SalesId, sales);
-            await _salesRepository.UpdateSalesItem(model.SalesItemId, checkSalesItem);
             return sales;
         }
 
-        public async Task<bool> DeleteSales(int id, int stockItemId)
-        {
-            var stockItem = await _stockService.GetStockItemById(stockItemId);
-            var sales = await _salesRepository.FindSalesById(id);
-
-            if (sales == null)
-            {
-                throw new Exception("Sales not found!");
-            }
-
-
-            var newStockItem = new UpdateStockItemRequestModel
-            {
-                StockItemId = stockItemId,
-                Quantity = sales.Quantity + stockItem.Quantity,
-                ItemId = stockItem.ItemId,
-                PricePerUnit = stockItem.PricePerUnit,
-                StockId = stockItem.StockId,
-
-            };
-
-            await _stockService.UpdateItemInStock(stockItemId, newStockItem);
-            await _salesRepository.DeleteSales(sales.Id);
-            return true;
-        }
+        // public async Task<bool> DeleteSales(int id, int stockItemId)
+        // {
+        //     var stockItem = await _stockService.GetStockItemById(stockItemId);
+        //     var sales = await _salesRepository.FindSalesById(id);
+        //
+        //     if (sales == null)
+        //     {
+        //         throw new Exception("Sales not found!");
+        //     }
+        //
+        //
+        //     var newStockItem = new UpdateStockItemRequestModel
+        //     {
+        //         StockItemId = stockItemId,
+        //         Quantity = sales.Quantity + stockItem.Quantity,
+        //         ItemId = stockItem.ItemId,
+        //         PricePerUnit = stockItem.PricePerUnit,
+        //         StockId = stockItem.StockId,
+        //
+        //     };
+        //
+        //     await _stockService.UpdateItemInStock(stockItemId, newStockItem);
+        //     await _salesRepository.DeleteSales(sales.Id);
+        //     return true;
+        // }
         
 
         public async Task<IEnumerable<Sales>> GetAllSales()
@@ -116,9 +116,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             return sales.Select(s => new Sales()
             { 
                 Id = s.Id,
-                CustomerId = s.CustomerId,
+                Customer = s.Customer,
                 ItemId = s.ItemId,
-                SalesManagerId = s.SalesManagerId,
+                SalesManager = s.SalesManager,
                 PricePerUnit = s.PricePerUnit,
                 Quantity = s.Quantity,
                 Description = s.Description,
@@ -130,37 +130,55 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
          public async Task<Sales> StartSales(CreateSalesRequestModel model)
                {
-                    var checkStockItem = await _stockRepository.GetStockItemsByItemId(model.StockItemId);
+                   try
+                   {
+                       var checkAllocatedSalesItem = await _allocateSalesItemToSalesManager.GetAllocatedSalesItem(model.AllocateSalesItemToSalesManagerId);
                     
-                    var sales = new Sales
-                    {
-                        ItemId = checkStockItem.ItemId,
-                        Item = checkStockItem.Item,
-                        CustomerId = model.CustomerId,
-                        SalesManagerId = model.SalesManagerId,
-                        DateCreated = DateTime.UtcNow,
-                        PricePerUnit = model.PricePerUnit,
-                        Quantity = model.Quantity,
-                        Description = model.Description
-        
-                    };
-                        var pricePerUnit = sales.PricePerUnit;
-                        var quantity = sales.Quantity;
-                        var salesItem = new SalesItem
-                        {
-                            SalesId = sales.Id,
-                            Sales = sales,
-                            DateCreated = DateTime.UtcNow,
-                        };
+                       var sales = new Sales
+                       {
+                           ItemId = model.ItemId,
+                           Item = model.Item,
+                           CustomerId = model.CustomerId,
+                           SalesManagerId = model.SalesManagerId,
+                           DateCreated = DateTime.UtcNow,
+                           PricePerUnit = model.PricePerUnit,
+                           Quantity = model.Quantity,
+                           Description = model.Description,
+                           
+                       };
+                       var pricePerUnit = sales.PricePerUnit;
+                       var quantity = sales.Quantity;
+                       var salesItem = new SalesItem
+                       {
+                           SalesId = sales.Id,
+                           Sales = sales,
+                           DateCreated = DateTime.UtcNow,
+                       };
+                       if (sales.Quantity<=checkAllocatedSalesItem.QuantityAllocated)
+                       {
+                           sales.TotalPrice += pricePerUnit * quantity;
+                           sales.SalesItems.Add(salesItem);
+                           checkAllocatedSalesItem.QuantityAllocated = checkAllocatedSalesItem.QuantityAllocated - sales.Quantity;
                         
-                        salesItem.TotalPrice += pricePerUnit * quantity;
-                        sales.SalesItems.Add(salesItem);
-                        checkStockItem.Quantity = checkStockItem.Quantity - sales.Quantity;
-                        
-                    await _stockRepository.UpdateStockItem(model.StockItemId, checkStockItem);
-                    await _salesRepository.CreateSales(sales);
-                    return sales;
-               }
+                           await _allocateSalesItemToSalesManager.UpdateAllocatedSalesItem(model.AllocateSalesItemToSalesManagerId, checkAllocatedSalesItem);
+                           await _salesRepository.CreateSales(sales);
+                           return sales;
+                       }
+                       else
+                       {
+                           throw new Exception("The quantity available is not enough");
+                       }
+                       
+                   }
+                   catch
+                   {
+
+                       throw new Exception("Sales cannot be completed");
+                   }
+                
+                   
+                   
+         }
          
 
         public async Task<BaseResponse<IList<SalesDto>>> GetSalesItemByDate(DateTime date)
@@ -189,7 +207,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     DateCreated = DateTime.UtcNow,
                    Quantity = sales.Quantity,
                    PricePerUnit = sales.PricePerUnit,
-                   TotalPrice = sales.Quantity * sales.PricePerUnit
+                   TotalPrice = sales.Quantity * sales.PricePerUnit,
 
                 }).ToList()
             };
@@ -210,8 +228,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
         public async Task<BaseResponse<ReturnGoodsDto>> ReturnGoods(ReturnGoodsRequestModel model)
         {
-            var checkSalesItem = await _salesRepository.FindSalesItemById(model.SalesItemId);
-            var sales = await _salesRepository.FindSalesById(checkSalesItem.SalesId);
+            //var checkSalesItem = await _salesRepository.FindSalesItemById(model.SalesItemId);
+            var sales = await _salesRepository.FindSalesById(model.SalesId);
             if (sales==null)
             {
                 return new BaseResponse<ReturnGoodsDto>
@@ -243,11 +261,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
                 };
                 sales.Quantity = sales.Quantity - returnGoods.QuantityReturned;
-                checkSalesItem.TotalPrice = sales.Quantity * sales.PricePerUnit;
+                sales.TotalPrice = sales.Quantity * sales.PricePerUnit;
                 
                 
                 await _salesRepository.UpdateSales(sales.Id, sales);
-                await _salesRepository.UpdateSalesItem(checkSalesItem.Id, checkSalesItem);
+                await _salesRepository.UpdateSales(sales.Id, sales);
                 await _returnGoodsRepository.ReturnGoods(returnGoods);
 
 

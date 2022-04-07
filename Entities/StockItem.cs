@@ -4,6 +4,7 @@ namespace InventoryManagemenSystem_Ims.Entities
 {
     public class StockItem: BaseEntity
     {
+        public string StockName { get; set; }
         public int ItemId { get; set; }
         
         public Item Item { get; set; }

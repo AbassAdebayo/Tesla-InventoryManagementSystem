@@ -20,6 +20,8 @@ namespace InventoryManagemenSystem_Ims.Entities
         public decimal PricePerUnit { get; set; }
         
         public string Description { get; set; }
+        
+        public decimal TotalPrice { get; set; }
 
         public ICollection<SalesItem> SalesItems { get; set; } = new List<SalesItem>();
     }

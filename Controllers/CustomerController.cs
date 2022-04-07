@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagemenSystem_Ims.Controllers
 {
-    public class CustomerController:Controller
+    public class 
+    CustomerController:Controller
     {
         private readonly ICustomerService _customerService;
 

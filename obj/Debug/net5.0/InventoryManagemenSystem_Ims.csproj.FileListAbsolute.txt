@@ -216,3 +216,7 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\ViewSalesApprovedReports.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\ViewSalesVerifiedReports.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\ShopManager\DeleteReport.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Sales\DeleteSales.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Pages\Stock\GetItem.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Item\GetItem.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\InventoryManagementSystemProj\InventoryManagemenSystem_Ims\InventoryManagemenSystem_Ims\obj\Debug\net5.0\Razor\Views\Stock\GetItem.cshtml.g.cs

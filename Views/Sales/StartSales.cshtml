@@ -1,6 +1,11 @@
 ﻿@using System.Linq
 @model InventoryManagemenSystem_Ims.DTOs.CreateSalesRequestModel
 
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "Sales";
+}
+
 <div class="container" xmlns="http://www.w3.org/1999/html">
     <div class="row justify-content-center">
         <div class=" card col-md-6">
@@ -12,6 +17,10 @@
 
                 </div>
                 <form asp-action="StartSales" enctype="multipart/form-data">
+                    @if (!string.IsNullOrEmpty(ViewBag.Message))
+                    {
+                        <p class="alert alert-warning alert-dismissible" role="alert"> @ViewBag.Message</p>
+                    }
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-row">
                         <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
@@ -20,52 +29,52 @@
                                 <option value="">--Select Item--</option>
                             </select>
                         </div>
-                        
-                        
+
+
                         <div class="form-group col-sm-6">
                             <label asp-for="Quantity" class="control-label"></label>
                             <input asp-for="Quantity" class="form-control"/>
                             <span asp-validation-for="Quantity" class="text-danger"></span>
                         </div>
-                        
+
                         <div class="form-group col-sm-6">
                             <label asp-for="PricePerUnit" class="control-label"></label>
                             <input asp-for="PricePerUnit" class="form-control"/>
                             <span asp-validation-for="PricePerUnit" class="text-danger"></span>
                         </div>
-                        
-                       
+
+
                         <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
                             <label class="control-label">Customer</label>
                             <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.Customers">
                                 <option value="">--Select Customer--</option>
                             </select>
                         </div>
-                        
-                                                
+
+
                         <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
                             <label class="control-label">Manager</label>
                             <select asp-for="SalesManagerId" class="form-control" asp-items="ViewBag.SalesManagers">
                                 <option value="">--Select Manager--</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group col-sm-6">
                             <label asp-for="Description" class="control-label"></label>
                             <input asp-for="Description" class="form-control"/>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
-                        
-                        <div>
-                            <label asp-for="DateCreated" class="control-label"></label>
-                            <label class="form-control">@DateTime.UtcNow.ToLongDateString()</label>
-                            <span asp-validation-for="DateCreated" class="text-danger"></span>
-                        </div>
-                        
+
+                        @* <div> *@
+                        @*     <label asp-for="DateCreated" class="control-label"></label> *@
+                        @*     <label class="form-control">@DateTime.UtcNow.ToLongDateString()</label> *@
+                        @*     <span asp-validation-for="DateCreated" class="text-danger"></span> *@
+                        @* </div> *@
+
                     </div>
 
                     <div class="form-group ">
-                        <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12" data-toggle="modal" />
+                        <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12" data-toggle="modal"/>
                     </div>
 
                 </form>

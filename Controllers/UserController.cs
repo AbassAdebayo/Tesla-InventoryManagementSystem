@@ -58,6 +58,8 @@ namespace InventoryManagemenSystem_Ims.Controllers
                 var principal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
                 TempData["data"] = "Login successfully!";
+                TempData["Login"] = response.Status;
+                
                 return RedirectToAction("Index");
             }
 
@@ -71,15 +73,16 @@ namespace InventoryManagemenSystem_Ims.Controllers
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync();
+            TempData["Data"] = true;
             return RedirectToAction("Login");
         }
         
         [HttpGet]
+        [Authorize(Roles = "ShopManager, SalesManager, StockKeeper")]
         public async Task<IActionResult> Index()
         {
             var sales = await _salesService.GetAllSales();
             var customers = await _customerService.GetAllCustomers();
-
             var salesEnumerable = sales as Sales[] ?? sales.ToArray();
             var numOfSales = salesEnumerable.Count();
             List<int> salesItem = new List<int>();

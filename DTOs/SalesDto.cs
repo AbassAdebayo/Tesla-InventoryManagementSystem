@@ -50,6 +50,12 @@ namespace InventoryManagemenSystem_Ims.DTOs
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
         
+        public int AllocateSalesItemToSalesManagerId { get; set; }
+        
+        public int ItemId { get; set; }
+        
+        public Item Item { get; set; }
+        
     }
     
 
