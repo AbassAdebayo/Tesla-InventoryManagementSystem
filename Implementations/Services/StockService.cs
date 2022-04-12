@@ -122,17 +122,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
         public async Task<StockItem> GetStockItemById(int id)
         {
-            var stockItem = await _stockRepository.GetStockItemById(id);
-            return new StockItem
-            {
-                Id = stockItem.Id,
-                 ItemId = stockItem.ItemId,
-                 StockId = stockItem.StockId,
-                 PricePerUnit = stockItem.PricePerUnit,
-                 Quantity = stockItem.Quantity,
-                 TotalPrice = stockItem.TotalPrice,
-                 DateCreated = stockItem.DateCreated
-            };
+            return await _stockRepository.GetStockItemById(id);
+           
         }
 
         public async Task<IEnumerable<StockDto>> GetAllStocks()

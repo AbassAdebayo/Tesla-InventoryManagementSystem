@@ -1,0 +1,30 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "Notification";
+}
+
+
+@model IEnumerable<InventoryManagemenSystem_Ims.Entities.Notification>
+
+
+<div class="form-row">
+    @foreach (var notification in Model)
+    {
+        <div class="form-group col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img style="border-radius: 30%;" src="~/img/report2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <b>Creation Time: </b>
+                    <p>@Html.DisplayFor(data => notification.DateCreated)</p>
+                    <b>Notification: </b>
+                    <p>@Html.DisplayFor(data => notification.AllocateSalesItemToSalesManager)</p>
+                    <b>Notification Status: </b><p>@Html.DisplayFor(data => notification.NotificationStatus)</p>
+                    <a style="background-color: tomato" asp-action="Index" asp-controller="AllocateSalesItem"
+                       class="btn btn-primary">Return</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

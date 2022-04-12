@@ -19,7 +19,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         
         public Task<IEnumerable<Sales>> GetAllSales();
         
-        //public Task<Sales> StartSales(CreateSalesRequestModel model);
+        public Task<Sales> StartSales(CreateSalesRequestModel model);
         
         public Task<BaseResponse<IList<SalesDto>>> GetSalesItemByDate(DateTime date);
         

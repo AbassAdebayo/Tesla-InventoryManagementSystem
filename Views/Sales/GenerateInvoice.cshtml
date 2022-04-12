@@ -94,8 +94,10 @@
 
 
                             <tr style="color: #F81D2D;">
-                                <td class="text-xs-right"><h4><strong>Total:</strong></h4></td>
-                                @* <td class="text-xs-left"><h4><strong><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modelItem=>sales.PricePerUnit * sales.Quantity) </strong></h4></td> *@
+                                <td class="text-xs-right"><h4><strong>Total:</strong></h4>
+                                    </td>
+                                <td class="text-xs-left"><h4><strong><i class="fa fa-usd" aria-hidden="true"></i> @Html.DisplayFor(modelItem=>sales.TotalPrice) </strong></h4>
+                                    </td>
                             </tr>
                         }
                         </tbody>

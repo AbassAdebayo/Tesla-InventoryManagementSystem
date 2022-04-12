@@ -1,23 +1,23 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Implementations.Services;
+using InventoryManagemenSystem_Ims.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagemenSystem_Ims.Controllers
 {
-    public class AllocateSalesItem:Controller
+    public class AllocateSalesItemController:Controller
     {
-        private readonly AllocateSalesItemToSalesManagerService _allocateSalesItemToSalesManager;
-        private readonly ItemService _itemService;
-        private readonly SalesManagerService _salesManagerService;
-        private readonly StockKeeperService _stockKeeperService;
-        private readonly StockService _stockService;
+         private readonly IAllocateSalesItemToSalesManagerService _allocateSalesItemToSalesManager;
+        private readonly IItemService _itemService;
+        private readonly ISalesManagerService _salesManagerService;
+        private readonly IStockKeeperService _stockKeeperService;
+        private readonly IStockService _stockService;
 
-        public AllocateSalesItem(AllocateSalesItemToSalesManagerService allocateSalesItemToSalesManager, 
-            ItemService itemService, SalesManagerService salesManagerService, 
-            StockKeeperService stockKeeperService, StockService stockService)
+        public AllocateSalesItemController(IAllocateSalesItemToSalesManagerService allocateSalesItemToSalesManager, IItemService itemService, ISalesManagerService salesManagerService, IStockKeeperService stockKeeperService, IStockService stockService)
         {
             _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
             _itemService = itemService;
@@ -33,6 +33,19 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View(await _allocateSalesItemToSalesManager.GetAllAllocatedSalesItem());
         }
         
+        [HttpGet]
+        [Authorize(Roles = "SalesManager, ShopManager, StockKeeper")]
+        public async Task<IActionResult> GetAllocationDetails(int id)
+        {
+            var allocationDetails = await _allocateSalesItemToSalesManager.GetAllocatedSalesItem(id);
+
+            if (allocationDetails==null)
+            {
+                throw new Exception("Allocation not found!");
+            }
+            return View(allocationDetails);
+        }
+        
         
         [HttpGet]
         [Authorize(Roles = "StockKeeper")]
@@ -40,12 +53,12 @@ namespace InventoryManagemenSystem_Ims.Controllers
         {
             var stockKeepers = await _stockKeeperService.GetAllStockKeepers();
             var salesManagers = await _salesManagerService.GetAllSalesManagers();
-            //var stocks = await _stockService.GetAllStockItems();
+            var stocksItems = await _stockService.GetAllStockItems();
             var items = await _itemService.GetAllItems();
             ViewData["Items"] = new SelectList(items, "Id", "ItemName");
-            //ViewData["StockItems"] = new SelectList(stocks, "Id", "StockName");
-            ViewData["StockKeepers"] = new SelectList(stockKeepers, "Id", "${FirstName} {LastName}");
-            ViewData["SalesManagers"] = new SelectList(salesManagers, "Id", "{FirstName} {LastName}");
+            ViewData["StockItems"] = new SelectList(stocksItems, "Id", "StockName");
+            ViewData["StockKeepers"] = new SelectList(stockKeepers, "Id", "LastName");
+            ViewData["SalesManagers"] = new SelectList(salesManagers, "Id", "LastName");
             return View();
         }
         

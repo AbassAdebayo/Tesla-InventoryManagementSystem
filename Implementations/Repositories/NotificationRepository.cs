@@ -44,7 +44,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<IList<Notification>> GetAllNotifications()
         {
-            return await _imsContext.Notifications.Include(x=>x.AllocateSalesItemToSalesManager).Select(
+            return await _imsContext.Notifications.Include(x=>x.AllocateSalesItemToSalesManager).ThenInclude(x=>x.Item).
+                Include(x=>x.AllocateSalesItemToSalesManager).ThenInclude(x=>x.SalesManager)
+                .Include(x=>x.AllocateSalesItemToSalesManager).ThenInclude(x=>x.StockKeeper).Select(
                 notification => new Notification
                 {
                     AllocateSalesItemToSalesManager = notification.AllocateSalesItemToSalesManager,

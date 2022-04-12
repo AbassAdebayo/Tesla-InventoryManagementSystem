@@ -23,7 +23,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             _stockRepository = stockRepository;
             _notificationRepository = notificationRepository;
         }
-        public async Task<AllocateSalesItemToSalesManager> AllocateSalesItem(CreateAllocationResponseModel model)
+        public async Task<AllocateSalesItemToSalesManagerDto> AllocateSalesItem(CreateAllocationResponseModel model)
         {
             var stockItem = await _stockRepository.GetStockItemById(model.StockItemId);
 
@@ -39,10 +39,10 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 DateCreated = DateTime.UtcNow
             };
             
-
+            var itemForSales = await _allocateSalesItemToSalesManager.AllocateSalesItem(newAllocatedItem);
             if (stockItem.Quantity > newAllocatedItem.QuantityAllocated)
             { 
-                var itemForSales = await _allocateSalesItemToSalesManager.AllocateSalesItem(newAllocatedItem);
+               
                 var newNotification = new Notification
                 {
                     AllocateSalesItemToSalesManager = itemForSales,
@@ -61,7 +61,18 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     await _allocateSalesItemToSalesManager.DeleteAllocatedSalesItem(newAllocatedItem);
                 }
 
-                return newAllocatedItem;
+                return new AllocateSalesItemToSalesManagerDto
+                {
+                    Id = newAllocatedItem.Id,
+                    ItemId = newAllocatedItem.ItemId,
+                    Item = newAllocatedItem.Item,
+                    SalesManager = newAllocatedItem.SalesManager,
+                    SalesManagerId = newAllocatedItem.SalesManagerId,
+                    StockKeeperId = newAllocatedItem.StockKeeperId,
+                    StockKeeper = newAllocatedItem.StockKeeper,
+                    QuantityAllocated = newAllocatedItem.QuantityAllocated,
+                    DateCreated = DateTime.UtcNow
+                };
             }
             else
             {

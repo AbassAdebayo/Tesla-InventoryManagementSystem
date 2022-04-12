@@ -19,16 +19,16 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         private readonly IStockService _stockService;
        
         private readonly IReturnGoodsRepository _returnGoodsRepository;
-       // private readonly IAllocateSalesItemToSalesManagerRepository _allocateSalesItemToSalesManager;
+       private readonly IAllocateSalesItemToSalesManagerRepository _allocateSalesItemToSalesManager;
 
 
         public SalesService(ISalesRepository salesRepository,
-            IStockService stockService, IReturnGoodsRepository returnGoodsRepository)
+            IStockService stockService, IReturnGoodsRepository returnGoodsRepository, IAllocateSalesItemToSalesManagerRepository allocateSalesItemToSalesManager)
         {
             _salesRepository = salesRepository;
             _stockService = stockService;
             _returnGoodsRepository = returnGoodsRepository;
-            //_allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
+            _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
         }
       
 

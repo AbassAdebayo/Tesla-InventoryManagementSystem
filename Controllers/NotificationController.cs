@@ -56,7 +56,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             
             TempData["data"] = alertMessage;
             
-            return RedirectToAction("Index");
+            return RedirectToAction("GetAllConfirmedNotifications");
         }
         
         
@@ -69,7 +69,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             
             TempData["data"] = alertMessage;
             
-            return RedirectToAction("Index");
+            return RedirectToAction("GetAllRejectedNotifications");
         }
         
         [HttpGet]

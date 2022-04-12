@@ -443,3 +443,13 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-Invent
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\InventoryManagemenSystem_Ims.Views.pdb
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\InventoryManagemenSystem_Ims.csproj.CopyComplete
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\InventoryManagemenSystem_Ims.genruntimeconfig.cache
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\AllocateSalesItem\GetAllocationDetails.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\Notification\GetAllConfirmedNotifications.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\Notification\GetAllRejectedNotifications.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\Notification\GetNotification.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\Notification\Index.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\AllocateSalesItem\GetAllocationDetails.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\GetAllConfirmedNotifications.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\GetAllRejectedNotifications.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\GetNotification.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\Index.cshtml.g.cs

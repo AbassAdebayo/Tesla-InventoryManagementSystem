@@ -114,7 +114,7 @@
                                     <a href="#">
                                         <img src="~/vendors/images/img.jpg" alt="">
                                         <h3>John Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                        <p>@TempData["Data"]</p>
                                     </a>
                                 </li>
 
@@ -129,7 +129,7 @@
                         <span class="user-icon">
                             <img src="~/vendors/images/photo1.jpg" alt="">
                         </span>
-                        <span class="user-name">@User.Identity.Name</span>
+                        <span class="user-name">@User.Identity?.Name</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                         <a class="dropdown-item" href="@User.FindFirstValue(ClaimTypes.Email)"></a>
@@ -342,8 +342,6 @@
                         </a>
                         <ul class="submenu">
                             <li><a asp-controller="Stock" asp-action="AddItemToStock">Add Item To Stock</a></li>
-                            <li><a asp-controller="Stock" asp-action="DeleteStockItem">Delete StockItem</a></li>
-                            <li><a asp-controller="Stock" asp-action="UpdateStockItem">Update StockItem</a></li>
                             <li><a asp-controller="Stock" asp-action="StockItems">Get Items in Stock</a></li>
                                                                                                     
                         </ul>
@@ -366,13 +364,11 @@
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">SalesItem Mgt</span>
+                            <span class="micon dw dw-library"></span><span class="mtext">Allocation Mgt</span>
                         </a>
                         <ul class="submenu">
-                            @* <li><a asp-controller="SalesItem" asp-action="ReturnGoods">Return Goods</a></li> *@
-                            <li><a asp-controller="Sales" asp-action="DeleteSalesItem">Delete SalesItem</a></li>
-                            <li><a asp-controller="Sales" asp-action="UpdateSalesItem">Update SalesItem</a></li>
-                            <li><a asp-controller="SalesItem" asp-action="Index">Get All SalesItem</a></li>
+                            <li><a asp-controller="AllocateSalesItem" asp-action="Index">List</a></li>
+                            <li><a asp-controller="AllocateSalesItem" asp-action="AllocateItemsToSalesStore">Allocate To Sales Store</a></li>
                                                                                                                                             
                         </ul>
                     </li>
@@ -383,16 +379,13 @@
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Report Mgt</span>
+                            <span class="micon dw dw-library"></span><span class="mtext">Notification Mgt</span>
                         </a>
                         <ul class="submenu">
-                            <li><a asp-controller="ShopManager" asp-action="ViewSalesApprovedReports">Sales Approved Reports</a></li>
-                            <li><a asp-controller="ShopManager" asp-action="ViewSalesVerifiedReports">Sales Verified Reports</a></li>
-                            <li><a asp-controller="ShopManager" asp-action="ViewStockApprovedReports">Stock Approved Reports</a></li>
-                            <li><a asp-controller="ShopManager" asp-action="ViewStockVerifiedReports">Stock Verified Reports</a></li>
-                             <li><a asp-controller="SalesManager" asp-action="SubmitReport">Report Sales </a></li>
-                             <li><a asp-controller="SalesManager" asp-action="ViewSalesReports">View All Report</a></li>
-                             <li><a asp-controller="StockKeeper" asp-action="SubmitReport">Report Stock</a></li>
+                            <li><a asp-controller="Notification" asp-action="Index">All Notifications</a></li>
+                            <li><a asp-controller="Notification" asp-action="GetAllConfirmedNotifications">All Confirmed Notifications</a></li>
+                            <li><a asp-controller="Notification" asp-action="GetAllRejectedNotifications">All Rejected Notifications</a></li>
+                           
                              @* <li><a asp-controller="StockKeeper" asp-action="ViewStockReports">View All Reports</a></li> *@
                     
                         </ul>

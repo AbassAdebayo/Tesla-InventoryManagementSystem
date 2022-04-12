@@ -1,18 +1,19 @@
-﻿@using System.Linq
-@model InventoryManagemenSystem_Ims.DTOs.CreateAllocationResponseModel
+﻿@model InventoryManagemenSystem_Ims.DTOs.CreateAllocationResponseModel
+
 
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
     ViewData["Title"] = "Allocate Items";
 }
 
+
+
 <div class="container" xmlns="http://www.w3.org/1999/html">
     <div class="row justify-content-center">
         <div class=" card col-md-6">
             <div class="card-body ">
                 <div class="bg-light">
-                    <h1 class="tagcolor" style="color:mediumblue">Create</h1>
-                    <p class="tagcolor" style="color:mediumblue">Start Sales.</p>
+                    <h1 class="tagcolor" style="color:mediumblue">Start Allocation</h1>
                     <hr class="tagcolor" style="color:mediumblue">
 
                 </div>
@@ -25,18 +26,24 @@
                     <div class="form-row">
                         <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
                             <label class="control-label">StockItems</label>
-                            <select asp-for="StockItemId" class="form-control" asp-items="ViewBag.Items">
+                            <select asp-for="ItemId" class="form-control" asp-items="ViewBag.Items">
                                 <option value="">--Select Item--</option>
                             </select>
                         </div>
 
                         @* <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan"> *@
-                        @*     <label class="control-label">StockItems</label> *@
-                        @*     <select asp-for="StockItemId" class="form-control" asp-items="ViewBag.Stocks"> *@
-                        @*         <option value="">--Select Item--</option> *@
+                        @*     <label class="control-label">StockNames</label> *@
+                        @*     <select asp-for="StockItemId" class="form-control" asp-items="ViewBag.StockItems"> *@
+                        @*         <option value="">--Select Stock-</option> *@
                         @*     </select> *@
                         @* </div> *@
 
+                        <div class="form-group col-sm-6">
+                            <label asp-for="StockItemId" class="control-label"></label>
+                            <input asp-for="StockItemId" class="form-control"/>
+                            <span asp-validation-for="StockItemId" class="text-danger"></span>
+                        </div>
+                        
 
 
                         <div class="form-group col-sm-6">
@@ -60,14 +67,6 @@
                                 <option value="">--Select StockKeeper--</option>
                             </select>
                         </div>
-
-
-
-                        @* <div> *@
-                        @*     <label asp-for="DateCreated" class="control-label"></label> *@
-                        @*     <label class="form-control">@DateTime.UtcNow.ToLongDateString()</label> *@
-                        @*     <span asp-validation-for="DateCreated" class="text-danger"></span> *@
-                        @* </div> *@
 
                     </div>
 

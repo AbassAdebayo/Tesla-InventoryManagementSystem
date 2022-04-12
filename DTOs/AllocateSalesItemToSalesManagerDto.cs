@@ -10,6 +10,8 @@ namespace InventoryManagemenSystem_Ims.DTOs
         
         public int StockKeeperId { get; set; }
         
+        public string StockName { get; set; }
+        
         public StockKeeper StockKeeper { get; set; }
         
         public int SalesManagerId { get; set; }
@@ -36,6 +38,8 @@ namespace InventoryManagemenSystem_Ims.DTOs
     public class CreateAllocationResponseModel
     {
         public int StockItemId { get; set; }
+        
+        public string StockName { get; set; }
         
         public int StockKeeperId { get; set; }
         

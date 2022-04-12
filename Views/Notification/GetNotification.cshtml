@@ -1,0 +1,26 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "Notification";
+}
+
+@model InventoryManagemenSystem_Ims.Entities.Notification
+
+
+<div class="form-row">
+
+        <div class="form-group col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img style="border-radius: 30%;" src="~/img/report2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <b>Creation Time: </b>
+                    <p>@Html.DisplayFor(data => data.DateCreated)</p>
+                    <b>Notification: </b>
+                    <p>@Html.DisplayFor(data => data.AllocateSalesItemToSalesManager)</p>
+                    <a style="background-color: tomato" asp-action="Index" asp-controller="Notification"
+                       class="btn btn-primary">Return</a>
+                </div>
+            </div>
+        </div>
+</div>

@@ -7,7 +7,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 {
     public interface IAllocateSalesItemToSalesManagerService
     {
-        Task<AllocateSalesItemToSalesManager> AllocateSalesItem(
+        Task<AllocateSalesItemToSalesManagerDto> AllocateSalesItem(
             CreateAllocationResponseModel allocateSalesItemToSalesManager);
 
         Task<bool> DeleteAllocatedSalesItem(AllocateSalesItemToSalesManager allocateSalesItemToSalesManager);
