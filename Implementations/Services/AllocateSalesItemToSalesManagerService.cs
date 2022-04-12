@@ -14,10 +14,10 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
     {
         private readonly IAllocateSalesItemToSalesManagerRepository _allocateSalesItemToSalesManager;
         private readonly IStockRepository _stockRepository;
-        private readonly NotificationRepository _notificationRepository;
+        private readonly INotificationRepository _notificationRepository;
 
         public AllocateSalesItemToSalesManagerService(IAllocateSalesItemToSalesManagerRepository 
-            allocateSalesItemToSalesManager, IStockRepository stockRepository, NotificationRepository notificationRepository)
+            allocateSalesItemToSalesManager, IStockRepository stockRepository, INotificationRepository notificationRepository)
         {
             _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
             _stockRepository = stockRepository;

@@ -327,6 +327,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    StockName = table.Column<string>(type: "text", nullable: true),
                     ItemId = table.Column<int>(type: "int", nullable: false),
                     StockId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
@@ -359,9 +360,11 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     SalesManagerId = table.Column<int>(type: "int", nullable: false),
-                    CustomerEmailAddress = table.Column<string>(type: "text", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    PricePerUnit = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     TotalPrice = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -378,6 +381,12 @@ namespace InventoryManagemenSystem_Ims.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Sales_Items_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Items",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Sales_SalesManagers_SalesManagerId",
                         column: x => x.SalesManagerId,
                         principalTable: "SalesManagers",
@@ -386,33 +395,38 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payments",
+                name: "AllocateSalesItemToSalesManagers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    PaymentReference = table.Column<int>(type: "int", nullable: false),
-                    salesId = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    Discount = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    StockKeeperId = table.Column<int>(type: "int", nullable: false),
+                    SalesManagerId = table.Column<int>(type: "int", nullable: false),
+                    QuantityAllocated = table.Column<int>(type: "int", nullable: false),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.PrimaryKey("PK_AllocateSalesItemToSalesManagers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payments_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
+                        name: "FK_AllocateSalesItemToSalesManagers_Items_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Items",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_Sales_salesId",
-                        column: x => x.salesId,
-                        principalTable: "Sales",
+                        name: "FK_AllocateSalesItemToSalesManagers_SalesManagers_SalesManagerId",
+                        column: x => x.SalesManagerId,
+                        principalTable: "SalesManagers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AllocateSalesItemToSalesManagers_StockKeepers_StockKeeperId",
+                        column: x => x.StockKeeperId,
+                        principalTable: "StockKeepers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -424,9 +438,6 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     SalesId = table.Column<int>(type: "int", nullable: false),
-                    ItemId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    PricePerUnit = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
@@ -435,15 +446,32 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 {
                     table.PrimaryKey("PK_SalesItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SalesItems_Items_ItemId",
-                        column: x => x.ItemId,
-                        principalTable: "Items",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_SalesItems_Sales_SalesId",
                         column: x => x.SalesId,
                         principalTable: "Sales",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    AllocateSalesItemToSalesManagerId = table.Column<int>(type: "int", nullable: false),
+                    NotificationStatus = table.Column<int>(type: "int", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Notifications_AllocateSalesItemToSalesManagers_AllocateSales~",
+                        column: x => x.AllocateSalesItemToSalesManagerId,
+                        principalTable: "AllocateSalesItemToSalesManagers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -488,6 +516,21 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AllocateSalesItemToSalesManagers_ItemId",
+                table: "AllocateSalesItemToSalesManagers",
+                column: "ItemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AllocateSalesItemToSalesManagers_SalesManagerId",
+                table: "AllocateSalesItemToSalesManagers",
+                column: "SalesManagerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AllocateSalesItemToSalesManagers_StockKeeperId",
+                table: "AllocateSalesItemToSalesManagers",
+                column: "StockKeeperId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ItemCategories_categoryId",
                 table: "ItemCategories",
                 column: "categoryId");
@@ -498,14 +541,9 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_CustomerId",
-                table: "Payments",
-                column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payments_salesId",
-                table: "Payments",
-                column: "salesId");
+                name: "IX_Notifications_AllocateSalesItemToSalesManagerId",
+                table: "Notifications",
+                column: "AllocateSalesItemToSalesManagerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReturnGoods_CustomerId",
@@ -528,14 +566,14 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sales_ItemId",
+                table: "Sales",
+                column: "ItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sales_SalesManagerId",
                 table: "Sales",
                 column: "SalesManagerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SalesItems_ItemId",
-                table: "SalesItems",
-                column: "ItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesItems_SalesId",
@@ -595,7 +633,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 name: "ItemCategories");
 
             migrationBuilder.DropTable(
-                name: "Payments");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "Reports");
@@ -610,13 +648,13 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 name: "StockItems");
 
             migrationBuilder.DropTable(
-                name: "StockKeepers");
-
-            migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "AllocateSalesItemToSalesManagers");
 
             migrationBuilder.DropTable(
                 name: "SalesItems");
@@ -628,7 +666,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "Items");
+                name: "StockKeepers");
 
             migrationBuilder.DropTable(
                 name: "Sales");
@@ -638,6 +676,9 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Items");
 
             migrationBuilder.DropTable(
                 name: "SalesManagers");

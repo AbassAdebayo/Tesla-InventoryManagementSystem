@@ -19,16 +19,16 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         private readonly IStockService _stockService;
        
         private readonly IReturnGoodsRepository _returnGoodsRepository;
-        private readonly IAllocateSalesItemToSalesManagerRepository _allocateSalesItemToSalesManager;
+       // private readonly IAllocateSalesItemToSalesManagerRepository _allocateSalesItemToSalesManager;
 
 
         public SalesService(ISalesRepository salesRepository,
-            IStockService stockService, IReturnGoodsRepository returnGoodsRepository, IAllocateSalesItemToSalesManagerRepository allocateSalesItemToSalesManager)
+            IStockService stockService, IReturnGoodsRepository returnGoodsRepository)
         {
             _salesRepository = salesRepository;
             _stockService = stockService;
             _returnGoodsRepository = returnGoodsRepository;
-            _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
+            //_allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
         }
       
 
@@ -133,7 +133,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                    try
                    {
                        var checkAllocatedSalesItem = await _allocateSalesItemToSalesManager.GetAllocatedSalesItem(model.AllocateSalesItemToSalesManagerId);
-                    
+                       
                        var sales = new Sales
                        {
                            ItemId = model.ItemId,
@@ -172,7 +172,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                    }
                    catch
                    {
-
+         
                        throw new Exception("Sales cannot be completed");
                    }
                 

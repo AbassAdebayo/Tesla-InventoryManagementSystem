@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7V6+Kx/bwTtZRNeM7apWqxennoPRHTqattEL7zuedlCVQ37mWA7Ri+tZOxnztXPtRc7agme5I3C7t9WL5HQYug==",
+  "dgSpecHash": "QoyR5Ury3lLwBJbr4klhwD3UUmSZ/gR/O2WdJQwpIaKBnLZ3ILGxSElefQ+KNt9n52T2CY0xZTx/6aTG2CEq9Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\InventoryManagementSystemProj\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims.csproj",
+  "projectFilePath": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\MyUpdatedProject\\Tesla-InventoryManagementSystem\\InventoryManagemenSystem_Ims.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Dejik Concepts\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",

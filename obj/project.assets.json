@@ -2878,11 +2878,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\InventoryManagementSystemProj\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims.csproj",
+      "projectUniqueName": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\MyUpdatedProject\\Tesla-InventoryManagementSystem\\InventoryManagemenSystem_Ims.csproj",
       "projectName": "InventoryManagemenSystem_Ims",
-      "projectPath": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\InventoryManagementSystemProj\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims.csproj",
+      "projectPath": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\MyUpdatedProject\\Tesla-InventoryManagementSystem\\InventoryManagemenSystem_Ims.csproj",
       "packagesPath": "C:\\Users\\Dejik Concepts\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\InventoryManagementSystemProj\\InventoryManagemenSystem_Ims\\InventoryManagemenSystem_Ims\\obj\\",
+      "outputPath": "C:\\Users\\Dejik Concepts\\Downloads\\My Final Project\\MyUpdatedProject\\Tesla-InventoryManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Dejik Concepts\\AppData\\Roaming\\NuGet\\NuGet.Config"

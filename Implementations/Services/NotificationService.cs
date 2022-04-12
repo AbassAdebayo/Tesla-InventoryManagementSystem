@@ -77,5 +77,16 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         {
             return await _notificationRepository.GetAllNotifications();
         }
+        
+        
+         public async Task<IList<Notification>> GetAllConfirmedNotifications()
+         {
+            return await _notificationRepository.GetAllConfirmedNotifications();
+         }
+
+         public async Task<IList<Notification>> GetAllRejectedNotifications()
+         {
+             return await _notificationRepository.GetAllRejectedNotifications();
+         }
     }
 }

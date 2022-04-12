@@ -17,6 +17,44 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.13");
 
+            modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.AllocateSalesItemToSalesManager", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuantityAllocated")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalesManagerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockKeeperId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("SalesManagerId");
+
+                    b.HasIndex("StockKeeperId");
+
+                    b.ToTable("AllocateSalesItemToSalesManagers");
+                });
+
             modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -166,16 +204,13 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.ToTable("ItemCategories");
                 });
 
-            modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.Payment", b =>
+            modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.Notification", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("AllocateSalesItemToSalesManagerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
@@ -184,25 +219,17 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime");
 
-                    b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(18, 2)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("PaymentReference")
-                        .HasColumnType("int");
-
-                    b.Property<int>("salesId")
+                    b.Property<int>("NotificationStatus")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("AllocateSalesItemToSalesManagerId");
 
-                    b.HasIndex("salesId");
-
-                    b.ToTable("Payments");
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.Report", b =>
@@ -270,7 +297,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.Property<string>("ReturnType")
                         .HasColumnType("text");
 
-                    b.Property<int>("SalesId")
+                    b.Property<int>("SalesItemId")
                         .HasColumnType("int");
 
                     b.Property<int>("SalesManagerId")
@@ -280,7 +307,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("SalesId");
+                    b.HasIndex("SalesItemId");
 
                     b.HasIndex("SalesManagerId");
 
@@ -346,6 +373,9 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.Property<int>("SalesManagerId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18, 2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
@@ -374,9 +404,6 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
                     b.Property<int>("SalesId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
@@ -524,6 +551,9 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
                     b.Property<int>("StockId")
                         .HasColumnType("int");
+
+                    b.Property<string>("StockName")
+                        .HasColumnType("text");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18, 2)");
@@ -675,6 +705,33 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.AllocateSalesItemToSalesManager", b =>
+                {
+                    b.HasOne("InventoryManagemenSystem_Ims.Entities.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagemenSystem_Ims.Entities.SalesManager", "SalesManager")
+                        .WithMany()
+                        .HasForeignKey("SalesManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InventoryManagemenSystem_Ims.Entities.StockKeeper", "StockKeeper")
+                        .WithMany()
+                        .HasForeignKey("StockKeeperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("SalesManager");
+
+                    b.Navigation("StockKeeper");
+                });
+
             modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.ItemCategory", b =>
                 {
                     b.HasOne("InventoryManagemenSystem_Ims.Entities.Item", "Item")
@@ -694,23 +751,15 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.Payment", b =>
+            modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.Notification", b =>
                 {
-                    b.HasOne("InventoryManagemenSystem_Ims.Entities.Customer", "Customer")
+                    b.HasOne("InventoryManagemenSystem_Ims.Entities.AllocateSalesItemToSalesManager", "AllocateSalesItemToSalesManager")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("AllocateSalesItemToSalesManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagemenSystem_Ims.Entities.Sales", "Sales")
-                        .WithMany()
-                        .HasForeignKey("salesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Sales");
+                    b.Navigation("AllocateSalesItemToSalesManager");
                 });
 
             modelBuilder.Entity("InventoryManagemenSystem_Ims.Entities.ReturnGoods", b =>
@@ -721,9 +770,9 @@ namespace InventoryManagemenSystem_Ims.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagemenSystem_Ims.Entities.Sales", "Sales")
+                    b.HasOne("InventoryManagemenSystem_Ims.Entities.SalesItem", "SalesItem")
                         .WithMany()
-                        .HasForeignKey("SalesId")
+                        .HasForeignKey("SalesItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -735,7 +784,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Sales");
+                    b.Navigation("SalesItem");
 
                     b.Navigation("SalesManager");
                 });

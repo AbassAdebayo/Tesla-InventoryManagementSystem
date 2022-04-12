@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.Entities;
+using InventoryManagemenSystem_Ims.Enums;
 using InventoryManagemenSystem_Ims.IMS_DbContext;
 using InventoryManagemenSystem_Ims.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -51,5 +52,34 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                     DateCreated = notification.DateCreated
                 }).ToListAsync();
         }
+        
+        
+         public async Task<IList<Notification>> GetAllConfirmedNotifications()
+         {
+             return await _imsContext.Notifications.Include(x => x.AllocateSalesItemToSalesManager)
+                 .Where(s => s.NotificationStatus == NotificationStatus.Confirmed).Select(
+                     notification => new Notification
+                     {
+                         Id = notification.Id,
+                         AllocateSalesItemToSalesManager = notification.AllocateSalesItemToSalesManager,
+                         DateCreated = notification.DateCreated,
+                         NotificationStatus = NotificationStatus.Confirmed
+                         
+                     }).ToListAsync();
+         }
+
+         public async Task<IList<Notification>> GetAllRejectedNotifications()
+         {
+             return await _imsContext.Notifications.Include(x => x.AllocateSalesItemToSalesManager)
+                 .Where(s => s.NotificationStatus == NotificationStatus.Rejected).Select(
+                     notification => new Notification
+                     {
+                         Id = notification.Id,
+                         AllocateSalesItemToSalesManager = notification.AllocateSalesItemToSalesManager,
+                         DateCreated = notification.DateCreated,
+                         NotificationStatus = NotificationStatus.Rejected
+                         
+                     }).ToListAsync();
+         }
+     }
     }
-}

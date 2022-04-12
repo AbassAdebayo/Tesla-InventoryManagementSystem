@@ -15,5 +15,9 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         Task<Notification> GetNotification(int id);
 
         Task<IList<Notification>> GetAllNotifications();
+        
+        Task<IList<Notification>> GetAllConfirmedNotifications();
+        
+        Task<IList<Notification>> GetAllRejectedNotifications();
     }
 }

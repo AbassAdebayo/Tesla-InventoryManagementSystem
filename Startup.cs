@@ -60,6 +60,9 @@ namespace InventoryManagemenSystem_Ims
             services.AddScoped<ISalesRepository, SalesRepository>();
             services.AddScoped<IReturnGoodsRepository, ReturnGoodsRepository>();
             services.AddScoped<IReportRepository, ReportRepository>();
+            services.AddScoped<IReportRepository, ReportRepository>();
+            services.AddScoped<IAllocateSalesItemToSalesManagerRepository, AllocateSalesItemToSalesManagerRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICustomerService, CustomerService>();
@@ -74,6 +77,8 @@ namespace InventoryManagemenSystem_Ims
             services.AddScoped<ISalesItemService, SalesItemService>();
             services.AddScoped<ISalesService, SalesService>();
             services.AddScoped<IMailMessage, MailMessage>();
+            services.AddScoped<IAllocateSalesItemToSalesManagerService, AllocateSalesItemToSalesManagerService>();
+            services.AddScoped<INotificationService, NotificationService>();
             //services.AddHostedService<ReminderMails>();
             
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
