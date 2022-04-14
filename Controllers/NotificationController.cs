@@ -19,16 +19,15 @@ namespace InventoryManagemenSystem_Ims.Controllers
         [Authorize(Roles = "ShopManager,StockKeeper, SalesManager")]
         public async Task<IActionResult> Index()
         {
-            var notification = await _notificationService.GetAllNotifications();
-            string alertMessage = "You currently have no notification";
+             return View(await _notificationService.GetAllNotifications());
+            //string alertMessage = "You currently have no notification";
             
-            if (notification==null)
-            {
-                ViewBag.error = alertMessage;
-            }
-
-            TempData["data"] = $"You have new messages {notification}";
-            return View();
+            // if (notification==null)
+            // {
+            //     ViewBag.error = alertMessage;
+            // }
+            
+           
         }
         
         [HttpGet]
@@ -86,6 +85,14 @@ namespace InventoryManagemenSystem_Ims.Controllers
         {
             var rejectedNotifications = await _notificationService.GetAllRejectedNotifications();
             return View(rejectedNotifications);
+        }
+        
+        [HttpGet]
+        [Authorize(Roles = "SalesManager, ShopManager, StockKeeper")]
+        public async Task<IActionResult> GetUnreadNotifications()
+        {
+            TempData["check"]= await _notificationService.GetNewNotifications();
+            return View();
         }
 
     }

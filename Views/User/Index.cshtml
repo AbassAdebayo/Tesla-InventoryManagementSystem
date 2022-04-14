@@ -22,10 +22,32 @@
             <div class="col-md-4">
                 <img src="~/vendors/images/banner-img.png" alt="">
             </div> 
+            <div class="row">
             <div class="col-md-8">
                 <h4 class="font-20 weight-500 mb-10 text-capitalize">
                     Welcome back!<div class="weight-600 font-30 text-blue">@User.Identity?.Name</div>
                 </h4>
+                <div class="col-lg-4 col-md-4">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-4 card-total-sale">
+                                <div class="icon iq-icon-box-2 bg-danger-light">
+                                    <img src="/assets/images/sales.jpg" class="img-fluid" alt="image">
+                                </div>
+                                <div>
+                                    <h4 class="mb-2">GrandTotal Sales</h4>
+                                    <h4>$@ViewBag.SALESGRANDTOTAL</h4>
+                                                        
+                                </div>
+                            </div>
+                            <div class="iq-progress-bar mt-2">
+                                <span class="bg-danger iq-progress progress-1" data-percent="70">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div></div>
                 <p class="font-18 max-width-600">The Outstanding Innovation Begins Here...</p>
             </div>
         </div>
@@ -36,80 +58,3 @@
     </div>
 
 </div>
-
-<!DOCTYPE html>
-<html lang="en">
-
-	<div>
-	<head>
-		<title>Bar Chart</title>
-		
-	</head>
-	<body>
-		<canvas id="barchart" height="5000" width="2000"></canvas>
-
-	<script>
-		var mn = @Html.Raw((Json.Serialize(ViewBag.SALESITEM)));
-		var fn = @Html.Raw((Json.Serialize(ViewBag.CUSTOMERNUMBERS)));
-
-		document.addEventListener("DOMContentLoaded", () => 
-		{
-			new Chart(document.querySelector('#barchart'), {
-				type: 'bar',
-				data: {
-					labels: mn,
-					datasets: [{
-						label: 'Customers',
-						data: fn,
-						backgroundColor: [
-						"rgba(255, 99, 132, 0.2)",
-						"rgba(255, 159, 64, 0.2)",
-						"rgba(255, 205, 86, 0.2)",
-						"rgba(75, 192, 192, 0.2)",
-						"rgba(54, 162, 235, 0.2)",
-						"rgba(153, 102, 235, 0.2)",
-						"rgba(201, 203, 207, 0.2)",
-						],
-
-						borderColor: [
-						"rgba(255, 99, 132)",
-						"rgba(255, 159, 64)",
-						"rgba(255, 205, 86)",
-						"rgba(75, 192, 192)",
-						"rgba(54, 162, 235)",
-						"rgba(153, 102, 235)",
-						"rgba(201, 203, 207)",
-						]
-					}]
-				}
-			})
-		})
-		
-		
-	</script>
-	<script>
-		const cust = document.querySelector("#total-customers");
-		const sales = document.querySelector("#all-sales");
-
-		var totalCustomers = @ViewBag.CUSTOMERS;
-		var totalSales = @ViewBag.SALES;
-
-		window.onload = function(){
-			cust.innerText = totalCustomers;
-			sales.innerText = totalSales;
-		}
-	</script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-	<script src="/chart.js"></script>
-	
-	</body>
-	</div>
-
-
-
-    
-</html>
-
-	
-
-<!-- js -->

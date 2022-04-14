@@ -6,6 +6,15 @@
     ViewData["Title"] = "Allocate Items";
 }
 
+@if (TempData["Insufficient"] != null)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@TempData["Insufficient"]</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
 
 
 <div class="container" xmlns="http://www.w3.org/1999/html">
@@ -18,10 +27,7 @@
 
                 </div>
                 <form asp-action="AllocateItemsToSalesStore" enctype="multipart/form-data">
-                    @if (!string.IsNullOrEmpty(ViewBag.Message))
-                    {
-                        <p class="alert alert-warning alert-dismissible" role="alert"> @ViewBag.Message</p>
-                    }
+                   
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-row">
                         <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan">
@@ -30,19 +36,13 @@
                                 <option value="">--Select Item--</option>
                             </select>
                         </div>
+                        
 
-                        @* <div class="col-md-6" style="margin-top: 20px; font-size: larger; font-weight: bold; color: darkcyan"> *@
-                        @*     <label class="control-label">StockNames</label> *@
-                        @*     <select asp-for="StockItemId" class="form-control" asp-items="ViewBag.StockItems"> *@
-                        @*         <option value="">--Select Stock-</option> *@
-                        @*     </select> *@
+                        @* <div class="form-group col-sm-6"> *@
+                        @*     <label asp-for="StockItemId" class="control-label"></label> *@
+                        @*     <input asp-for="StockItemId" class="form-control"/> *@
+                        @*     <span asp-validation-for="StockItemId" class="text-danger"></span> *@
                         @* </div> *@
-
-                        <div class="form-group col-sm-6">
-                            <label asp-for="StockItemId" class="control-label"></label>
-                            <input asp-for="StockItemId" class="form-control"/>
-                            <span asp-validation-for="StockItemId" class="text-danger"></span>
-                        </div>
                         
 
 

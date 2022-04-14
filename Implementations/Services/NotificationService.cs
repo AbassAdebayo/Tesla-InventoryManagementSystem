@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.Entities;
+using InventoryManagemenSystem_Ims.Enums;
 using InventoryManagemenSystem_Ims.Interfaces.Repositories;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
 
@@ -10,10 +11,15 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
     public class NotificationService:INotificationService
     {
         private readonly INotificationRepository _notificationRepository;
+        private readonly IStockRepository _stockRepository;
+       
 
-        public NotificationService(INotificationRepository notificationRepository)
+        public NotificationService(INotificationRepository notificationRepository, 
+            IStockRepository stockRepository)
         {
             _notificationRepository = notificationRepository;
+            _stockRepository = stockRepository;
+            
         }
         public async Task<Notification> CreateNotification(Notification notification)
         {
@@ -38,9 +44,18 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         {
             try
             {
+                
                 var getNotification = await _notificationRepository.GetNotification(id);
                 getNotification.NotificationStatus = Enums.NotificationStatus.Confirmed;
-                await _notificationRepository.UpdateNotification(getNotification.Id, getNotification);
+                var update = await _notificationRepository.UpdateNotification(getNotification.Id, getNotification);
+                var stockItem = await _stockRepository.GetStockItemsByItemId(getNotification.AllocateSalesItemToSalesManager.ItemId);
+                if (update.NotificationStatus == NotificationStatus.Confirmed)
+                {
+                    stockItem.Quantity = stockItem.Quantity -
+                                                getNotification.AllocateSalesItemToSalesManager.QuantityAllocated;
+                    stockItem.TotalPrice = stockItem.Quantity * stockItem.PricePerUnit;
+                    await _stockRepository.UpdateStockItem(stockItem.Id, stockItem);
+                }
             }
             catch
             {
@@ -58,6 +73,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 var getNotification = await _notificationRepository.GetNotification(id);
                 getNotification.NotificationStatus = Enums.NotificationStatus.Rejected;
                 await _notificationRepository.UpdateNotification(getNotification.Id, getNotification);
+                
             }
             catch
             {
@@ -77,9 +93,14 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         {
             return await _notificationRepository.GetAllNotifications();
         }
-        
-        
-         public async Task<IList<Notification>> GetAllConfirmedNotifications()
+
+        public async Task<IList<Notification>> GetNewNotifications()
+        {
+            return await _notificationRepository.GetNewNotifications();
+        }
+
+
+        public async Task<IList<Notification>> GetAllConfirmedNotifications()
          {
             return await _notificationRepository.GetAllConfirmedNotifications();
          }

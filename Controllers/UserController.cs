@@ -20,6 +20,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         private readonly ISalesService _salesService;
         private readonly ICustomerService _customerService;
         
+        
         public UserController(IUserService userService, ISalesService salesService, ICustomerService customerService)
         {
             _userService = userService;
@@ -81,26 +82,30 @@ namespace InventoryManagemenSystem_Ims.Controllers
         [Authorize(Roles = "ShopManager, SalesManager, StockKeeper")]
         public async Task<IActionResult> Index()
         {
-            var sales = await _salesService.GetAllSales();
-            var customers = await _customerService.GetAllCustomers();
-            var salesEnumerable = sales as Sales[] ?? sales.ToArray();
-            var numOfSales = salesEnumerable.Count();
-            List<int> salesItem = new List<int>();
-            List<int> customerNumbersById = new List<int>();
-            var numbOfCustomer = customers.Count();
+            // var sales = await _salesService.GetAllSales();
+            // var customers = await _customerService.GetAllCustomers();
+            // var salesEnumerable = sales as Sales[] ?? sales.ToArray();
+            // var numOfSales = salesEnumerable.Count();
+            // List<int> salesItem = new List<int>();
+            // List<int> customerNumbersById = new List<int>();
+            // var numbOfCustomer = customers.Count();
+            //
+            // foreach(var item in salesEnumerable)
+            // {
+            //     salesItem.Add(item.ItemId);
+            //     customerNumbersById.Add(item.CustomerId);
+            // }
+            // var sItem = salesItem;
+            // var customerNum = customerNumbersById;
+            //
+            // ViewBag.SALESITEM = sItem;
+            // ViewBag.CUSTOMERNUMBERS = customerNum;
+            // ViewBag.CUSTOMERS = customers;
+            // ViewBag.SALES = numOfSales;
+            
+            var overallSales = _salesService.GetGrandTotalOfAllSales();
 
-            foreach(var item in salesEnumerable)
-            {
-                salesItem.Add(item.ItemId);
-                customerNumbersById.Add(item.CustomerId);
-            }
-            var sItem = salesItem;
-            var customerNum = customerNumbersById;
-
-            ViewBag.SALESITEM = sItem;
-            ViewBag.CUSTOMERNUMBERS = customerNum;
-            ViewBag.CUSTOMERS = customers;
-            ViewBag.SALES = numOfSales;
+            ViewBag.SALESGRANDTOTAL = overallSales.Result.Data;
             return View();
         }
         

@@ -235,186 +235,254 @@
                 <i class="ion-close-round"></i>
             </div>
         </div>
-        <div class="menu-block customscroll">
-            <div class="sidebar-menu">
-                <ul id="accordion-menu">
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
-                        </a>
-                        @* <ul class="submenu"> *@
-                        @*     <li><a asp-controller="Home" asp-action="Index">Home</a></li> *@
-                        @* </ul> *@
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-edit2"></span><span class="mtext">Administration</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="ShopManager" asp-action="Index">View ShopManager</a></li>
-                            <li><a asp-controller="ShopManager" asp-action="DeleteShopManager">Delete User</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Role Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="Role" asp-action="CreateRole">Add Role</a></li>
-                            <li><a asp-controller="Role" asp-action="Delete">Delete Role</a></li>
-                            <li><a asp-controller="Role" asp-action="Update">Update Role</a></li>
-                            <li><a asp-controller="Role" asp-action="Get">Get Role</a></li>
-                            <li><a asp-controller="Role" asp-action="Index">Roles</a></li>
+    <div class="menu-block customscroll">
+    
+    
+    
+    
+    
+    <div class="sidebar-menu">
+    <ul id="accordion-menu">
 
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">ItemCategory Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="Category" asp-action="CreateItemCategory">Add ItemCategory</a></li>
-                            <li><a asp-controller="Category" asp-action="DeleteItemCategory">Delete ItemCategory</a></li>
-                            <li><a asp-controller="Category" asp-action="UpdateItemCategory">Update ItemCategory</a></li>
-                            <li><a asp-controller="Category" asp-action="Index">Get Categories</a></li>
-                    
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Item Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="Item" asp-action="AddItem">Add Item</a></li>
-                            <li><a asp-controller="Item" asp-action="DeleteItem">Delete Item</a></li>
-                            <li><a asp-controller="Item" asp-action="EditItem">Update Item</a></li>
-                            <li><a asp-controller="Item" asp-action="Index">Get Items</a></li>
-                                        
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Supplier Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="Supplier" asp-action="RegisterSupplier">Register Supplier</a></li>
-                            <li><a asp-controller="Supplier" asp-action="DeleteSupplier">Delete Supplier</a></li>
-                            <li><a asp-controller="Supplier" asp-action="UpdateSupplier">Update Supplier</a></li>
-                            <li><a asp-controller="Supplier" asp-action="Index">Get Suppliers</a></li>
-                                                            
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Customer Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="Customer" asp-action="RegisterCustomer">Register Customer</a></li>
-                            <li><a asp-controller="Customer" asp-action="DeleteCustomer">Delete Customer</a></li>
-                            <li><a asp-controller="Customer" asp-action="UpdateCustomer">Update Customer</a></li>
-                            <li><a asp-controller="Customer" asp-action="Index">Get Customers</a></li>
-                                                                                
-                        </ul>
-                    </li>
-                    
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Stock Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="Stock" asp-action="CreateStock">Create Stock</a></li>
-                            <li><a asp-controller="Stock" asp-action="DeleteStock">Delete Stock</a></li>
-                            <li><a asp-controller="Stock" asp-action="UpdateStock">Update Stock</a></li>
-                            <li><a asp-controller="Stock" asp-action="Index">Get Stocks</a></li>
-                                                                                
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">StockItem Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="Stock" asp-action="AddItemToStock">Add Item To Stock</a></li>
-                            <li><a asp-controller="Stock" asp-action="StockItems">Get Items in Stock</a></li>
-                                                                                                    
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Sales Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                           
-                            <li><a asp-controller="Sales" asp-action="StartSales">Start Sales</a></li>
-                            <li><a asp-controller="Sales" asp-action="ReturnGoods">Return Goods</a></li>
-                            <li><a asp-controller="Sales" asp-action="Index">Get All Sales</a></li>
-                            
-                        </ul>
-                    </li>
-                    
-                    
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Allocation Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="AllocateSalesItem" asp-action="Index">List</a></li>
-                            <li><a asp-controller="AllocateSalesItem" asp-action="AllocateItemsToSalesStore">Allocate To Sales Store</a></li>
-                                                                                                                                            
-                        </ul>
-                    </li>
-                    
-                                        
-                    
-                    
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-library"></span><span class="mtext">Notification Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="Notification" asp-action="Index">All Notifications</a></li>
-                            <li><a asp-controller="Notification" asp-action="GetAllConfirmedNotifications">All Confirmed Notifications</a></li>
-                            <li><a asp-controller="Notification" asp-action="GetAllRejectedNotifications">All Rejected Notifications</a></li>
-                           
-                             @* <li><a asp-controller="StockKeeper" asp-action="ViewStockReports">View All Reports</a></li> *@
-                    
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-apartment"></span><span class="mtext">SalesManager Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="SalesManager" asp-action="RegisterSalesManager">Register</a></li>
-                            @* <li><a asp-controller="SalesManager" asp-action="SalesManagerProfile">SalesManager's Profile</a></li> *@
-                            <li><a asp-controller="SalesManager" asp-action="GetAllSalesManagers">SalesManagers</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-apartment"></span><span class="mtext">StockKeeper Mgt</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a asp-controller="StockKeeper" asp-action="RegisterStockKeeper">Register</a></li>
-                            @* <li><a asp-controller="StockKeeper" asp-action="StockKeeperProfile">View Profile</a></li> *@
-                            <li><a asp-controller="StockKeeper" asp-action="GetAllStockKeepers">StockKeepers</a></li>
-                    @*     </ul> *@</ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    @if (User.FindFirstValue(ClaimTypes.Role) == "ShopManager")
+    {
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+            </a>
+            @* <ul class="submenu"> *@
+            @*     <li><a asp-controller="Home" asp-action="Index">Home</a></li> *@
+            @* </ul> *@
+        </li>
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-edit2"></span><span class="mtext">Administration</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="ShopManager" asp-action="Index">View ShopManager</a></li>
+                <li><a asp-controller="ShopManager" asp-action="DeleteShopManager">Delete User</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Role Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Role" asp-action="CreateRole">Add Role</a></li>
+                <li><a asp-controller="Role" asp-action="Delete">Delete Role</a></li>
+                <li><a asp-controller="Role" asp-action="Update">Update Role</a></li>
+                <li><a asp-controller="Role" asp-action="Get">Get Role</a></li>
+                <li><a asp-controller="Role" asp-action="Index">Roles</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Supplier Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Supplier" asp-action="RegisterSupplier">Register Supplier</a></li>
+                <li><a asp-controller="Supplier" asp-action="DeleteSupplier">Delete Supplier</a></li>
+                <li><a asp-controller="Supplier" asp-action="UpdateSupplier">Update Supplier</a></li>
+                <li><a asp-controller="Supplier" asp-action="Index">Get Suppliers</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Notification Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Notification" asp-action="Index">All Notifications</a></li>
+                <li><a asp-controller="Notification" asp-action="GetAllConfirmedNotifications">All Confirmed Notifications</a></li>
+                <li><a asp-controller="Notification" asp-action="GetAllRejectedNotifications">All Rejected Notifications</a></li>
+                <li><a asp-controller="Notification" asp-action="GetUnreadNotifications">New Notifications</a></li>
+
+                @* <li><a asp-controller="StockKeeper" asp-action="ViewStockReports">View All Reports</a></li> *@
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-apartment"></span><span class="mtext">SalesManager Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="SalesManager" asp-action="RegisterSalesManager">Register</a></li>
+                @* <li><a asp-controller="SalesManager" asp-action="SalesManagerProfile">SalesManager's Profile</a></li> *@
+                <li><a asp-controller="SalesManager" asp-action="GetAllSalesManagers">SalesManagers</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-apartment"></span><span class="mtext">StockKeeper Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="StockKeeper" asp-action="RegisterStockKeeper">Register</a></li>
+                @* <li><a asp-controller="StockKeeper" asp-action="StockKeeperProfile">View Profile</a></li> *@
+                <li><a asp-controller="StockKeeper" asp-action="GetAllStockKeepers">StockKeepers</a></li>
+                @*     </ul> *@</ul>
+        </li>
+
+
+    }
+    else if (@User.FindFirstValue(ClaimTypes.Role) == "StockKeeper")
+    {
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Suppliers</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Supplier" asp-action="Index">List</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">ItemCategory Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Category" asp-action="CreateItemCategory">Add ItemCategory</a></li>
+                <li><a asp-controller="Category" asp-action="DeleteItemCategory">Delete ItemCategory</a></li>
+                <li><a asp-controller="Category" asp-action="UpdateItemCategory">Update ItemCategory</a></li>
+                <li><a asp-controller="Category" asp-action="Index">List</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Item Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Item" asp-action="AddItem">Add Item</a></li>
+                <li><a asp-controller="Item" asp-action="DeleteItem">Delete Item</a></li>
+                <li><a asp-controller="Item" asp-action="EditItem">Update Item</a></li>
+                <li><a asp-controller="Item" asp-action="Index">List</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Stock Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Stock" asp-action="CreateStock">Create Stock</a></li>
+                <li><a asp-controller="Stock" asp-action="Index">List</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">StockItem Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Stock" asp-action="AddItemToStock">Add To Stock</a></li>
+                <li><a asp-controller="Stock" asp-action="StockItems">List</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Allocation Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="AllocateSalesItem" asp-action="Index">List</a></li>
+                <li><a asp-controller="AllocateSalesItem" asp-action="AllocateItemsToSalesStore">Allocate To Sales Store</a></li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Notification Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Notification" asp-action="Index">All Notifications</a></li>
+                <li><a asp-controller="Notification" asp-action="GetAllConfirmedNotifications">All Confirmed Notifications</a></li>
+                <li><a asp-controller="Notification" asp-action="GetAllRejectedNotifications">All Rejected Notifications</a></li>
+                <li><a asp-controller="Notification" asp-action="GetUnreadNotifications">New Notifications</a></li>
+
+                @* <li><a asp-controller="StockKeeper" asp-action="ViewStockReports">View All Reports</a></li> *@
+
+            </ul>
+        </li>
+    }
+
+    else if (@User.FindFirstValue(ClaimTypes.Role) == "SalesManager")
+    {
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Notification Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Notification" asp-action="Index">List</a></li>
+                <li><a asp-controller="Notification" asp-action="GetAllConfirmedNotifications">All Confirmed Notifications</a></li>
+                <li><a asp-controller="Notification" asp-action="GetAllRejectedNotifications">All Rejected Notifications</a></li>
+                <li><a asp-controller="Notification" asp-action="GetUnreadNotifications">New Notifications</a></li>
+
+                @* <li><a asp-controller="StockKeeper" asp-action="ViewStockReports">View All Reports</a></li> *@
+
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Customer Mgt</span>
+            </a>
+            <ul class="submenu">
+                <li><a asp-controller="Customer" asp-action="RegisterCustomer">Register Customer</a></li>
+                <li><a asp-controller="Customer" asp-action="DeleteCustomer">Delete Customer</a></li>
+                <li><a asp-controller="Customer" asp-action="UpdateCustomer">Update Customer</a></li>
+                <li><a asp-controller="Customer" asp-action="Index">List</a></li>
+
+            </ul>
+        </li>
+
+
+        <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+                <span class="micon dw dw-library"></span><span class="mtext">Sales Mgt</span>
+            </a>
+            <ul class="submenu">
+
+                <li><a asp-controller="Sales" asp-action="StartSales">Start Sales</a></li>
+                <li><a asp-controller="Sales" asp-action="ReturnGoods">Return Goods</a></li>
+                <li><a asp-controller="Sales" asp-action="Index">List</a></li>
+
+            </ul>
+        </li>
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </ul>
+    </div>
+    </div>
     </div>
     <div class="mobile-menu-overlay"></div>
 

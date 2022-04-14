@@ -3,7 +3,8 @@
     public enum NotificationStatus
     {
         Confirmed=1,
-        Rejected
+        Rejected,
+        Unread
         
     }
 }

@@ -55,7 +55,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     CustomerId = sales.CustomerId,
                     PricePerUnit = sales.PricePerUnit,
                     Quantity = sales.Quantity,
-                    TotalPrice = sales.PricePerUnit * sales.Quantity,
+                    TotalPrice = sales.TotalPrice,
                     Id = sales.Id,
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow
@@ -122,7 +122,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 PricePerUnit = s.PricePerUnit,
                 Quantity = s.Quantity,
                 Description = s.Description,
-                DateCreated = s.DateCreated
+                DateCreated = s.DateCreated,
+                TotalPrice = s.TotalPrice
 
             }).ToList();
 
@@ -132,7 +133,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                {
                    try
                    {
-                       var checkAllocatedSalesItem = await _allocateSalesItemToSalesManager.GetAllocatedSalesItem(model.AllocateSalesItemToSalesManagerId);
+                       var checkAllocatedSalesItem = await _allocateSalesItemToSalesManager.GetAllocatedItemsByItemId(model.ItemId);
                        
                        var sales = new Sales
                        {
@@ -154,8 +155,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                            Sales = sales,
                            DateCreated = DateTime.UtcNow,
                        };
-                       if (sales.Quantity<=checkAllocatedSalesItem.QuantityAllocated)
-                       {
+                       
                            sales.TotalPrice += pricePerUnit * quantity;
                            sales.SalesItems.Add(salesItem);
                            checkAllocatedSalesItem.QuantityAllocated = checkAllocatedSalesItem.QuantityAllocated - sales.Quantity;
@@ -163,11 +163,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                            await _allocateSalesItemToSalesManager.UpdateAllocatedSalesItem(model.AllocateSalesItemToSalesManagerId, checkAllocatedSalesItem);
                            await _salesRepository.CreateSales(sales);
                            return sales;
-                       }
-                       else
-                       {
-                           throw new Exception("The quantity available is not enough");
-                       }
+                           
                        
                    }
                    catch
@@ -207,7 +203,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     DateCreated = DateTime.UtcNow,
                    Quantity = sales.Quantity,
                    PricePerUnit = sales.PricePerUnit,
-                   TotalPrice = sales.Quantity * sales.PricePerUnit,
+                   TotalPrice = sales.TotalPrice
 
                 }).ToList()
             };

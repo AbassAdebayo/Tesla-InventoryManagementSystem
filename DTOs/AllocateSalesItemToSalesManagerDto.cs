@@ -37,6 +37,7 @@ namespace InventoryManagemenSystem_Ims.DTOs
 
     public class CreateAllocationResponseModel
     {
+        public int Id { get; set; }
         public int StockItemId { get; set; }
         
         public string StockName { get; set; }
@@ -55,6 +56,7 @@ namespace InventoryManagemenSystem_Ims.DTOs
         
         public Item Item { get; set; }
         
+        public int NotificationId { get; set; }
     }
     
    

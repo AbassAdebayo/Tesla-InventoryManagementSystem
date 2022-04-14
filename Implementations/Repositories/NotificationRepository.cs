@@ -54,9 +54,23 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                     DateCreated = notification.DateCreated
                 }).ToListAsync();
         }
-        
-        
-         public async Task<IList<Notification>> GetAllConfirmedNotifications()
+
+        public async Task<IList<Notification>> GetNewNotifications()
+        {
+            return await _imsContext.Notifications.Include(x => x.AllocateSalesItemToSalesManager)
+                .Where(s => s.NotificationStatus != NotificationStatus.Confirmed  && s.NotificationStatus!=NotificationStatus.Rejected).Select(
+                    notification => new Notification
+                    {
+                        Id = notification.Id,
+                        AllocateSalesItemToSalesManager = notification.AllocateSalesItemToSalesManager,
+                        DateCreated = notification.DateCreated,
+                        NotificationStatus = NotificationStatus.Unread
+                         
+                    }).ToListAsync();
+        }
+
+
+        public async Task<IList<Notification>> GetAllConfirmedNotifications()
          {
              return await _imsContext.Notifications.Include(x => x.AllocateSalesItemToSalesManager)
                  .Where(s => s.NotificationStatus == NotificationStatus.Confirmed).Select(

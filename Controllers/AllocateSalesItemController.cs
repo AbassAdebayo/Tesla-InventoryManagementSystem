@@ -53,10 +53,10 @@ namespace InventoryManagemenSystem_Ims.Controllers
         {
             var stockKeepers = await _stockKeeperService.GetAllStockKeepers();
             var salesManagers = await _salesManagerService.GetAllSalesManagers();
-            var stocksItems = await _stockService.GetAllStockItems();
+            //var stocksItems = await _stockService.GetAllStockItems();
             var items = await _itemService.GetAllItems();
             ViewData["Items"] = new SelectList(items, "Id", "ItemName");
-            ViewData["StockItems"] = new SelectList(stocksItems, "Id", "StockName");
+            //ViewData["StockItems"] = new SelectList(stocksItems, "Id", "StockName");
             ViewData["StockKeepers"] = new SelectList(stockKeepers, "Id", "LastName");
             ViewData["SalesManagers"] = new SelectList(salesManagers, "Id", "LastName");
             return View();
@@ -69,10 +69,10 @@ namespace InventoryManagemenSystem_Ims.Controllers
             var allocateItems = await _allocateSalesItemToSalesManager.AllocateSalesItem(model);
             var stockItem = await _stockService.GetStockItemById(model.StockItemId);
             string alertMessage =
-                $"Insufficient Stock! The remaining quantity for the selected item is {stockItem.Quantity}";
-            if (allocateItems==null)
+                $"The remaining quantity for the selected item is {stockItem.Quantity}";
+            if (allocateItems.QuantityAllocated>stockItem.Quantity)
             {
-                ViewBag.error = alertMessage;
+               TempData["Insufficient"] = alertMessage;
             }
 
             TempData["data"] = "Item successfully allocated";

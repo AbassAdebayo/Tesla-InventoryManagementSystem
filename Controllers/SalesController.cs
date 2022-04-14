@@ -14,23 +14,19 @@ namespace InventoryManagemenSystem_Ims.Controllers
     {
         private readonly ISalesService _salesService;
         private readonly IItemService _itemService;
-        private readonly IStockService _stockService;
+        private readonly IAllocateSalesItemToSalesManagerService _allocateSalesItemToSalesManager;
         private readonly ICustomerService _customerService;
         private readonly ISalesManagerService _salesManagerService;
-        private readonly ISalesItemService _salesItemService;
 
-        public SalesController(ISalesService salesService, IItemService itemService,
-            IStockService stockService, ICustomerService customerService, ISalesManagerService salesManagerService,
-            ISalesItemService salesItemService)
+
+        public SalesController(ISalesService salesService, IItemService itemService, IAllocateSalesItemToSalesManagerService allocateSalesItemToSalesManager, ICustomerService customerService, ISalesManagerService salesManagerService)
         {
             _salesService = salesService;
             _itemService = itemService;
-            _stockService = stockService;
+            _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
             _customerService = customerService;
             _salesManagerService = salesManagerService;
-            _salesItemService = salesItemService;
         }
-
 
         [HttpGet]
         [Authorize(Roles = "SalesManager, ShopManager")]

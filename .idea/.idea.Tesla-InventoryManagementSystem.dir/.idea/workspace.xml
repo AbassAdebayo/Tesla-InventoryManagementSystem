@@ -6,45 +6,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f1bb525-c330-42d0-8110-d50f4ec772a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Pages/AllocateSalesItem/GetAllocationDetails.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/AllocateSalesItem/GetAllocationDetails.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Notification/GetAllConfirmedNotifications.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Notification/GetAllRejectedNotifications.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Notification/GetNotification.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/Notification/Index.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/AllocateSalesItem/GetAllocationDetails.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Notification/GetAllConfirmedNotifications.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Notification/GetAllRejectedNotifications.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Notification/GetNotification.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Notification/Index.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/AllocateSalesItem/GetAllocationDetails.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Notification/GetAllConfirmedNotifications.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Notification/GetAllRejectedNotifications.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Notification/GetNotification.cshtml.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Notification/Index.cshtml.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pages/Notification/GetUnreadNotifications.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/Notification/GetUnreadNotifications.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Notification/GetUnreadNotifications.cshtml.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Notification/GetUnreadNotifications.cshtml.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/assets/images/product/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/assets/images/sales.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tesla-InventoryManagementSystem.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tesla-InventoryManagementSystem.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/AllocateSalesItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AllocateSalesItemController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/NotificationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/NotificationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SalesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SalesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DTOs/AllocateSalesItemToSalesManagerDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DTOs/AllocateSalesItemToSalesManagerDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Enums/NotificationStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Enums/NotificationStatus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementations/Repositories/AllocateSalesItemToSalesManagerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Implementations/Repositories/AllocateSalesItemToSalesManagerRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementations/Repositories/NotificationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Implementations/Repositories/NotificationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementations/Repositories/StockRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Implementations/Repositories/StockRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementations/Services/NotificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Implementations/Services/NotificationService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementations/Services/SalesService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Implementations/Services/SalesService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementations/Services/StockService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Implementations/Services/StockService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interfaces/Services/IAllocateSalesItemToSalesManagerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/Services/IAllocateSalesItemToSalesManagerService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interfaces/Services/ISalesService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/Services/ISalesService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interfaces/Repositories/IAllocateSalesItemToSalesManagerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/Repositories/IAllocateSalesItemToSalesManagerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interfaces/Repositories/INotificationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/Repositories/INotificationRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interfaces/Services/INotificationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interfaces/Services/INotificationService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/AllocateSalesItem/AllocateItemsToSalesStore.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/AllocateSalesItem/AllocateItemsToSalesStore.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Category/CreateItemCategory.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Category/CreateItemCategory.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Category/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Category/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Role/CreateRole.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Role/CreateRole.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Role/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Role/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Sales/GenerateInvoice.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Sales/GenerateInvoice.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Customer/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Customer/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Notification/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Notification/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Sales/StartSales.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Sales/StartSales.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Shared/_UserLayout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/_UserLayout.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Stock/AddItemToStock.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Stock/AddItemToStock.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Stock/StockItems.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Stock/StockItems.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/StockKeeper/RegisterStockKeeper.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/StockKeeper/RegisterStockKeeper.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/User/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/User/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/InventoryManagemenSystem_Ims.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/InventoryManagemenSystem_Ims.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/InventoryManagemenSystem_Ims.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/InventoryManagemenSystem_Ims.Views.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/InventoryManagemenSystem_Ims.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/InventoryManagemenSystem_Ims.dll" afterDir="false" />
@@ -53,24 +41,15 @@
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.RazorCoreGenerate.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.RazorCoreGenerate.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.Views.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/InventoryManagemenSystem_Ims.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/AllocateSalesItem/AllocateItemsToSalesStore.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/AllocateSalesItem/AllocateItemsToSalesStore.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/AllocateSalesItem/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/AllocateSalesItem/Index.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Category/CreateItemCategory.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Category/CreateItemCategory.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Category/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Category/Index.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Role/CreateRole.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Role/CreateRole.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Role/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Role/Index.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Sales/GenerateInvoice.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Sales/GenerateInvoice.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Customer/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Customer/Index.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Notification/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Notification/Index.cshtml.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Sales/StartSales.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Sales/StartSales.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Shared/_Layout.cshtml.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Shared/_UserLayout.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Shared/_UserLayout.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Stock/AddItemToStock.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Stock/AddItemToStock.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Stock/StockItems.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/Stock/StockItems.cshtml.g.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/StockKeeper/RegisterStockKeeper.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/StockKeeper/RegisterStockKeeper.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/User/Index.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Views/User/Index.cshtml.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/InventoryManagemenSystem_Ims.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/InventoryManagemenSystem_Ims.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +76,8 @@
     <setting file="file://$PROJECT_DIR$/Startup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Implementations/Repositories/AllocateSalesItemToSalesManagerRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Implementations/Repositories/NotificationRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Controllers/SalesController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/E66BBF68-0139-4A33-A161-5E44195DE7D5/04/01353c33/0200003Bpdb.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controllers/SalesController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/AllocateSalesItem/AllocateItemsToSalesStore.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Views/AllocateSalesItem/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Implementations/Repositories/SalesRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -113,31 +93,21 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/InventoryManagemenSystem_Ims.csproj" />
       <option value="$PROJECT_DIR$/Views/SalesItem/Index.cshtml" />
       <option value="$PROJECT_DIR$/Views/Sales/Index.cshtml" />
-      <option value="$PROJECT_DIR$/Controllers/SalesController.cs" />
       <option value="$PROJECT_DIR$/Views/AllocateSalesItem/Index.cshtml" />
-      <option value="$PROJECT_DIR$/Interfaces/Repositories/IAllocateSalesItemToSalesManagerRepository.cs" />
-      <option value="$PROJECT_DIR$/Implementations/Repositories/AllocateSalesItemToSalesManagerRepository.cs" />
       <option value="$PROJECT_DIR$/Startup.cs" />
-      <option value="$PROJECT_DIR$/Interfaces/Repositories/INotificationRepository.cs" />
-      <option value="$PROJECT_DIR$/Interfaces/Services/INotificationService.cs" />
-      <option value="$PROJECT_DIR$/Implementations/Services/NotificationService.cs" />
       <option value="$PROJECT_DIR$/Pages/Notification/GetAllConfirmedNotifications.cshtml" />
       <option value="$PROJECT_DIR$/Pages/Notification/GetAllRejectedNotifications.cshtml" />
       <option value="$PROJECT_DIR$/Pages/Notification/Index.cshtml" />
       <option value="$PROJECT_DIR$/Pages/Notification/GetNotification.cshtml" />
-      <option value="$PROJECT_DIR$/Views/Sales/StartSales.cshtml" />
       <option value="$PROJECT_DIR$/Views/Sales/GenerateInvoice.cshtml" />
       <option value="$PROJECT_DIR$/Pages/AllocateSalesItem/GetAllocationDetails.cshtml" />
       <option value="$PROJECT_DIR$/Views/AllocateSalesItem/GetAllocationDetails.cshtml" />
       <option value="$PROJECT_DIR$/Interfaces/Services/ISalesService.cs" />
-      <option value="$PROJECT_DIR$/Implementations/Services/SalesService.cs" />
       <option value="$PROJECT_DIR$/Views/Notification/GetNotification.cshtml" />
       <option value="$PROJECT_DIR$/Views/Notification/GetAllRejectedNotifications.cshtml" />
       <option value="$PROJECT_DIR$/Views/Notification/GetAllConfirmedNotifications.cshtml" />
-      <option value="$PROJECT_DIR$/Controllers/NotificationController.cs" />
       <option value="$PROJECT_DIR$/Views/Role/CreateRole.cshtml" />
       <option value="$PROJECT_DIR$/Controllers/RoleController.cs" />
       <option value="$PROJECT_DIR$/Views/Role/Index.cshtml" />
@@ -148,17 +118,32 @@
       <option value="$PROJECT_DIR$/Views/Stock/StockItems.cshtml" />
       <option value="$PROJECT_DIR$/Interfaces/Services/IAllocateSalesItemToSalesManagerService.cs" />
       <option value="$PROJECT_DIR$/Views/Stock/AddItemToStock.cshtml" />
-      <option value="$PROJECT_DIR$/DTOs/AllocateSalesItemToSalesManagerDto.cs" />
       <option value="$PROJECT_DIR$/Controllers/CategoryController.cs" />
       <option value="$PROJECT_DIR$/Interfaces/Repositories/IStockRepository.cs" />
+      <option value="$PROJECT_DIR$/Implementations/Repositories/StockRepository.cs" />
+      <option value="$PROJECT_DIR$/Views/Customer/Index.cshtml" />
+      <option value="$PROJECT_DIR$/DTOs/AllocateSalesItemToSalesManagerDto.cs" />
+      <option value="$PROJECT_DIR$/Interfaces/Repositories/IAllocateSalesItemToSalesManagerRepository.cs" />
+      <option value="$PROJECT_DIR$/Implementations/Repositories/AllocateSalesItemToSalesManagerRepository.cs" />
+      <option value="$PROJECT_DIR$/Implementations/Services/StockService.cs" />
+      <option value="$PROJECT_DIR$/Views/Sales/StartSales.cshtml" />
+      <option value="$PROJECT_DIR$/Implementations/Services/SalesService.cs" />
+      <option value="$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs" />
       <option value="$PROJECT_DIR$/Controllers/AllocateSalesItemController.cs" />
       <option value="$PROJECT_DIR$/Views/AllocateSalesItem/AllocateItemsToSalesStore.cshtml" />
-      <option value="$PROJECT_DIR$/Implementations/Services/StockService.cs" />
-      <option value="$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs" />
-      <option value="$PROJECT_DIR$/Views/Shared/_UserLayout.cshtml" />
-      <option value="$PROJECT_DIR$/Implementations/Repositories/StockRepository.cs" />
+      <option value="$PROJECT_DIR$/Controllers/SalesController.cs" />
+      <option value="$PROJECT_DIR$/Interfaces/Repositories/INotificationRepository.cs" />
+      <option value="$PROJECT_DIR$/Enums/NotificationStatus.cs" />
+      <option value="$PROJECT_DIR$/Interfaces/Services/INotificationService.cs" />
+      <option value="$PROJECT_DIR$/Pages/Notification/GetUnreadNotifications.cshtml" />
       <option value="$PROJECT_DIR$/Views/Notification/Index.cshtml" />
+      <option value="$PROJECT_DIR$/Implementations/Services/NotificationService.cs" />
       <option value="$PROJECT_DIR$/Implementations/Repositories/NotificationRepository.cs" />
+      <option value="$PROJECT_DIR$/Controllers/NotificationController.cs" />
+      <option value="$PROJECT_DIR$/Views/Notification/GetUnreadNotifications.cshtml" />
+      <option value="$PROJECT_DIR$/Views/Shared/_UserLayout.cshtml" />
+      <option value="$PROJECT_DIR$/Controllers/UserController.cs" />
+      <option value="$PROJECT_DIR$/Views/User/Index.cshtml" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="27ewDSnA9IuySYNnvvjph4aOs3Z" />
@@ -242,7 +227,8 @@
       <updated>1649693751382</updated>
       <workItem from="1649693820434" duration="388000" />
       <workItem from="1649694404357" duration="2660000" />
-      <workItem from="1649697195877" duration="28120000" />
+      <workItem from="1649697195877" duration="28543000" />
+      <workItem from="1649796849973" duration="29932000" />
     </task>
     <servers />
   </component>
@@ -266,89 +252,5 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs</url>
-          <line>29</line>
-          <properties documentPath="C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\Implementations\Services\AllocateSalesItemToSalesManagerService.cs" initialLine="29" containingFunctionPresentation="method 'AllocateSalesItem'">
-            <startOffsets>
-              <option value="1456" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1932" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs</url>
-          <line>42</line>
-          <properties documentPath="C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\Implementations\Services\AllocateSalesItemToSalesManagerService.cs" initialLine="42" containingFunctionPresentation="method 'AllocateSalesItem'">
-            <startOffsets>
-              <option value="2065" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2125" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs</url>
-          <line>45</line>
-          <properties documentPath="C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\Implementations\Services\AllocateSalesItemToSalesManagerService.cs" initialLine="45" containingFunctionPresentation="method 'AllocateSalesItem'">
-            <startOffsets>
-              <option value="2173" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2408" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs</url>
-          <line>51</line>
-          <properties documentPath="C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\Implementations\Services\AllocateSalesItemToSalesManagerService.cs" initialLine="51" containingFunctionPresentation="method 'AllocateSalesItem'">
-            <startOffsets>
-              <option value="2425" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2491" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs</url>
-          <line>41</line>
-          <properties documentPath="C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\Implementations\Services\AllocateSalesItemToSalesManagerService.cs" initialLine="41" containingFunctionPresentation="method 'AllocateSalesItem'">
-            <startOffsets>
-              <option value="1958" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2052" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Implementations/Services/AllocateSalesItemToSalesManagerService.cs</url>
-          <line>27</line>
-          <properties documentPath="C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\Implementations\Services\AllocateSalesItemToSalesManagerService.cs" initialLine="27" containingFunctionPresentation="method 'AllocateSalesItem'">
-            <startOffsets>
-              <option value="1367" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1442" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -18,5 +18,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
         Task<AllocateSalesItemToSalesManager> UpdateAllocatedSalesItem(int id,
             AllocateSalesItemToSalesManager allocateSalesItemToSalesManager);
 
+        Task<AllocateSalesItemToSalesManager> GetAllocatedItemsByItemId(int itemId);
+
     }
 }

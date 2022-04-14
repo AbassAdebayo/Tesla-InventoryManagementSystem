@@ -453,3 +453,5 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-Invent
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\GetAllRejectedNotifications.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\GetNotification.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\Index.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\Notification\GetUnreadNotifications.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\GetUnreadNotifications.cshtml.g.cs

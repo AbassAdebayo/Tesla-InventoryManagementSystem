@@ -30,11 +30,11 @@
                     <p>@Html.DisplayFor(data => notification.DateCreated)</p>
                     <b>Notification: </b>
                     <p>@Html.DisplayFor(data => notification.AllocateSalesItemToSalesManager)</p>
-                    @* <a style="background-color: yellowgreen;" asp-action="UpdateNotificationToConfirmed" asp-controller="Notification" asp-route-id="@notification.Id" *@
-                    @*    class="btn btn-primary">Confirm</a> *@
-                    @* <a style="background-color: yellowgreen;" asp-action="UpdateNotificationToRejected" asp-controller="Notification" asp-route-id="@notification.Id" *@
-                    @*    class="btn btn-primary">Reject</a> *@
-                    <a style="background-color: tomato" asp-action="Index" asp-controller="AllocateSalesItem"
+                    <a style="background-color: yellowgreen;" asp-action="UpdateNotificationToConfirmed" asp-controller="Notification" asp-route-id="@notification.Id"
+                       class="btn btn-primary">Confirm</a>
+                    <a style="background-color: yellowgreen;" asp-action="UpdateNotificationToRejected" asp-controller="Notification" asp-route-id="@notification.Id"
+                       class="btn btn-primary">Reject</a>
+                    <a style="background-color: tomato" asp-action="Index" asp-controller="Notification"
                        class="btn btn-primary">Return</a>
                 </div>
             </div>

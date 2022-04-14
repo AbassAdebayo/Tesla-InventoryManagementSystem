@@ -71,5 +71,10 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
              return allocateSalesItemToSalesManager;
 
         }
+
+        public async Task<AllocateSalesItemToSalesManager> GetAllocatedItemsByItemId(int itemId)
+        {
+          return await _imsContext.AllocateSalesItemToSalesManagers.FirstOrDefaultAsync(x => x.ItemId == itemId);
+        } 
     }
 }
