@@ -53,10 +53,6 @@ namespace InventoryManagemenSystem_Ims.IMS_DbContext
         
         public DbSet<ItemCategory> ItemCategories { get; set; }
         
-        public DbSet<Report> Reports { get; set; }
-        
-        public DbSet<CheckOutSales> CheckOutSales { get; set; }
-        
         public DbSet<ReturnGoods> ReturnGoods { get; set; }
         
         

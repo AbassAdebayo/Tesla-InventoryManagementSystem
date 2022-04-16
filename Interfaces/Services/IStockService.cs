@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Entities;
@@ -32,6 +33,10 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         Task<decimal> CalculateGrandTotalPriceOfAllStockItem();
 
         Task<IEnumerable<StockItem>> GetAllStockItems();
+
+        Task<decimal> GetExpenses();
+
+        Task<IList<StockItem>> GetStockItemByDate(DateTime date);
 
 
     }

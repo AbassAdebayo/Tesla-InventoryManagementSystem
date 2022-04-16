@@ -19,16 +19,14 @@ namespace InventoryManagemenSystem_Ims.Controllers
     public class SalesManagerController : Controller
     {
         private readonly ISalesManagerService _salesManagerService;
-        private readonly IReportService _reportService;
         private readonly IMailMessage _mailMessage;
         private readonly IRoleService _roleService;
         
         
 
-        public SalesManagerController(ISalesManagerService salesManagerService, IReportService reportService, IMailMessage mailMessage, IRoleService roleService)
+        public SalesManagerController(ISalesManagerService salesManagerService, IMailMessage mailMessage, IRoleService roleService)
         {
             _salesManagerService = salesManagerService;
-            _reportService = reportService;
             _mailMessage = mailMessage;
             _roleService = roleService;
            
@@ -118,30 +116,6 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
         }
         
-        [HttpGet]
-        [Authorize(Roles = "StockKeeper, SalesManager")]
-        public IActionResult SubmitReport()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> SubmitReport(CreateSalesManagerReportModel model, int id)
-        {
-            string successMessage = "Message sent successfully!";
-            await _reportService.SubmitSalesManagerReport(model, id);
-            TempData["data"] = successMessage;
-            return RedirectToAction("ViewSalesReports");
-            
-            
-           
-        }
-
-        [Authorize(Roles = "ShopManager, SalesManager, StockKeeper")]
-        public async Task<IActionResult> ViewSalesReports()
-        {
-            return View(await _reportService.GetAllSalesManagerReports());
-        }
         
         
     }

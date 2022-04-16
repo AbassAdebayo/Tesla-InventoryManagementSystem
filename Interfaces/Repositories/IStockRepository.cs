@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Entities;
+using Microsoft.VisualBasic;
 
 namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
 {
@@ -36,6 +38,12 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
         
 
         Task<StockItem> UpdateStockItem(int id, StockItem stockItem);
+        
+        public Task<decimal> GetExpenses();
+        
+        public Task<List<StockItem>> GetStockItemByDate(DateTime date);
+        
+       
 
     }
 }

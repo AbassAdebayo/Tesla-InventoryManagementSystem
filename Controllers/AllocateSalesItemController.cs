@@ -16,14 +16,16 @@ namespace InventoryManagemenSystem_Ims.Controllers
         private readonly ISalesManagerService _salesManagerService;
         private readonly IStockKeeperService _stockKeeperService;
         private readonly IStockService _stockService;
+        private readonly INotificationService _notificationService;
 
-        public AllocateSalesItemController(IAllocateSalesItemToSalesManagerService allocateSalesItemToSalesManager, IItemService itemService, ISalesManagerService salesManagerService, IStockKeeperService stockKeeperService, IStockService stockService)
+        public AllocateSalesItemController(IAllocateSalesItemToSalesManagerService allocateSalesItemToSalesManager, IItemService itemService, ISalesManagerService salesManagerService, IStockKeeperService stockKeeperService, IStockService stockService, INotificationService notificationService)
         {
             _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
             _itemService = itemService;
             _salesManagerService = salesManagerService;
             _stockKeeperService = stockKeeperService;
             _stockService = stockService;
+            _notificationService = notificationService;
         }
         
         [HttpGet]
@@ -68,6 +70,16 @@ namespace InventoryManagemenSystem_Ims.Controllers
         {
             var allocateItems = await _allocateSalesItemToSalesManager.AllocateSalesItem(model);
             var stockItem = await _stockService.GetStockItemById(model.StockItemId);
+
+            var notifications = await _notificationService.GetAllNotifications();
+            int currentCount = notifications.Count;
+            int ChangeInNotification = 0;
+
+            if (currentCount>ChangeInNotification)
+            {
+                ChangeInNotification = currentCount;
+                ViewBag.Message = $"You have {ChangeInNotification - 1} notification(s)";
+            }
             string alertMessage =
                 $"The remaining quantity for the selected item is {stockItem.Quantity}";
             if (allocateItems.QuantityAllocated>stockItem.Quantity)

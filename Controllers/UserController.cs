@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace InventoryManagemenSystem_Ims.Controllers
 {
@@ -19,13 +21,18 @@ namespace InventoryManagemenSystem_Ims.Controllers
         private readonly IUserService _userService;
         private readonly ISalesService _salesService;
         private readonly ICustomerService _customerService;
-        
-        
-        public UserController(IUserService userService, ISalesService salesService, ICustomerService customerService)
+        private readonly INotificationService _notificationService;
+        private readonly IStockService _stockService;
+
+
+        public UserController(IUserService userService, ISalesService salesService, 
+            ICustomerService customerService, INotificationService notificationService, IStockService stockService)
         {
             _userService = userService;
             _salesService = salesService;
             _customerService = customerService;
+            _notificationService = notificationService;
+            _stockService = stockService;
         }
         
         [HttpGet]
@@ -38,7 +45,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginDto model)
         {
-           
+            var roleAdd = "";
             var response = await _userService.Login(model);
             
             if (response.Status==true)
@@ -53,6 +60,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
                 foreach (var role in response.Data.Roles)
                 {
                     claims.Add(new Claim(ClaimTypes.Role, role.Name));
+                    roleAdd = role.Name;
                 }
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var authenticationProperties = new AuthenticationProperties();
@@ -60,8 +68,21 @@ namespace InventoryManagemenSystem_Ims.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
                 TempData["data"] = "Login successfully!";
                 TempData["Login"] = response.Status;
+
+                if (roleAdd=="ShopManager")
+                {
+                    return RedirectToAction("Index");
+                }
+
+                if (roleAdd=="StockKeeper")
+                {
+                    return RedirectToAction("StockKeeperIndex");
+                }
+                if (roleAdd=="SalesManager")
+                {
+                    return RedirectToAction("SalesManagerIndex");
+                }
                 
-                return RedirectToAction("Index");
             }
 
             ViewBag.error = "Invalid Email or Password";
@@ -79,7 +100,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
         [HttpGet]
-        [Authorize(Roles = "ShopManager, SalesManager, StockKeeper")]
+        [Authorize(Roles = "ShopManager")]
         public async Task<IActionResult> Index()
         {
             // var sales = await _salesService.GetAllSales();
@@ -103,13 +124,66 @@ namespace InventoryManagemenSystem_Ims.Controllers
             // ViewBag.CUSTOMERS = customers;
             // ViewBag.SALES = numOfSales;
             
+            var overallSales = await _salesService.GetGrandTotalOfAllSales();
+            var notifications = await _notificationService.GetNewNotifications();
+            var expenses = await _stockService.GetExpenses();
+
+            ViewBag.SALESGRANDTOTAL = overallSales.Data;
+            ViewBag.NOTIFICATIONSCOUNT = notifications.Count;
+            ViewBag.EXPENSES = expenses;
+            int ChangeInNotification = 0;
+            
+            int currentCount = notifications.Count;
+            if (currentCount>ChangeInNotification)
+            {
+                ChangeInNotification = currentCount;
+                ViewBag.Message = $"You have {ChangeInNotification - 1} notification(s)";
+            }
+
+            return View();
+        }
+        
+        [HttpGet]
+        [Authorize(Roles = "StockKeeper")]
+        public IActionResult StockKeeperIndex()
+        {
+            
             var overallSales = _salesService.GetGrandTotalOfAllSales();
 
             ViewBag.SALESGRANDTOTAL = overallSales.Result.Data;
             return View();
         }
         
+        [HttpGet]
+        [Authorize(Roles =  "SalesManager")]
+        public IActionResult SalesManagerIndex()
+        {
+            
+            var overallSales = _salesService.GetGrandTotalOfAllSales();
+
+            ViewBag.SALESGRANDTOTAL = overallSales.Result.Data;
+            return View();
+        }
        
-      
+        [HttpPost]
+        [Authorize(Roles =  "ShopManager, SalesManager")]
+        public IActionResult GetSalesByDate(DateTime dateCreated)
+        {
+            
+            var salesByDate = _salesService.GetSalesByMonth(dateCreated);
+            return View(salesByDate);
+        }
+        
+        [HttpPost]
+        [Authorize(Roles =  "ShopManager, StockKeeper")]
+        public async Task<IActionResult> GetStockItemByDate(DateTime dateCreated)
+        {
+            
+            var getStockItemByDate = await _stockService.GetStockItemByDate(dateCreated);
+            return View(getStockItemByDate);
+        }
+        
+        
+        
     }
 }

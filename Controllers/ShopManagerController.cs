@@ -18,17 +18,15 @@ namespace InventoryManagemenSystem_Ims.Controllers
     public class ShopManagerController : Controller
     {
         private readonly IShopManagerService _shopManagerService;
-        private readonly IReportService _reportService;
         private readonly IRoleService _roleService;
         private readonly IUserService _userService;
         
 
 
-        public ShopManagerController(IShopManagerService shopManagerService, IReportService reportService,
+        public ShopManagerController(IShopManagerService shopManagerService,
             IRoleService roleService, IUserService userService)
         {
             _shopManagerService = shopManagerService;
-            _reportService = reportService;
             _roleService = roleService;
             _userService = userService;
             
@@ -101,16 +99,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             _shopManagerService.DeleteShopManager(id);
             return RedirectToAction("Index");
         }
-
-
-        [HttpPost]
-        [Display(Name = "Delete Sales Manager report")]
-        public async Task<IActionResult> DeleteSalesManagerReportConfirmed(int id)
-        {
-            await _reportService.DeleteReport(id);
-            return Ok();
-        }
-
+        
 
         
         [HttpGet]
@@ -187,81 +176,6 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View();
         }
         
-        
-        [HttpPost]
-        [Display(Name = "Delete Stock report")]
-        [Authorize(Roles = "ShopManager")]
-        public async Task<IActionResult> DeleteReport(int id)
-        {
-            await _reportService.DeleteReport(id);
-            return RedirectToAction("Index");
-        }
-        
-        
-        [HttpPost]
-        public async Task<IActionResult> UpdateSalesReportToVerified(int id)
-        {
-            await _reportService.UpdateReportStatusToVerified(id);
-            return RedirectToAction("ViewSalesVerifiedReports");
-
-        }
-        
-        [HttpPost]
-        [Authorize(Roles = "ShopManager")]
-        public async Task<IActionResult> UpdateSalesReportToApproved(int id)
-        {
-            await _reportService.UpdateReportStatusToApproved(id);
-            return RedirectToAction("ViewSalesApprovedReports");
-
-        }
-        
-        [HttpPost]
-        public async Task<IActionResult> UpdateStockReportToVerified(int id)
-        {
-            await _reportService.UpdateReportStatusToVerified(id);
-            return RedirectToAction("ViewSalesVerifiedReports");
-
-        }
-        
-        [HttpPost]
-        [Authorize(Roles = "ShopManager")]
-        public async Task<IActionResult> UpdateStockReportToApproved(int id)
-        {
-            await _reportService.UpdateReportStatusToApproved(id);
-            return RedirectToAction("ViewStockApprovedReports");
-
-        }
-        
-        [HttpGet]
-        public async Task<IActionResult> ViewStockVerifiedReports()
-        {
-            var verifiedReports = await _reportService.ViewStockKeeperVerifiedReports();
-            return View(verifiedReports);
-        }
-        
-        [HttpGet]
-        public async Task<IActionResult> ViewStockApprovedReports()
-        {
-            var approvedReports = await _reportService.ViewStockKeeperApprovedReports();
-            return View(approvedReports);
-        }
-
-        
-
-        [HttpGet]
-        public async Task<IActionResult> ViewSalesVerifiedReports()
-        {
-            var verifiedReports = await _reportService.ViewSalesManagerVerifiedReports();
-            return View(verifiedReports);
-        }
-        
-
-        [HttpGet]
-        public async Task<IActionResult> ViewSalesApprovedReports()
-        {
-            var salesApprovedReports = await _reportService.ViewSalesManagerApprovedReports();
-            return View(salesApprovedReports);
-        }
         
     }
     

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<InventoryManagemenSystem_Ims.Entities.StockItem>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "Sales";
+}
+
+<div class="card-header" style="background-color:midnightblue;">
+    <div class="card-title">
+        <h1 class="text-center">Sales</h1>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.PricePerUnit)
+            </th>
+            
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            
+            
+            <th>
+                Details
+            </th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stockItem in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => stockItem.Id)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stockItem.Item)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stockItem.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => stockItem.PricePerUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => stockItem.Quantity)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => stockItem.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => stockItem.DateCreated)
+            </td>
+
+            <td>
+                <a asp-action="GetStockItem" asp-controller="Stock" asp-route-id="@stockItem.Id">Details</a>
+            </td>
+            
+            
+            
+        </tr>
+        }
+    </tbody>
+</table>
+
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>

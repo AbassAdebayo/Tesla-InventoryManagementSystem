@@ -59,8 +59,6 @@ namespace InventoryManagemenSystem_Ims
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ISalesRepository, SalesRepository>();
             services.AddScoped<IReturnGoodsRepository, ReturnGoodsRepository>();
-            services.AddScoped<IReportRepository, ReportRepository>();
-            services.AddScoped<IReportRepository, ReportRepository>();
             services.AddScoped<IAllocateSalesItemToSalesManagerRepository, AllocateSalesItemToSalesManagerRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IRoleService, RoleService>();
@@ -73,7 +71,6 @@ namespace InventoryManagemenSystem_Ims
             services.AddScoped<IStockKeeperService, StockKeeperService>();
             services.AddScoped<ISalesManagerService, SalesManagerService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IReportService, ReportService>();
             services.AddScoped<ISalesItemService, SalesItemService>();
             services.AddScoped<ISalesService, SalesService>();
             services.AddScoped<IMailMessage, MailMessage>();

@@ -30,5 +30,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         public Task<List<Sales>> GenerateInvoice(int id);
         
         public JsonResult ManageCustomersPatronage(int customerId);
+
+       public IList<Sales> GetSalesByMonth(DateTime date);
     }
 }

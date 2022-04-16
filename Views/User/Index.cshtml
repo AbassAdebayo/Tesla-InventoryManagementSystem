@@ -1,11 +1,18 @@
 ﻿@using System.Security.Claims
 @using Microsoft.EntityFrameworkCore.Metadata.Internal
 
+@model InventoryManagemenSystem_Ims.Entities.Sales
 
 @{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
     ViewData["Title"] = "User";
 }
+
+<!-- CSS only -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 
 @if (TempData["data"] != null)
 {
@@ -16,18 +23,39 @@
 		</button>
 	</div>
 }
+
+@if (ViewBag.Message != null)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@ViewBag.Message</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+<!doctype html>
+<html lang="en">
+
+<link rel="shortcut icon" href="MyDesign/assets/images/favicon.ico" />
+<link rel="stylesheet" href="MyDesign/assets/css/backend-plugin.min.css">
+<link rel="stylesheet" href="MyDesign/assets/css/backend.css?v=1.0.0">
+<link rel="stylesheet" href="MyDesign/assets/vendor/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="MyDesign/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="MyDesign/assets/vendor/remixicon/fonts/remixicon.css">
+
 <div class="pd-ltr-20" style="background-color: #06163a">
-    <div class="card-box pd-20 height-100-p mb-30">
-        <div class="row align-items-center">
-            <div class="col-md-4">
-                <img src="~/vendors/images/banner-img.png" alt="">
-            </div> 
-            <div class="row">
+<div class="card-box pd-20 height-100-p mb-30">
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <img src="~/vendors/images/banner-img.png" alt="">
+        </div>
+        <div class="row">
             <div class="col-md-8">
                 <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                    Welcome back!<div class="weight-600 font-30 text-blue">@User.Identity?.Name</div>
+                    Welcome back!
+                    <div class="weight-600 font-30 text-blue">@User.Identity?.Name</div>
                 </h4>
-                <div class="col-lg-4 col-md-4">
+                <div class="col-lg-4 col-md-4" style="position: relative; top:-240px; right: -400px; width: 96%;">
                     <div class="card card-block card-stretch card-height">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-4 card-total-sale">
@@ -35,9 +63,12 @@
                                     <img src="/assets/images/sales.jpg" class="img-fluid" alt="image">
                                 </div>
                                 <div>
-                                    <h4 class="mb-2">GrandTotal Sales</h4>
-                                    <h4>$@ViewBag.SALESGRANDTOTAL</h4>
-                                                        
+
+                                    <h4 class="mb-2" style="font-weight: bolder">GrandTotal Sales</h4>
+                                    <h>
+                                        <b>$@ViewBag.SALESGRANDTOTAL</b>
+                                    </h>
+
                                 </div>
                             </div>
                             <div class="iq-progress-bar mt-2">
@@ -47,14 +78,141 @@
                         </div>
                     </div>
 
-                </div></div>
-                <p class="font-18 max-width-600">The Outstanding Innovation Begins Here...</p>
+                </div>
+
+                <div class="card card-block card-stretch card-height-helf">
+                    <div class="card-body">
+                        <div class="d-flex align-items-top justify-content-between">
+                            <div class="">
+                                <h3 class="mb-0">Expenses</h3>
+                                <h5>$@ViewBag.EXPENSES</h5>
+                            </div>
+                            <div class="card-header-toolbar d-flex align-items-center" style="position: relative; top:-240px; right: -400px; width: 96%;">
+                                <div class="dropdown">
+                                    <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton004"
+                                          data-toggle="dropdown">
+                                        This Month<i class="ri-arrow-down-s-line ml-1"></i>
+                                    </span>
+                                    <div class="dropdown-menu dropdown-menu-right shadow-none"
+                                         aria-labelledby="dropdownMenuButton004">
+                                        <a class="dropdown-item" href="#">Year</a>
+                                        <a class="dropdown-item" href="#">Month</a>
+                                        <a class="dropdown-item" href="#">Week</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="layout1-chart-4" class="layout-chart-2"></div>
+                    </div>
+                </div>
+                    
+                <div class="col-lg-6">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Revenue Vs Cost</h4>
+                            </div>
+                            <div class="card-header-toolbar d-flex align-items-center">
+                                <div class="dropdown">
+                                    <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton002"
+                                          data-toggle="dropdown">
+                                        This Month<i class="ri-arrow-down-s-line ml-1"></i>
+                                    </span>
+                                    <div class="dropdown-menu dropdown-menu-right shadow-none"
+                                         aria-labelledby="dropdownMenuButton002">
+                                        <a class="dropdown-item" href="#">Yearly</a>
+                                        <a class="dropdown-item" href="#">Monthly</a>
+                                        <a class="dropdown-item" href="#">Weekly</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="layout1-chart-2" style="min-height: 360px;"></div>
+                        </div>
+                    </div>
+                </div>
+               <div class="container d-flex justify-content-center">
+                   <div class="card mt-5 p-3">
+                       <div class="media"> <img src="https://imgur.com/3UmlFEf.png" class="mr-3">
+                           <div class="media-body">
+                               <h6 class="mt-2 mb-0">You have a new message @ViewBag.NOTIFICATIONS</h6> <small class="text">Mar 20,2020</small>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+                
+                
+<div class="container" xmlns="http://www.w3.org/1999/html" style="color: darkgoldenrod">
+    <div class="row justify-content-center">
+        <div class=" card col-md-6; position: relative; top: -240px; right: -400px">
+            <div class="card-body" style="color: darkgoldenrod">
+                <div class="bg-light" style="color: darkgoldenrod">
+                    <h5 class="tagcolor"  style="color:#cd4100; position: center">Search Sales by Date</h5>
+                    <hr class="tagcolor" style="color:darkslategrey">
+                </div>
+                <form asp-action="GetSalesByDate" asp-controller="User" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row" style="position: center">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label" style="display-model: RoleName"></label>
+                            <input type="date" name="dateCreated" class="form-control" />
+                            <span asp-validation-for="DateCreated" class="text-danger"></span>
+                        </div>
+                        <div class="form-group ">
+                            <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12; color-light-blue" data-toggle="modal" />
+                        </div>
+                    </div>
+                    
+                </form>
+                
             </div>
         </div>
+        
+                        
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row justify-content-center">
+        <div class=" card col-md-6; position: relative; top: -240px; right: -400px">
+            <div class="card-body" style="color: darkgoldenrod">
+                <div class="bg-light" style="color: darkgoldenrod">
+                    <h5 class="tagcolor"  style="color:#22181f; position: center"> Search StockItem by Date</h5>
+                    <hr class="tagcolor" style="color:darkslategrey">
+                </div>
+                <form asp-action="GetStockItemByDate" asp-controller="User" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row" style="position: center">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label" style="display-model: RoleName"></label>
+                            <input type="date" name="dateCreated" class="form-control" />
+                            <span asp-validation-for="DateCreated" class="text-danger"></span>
+                        </div>
+                        <div class="form-group ">
+                            <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12; color-light-blue" data-toggle="modal" />
+                        </div>
+                    </div>
+                    
+                </form>
+                
+            </div>
     </div>
 
-    <div class="footer-wrap pd-20 mb-20 card-box">
+        <div class="footer-wrap pd-20 mb-20 card-box">
         Inventory is Money, sitting around is another form...
     </div>
-
 </div>
+
+
+    <script src="MyDesign/assets/js/backend-bundle.min.js"></script>
+
+    <!-- Table Treeview JavaScript -->
+    <script src="MyDesign/assets/js/table-treeview.js"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script src="MyDesign/assets/js/customizer.js"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script async src="MyDesign/assets/js/chart-custom.js"></script>
+
+    <!-- app JavaScript -->
+    <script src="MyDesign/assets/js/app.js"></script></div></div></div></div></div></div></div></div>
+</html>

@@ -71,4 +71,5 @@ namespace InventoryManagemenSystem_Ims.DTOs
         
         public decimal PricePerUnit { get; set; }
     }
+    
 }

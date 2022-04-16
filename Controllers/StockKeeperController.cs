@@ -15,18 +15,16 @@ namespace InventoryManagemenSystem_Ims.Controllers
     {
         private readonly IStockService _stockService;
         private readonly IStockKeeperService _stockKeeperService;
-        private readonly IReportService _reportService;
         private readonly IMailMessage _mailMessage;
         private readonly IRoleService _roleService;
       
         
 
-        public StockKeeperController(IStockService stockService, IStockKeeperService stockKeeperService, IReportService reportService, 
+        public StockKeeperController(IStockService stockService, IStockKeeperService stockKeeperService, 
             IMailMessage mailMessage, IRoleService roleService)
         {
             _stockService = stockService;
             _stockKeeperService = stockKeeperService;
-            _reportService = reportService;
             _mailMessage = mailMessage;
             _roleService = roleService;
             
@@ -114,21 +112,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
 
 
         }
-        
-        // [HttpGet]
-        // [Authorize(Roles = "StockKeeper, SalesManager")]
-        // public IActionResult SubmitReport()
-        // {
-        //     return View();
-        // }
-        
-        // [HttpPost]
-        // public async Task<IActionResult> SubmitReport(CreateStockKeeperReportModel model, string userName)
-        // {
-        //     await _reportService.SubmitStockKeeperReport(model, userName);
-        //     return RedirectToAction("ViewStockReports");
-        // }
-
+       
         
     }
 

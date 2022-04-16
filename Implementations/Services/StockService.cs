@@ -247,5 +247,15 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
             }).ToList();
         }
+
+        public async Task<decimal> GetExpenses()
+        {
+            return await _stockRepository.GetExpenses();
+        }
+
+        public async Task<IList<StockItem>> GetStockItemByDate(DateTime date)
+        {
+            return await _stockRepository.GetStockItemByDate(date);
+        }
     }
 }

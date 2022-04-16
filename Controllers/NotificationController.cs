@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
+using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,15 +21,11 @@ namespace InventoryManagemenSystem_Ims.Controllers
         [Authorize(Roles = "ShopManager,StockKeeper, SalesManager")]
         public async Task<IActionResult> Index()
         {
-             return View(await _notificationService.GetAllNotifications());
-            //string alertMessage = "You currently have no notification";
+            var notifications = await _notificationService.GetAllNotifications();
             
-            // if (notification==null)
-            // {
-            //     ViewBag.error = alertMessage;
-            // }
-            
-           
+            return View(notifications);
+                 
+
         }
         
         [HttpGet]
@@ -92,8 +90,13 @@ namespace InventoryManagemenSystem_Ims.Controllers
         public async Task<IActionResult> GetUnreadNotifications()
         {
             TempData["check"]= await _notificationService.GetNewNotifications();
+            
             return View();
+            
+            
         }
 
+        
+       
     }
 }

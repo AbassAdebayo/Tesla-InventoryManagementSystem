@@ -22,5 +22,6 @@ namespace InventoryManagemenSystem_Ims.Entities
         public decimal TotalPrice { get; set; }
         
         
+        
     }
 }

@@ -1,0 +1,120 @@
+﻿@using System.Security.Claims
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+
+@model InventoryManagemenSystem_Ims.Entities.Sales
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "User";
+}
+
+@if (TempData["data"] != null)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@TempData["data"]</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+<!doctype html>
+<html lang="en">
+
+<link rel="shortcut icon" href="MyDesign/assets/images/favicon.ico" />
+<link rel="stylesheet" href="MyDesign/assets/css/backend-plugin.min.css">
+<link rel="stylesheet" href="MyDesign/assets/css/backend.css?v=1.0.0">
+<link rel="stylesheet" href="MyDesign/assets/vendor/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="MyDesign/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="MyDesign/assets/vendor/remixicon/fonts/remixicon.css">
+
+<div class="pd-ltr-20" style="background-color: #06163a">
+<div class="card-box pd-20 height-100-p mb-30">
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <img src="~/images/SalesRobot.gif" alt="">
+            @* <a href="https://picasion.com/"><img src="https://i.picasion.com/pic92/f52fd30b9540971850a06ebf352a8c01.gif" width="300" height="321" border="0" alt="https://picasion.com/" /></a><br /><a href="https://picasion.com/">https://picasion.com/</a> *@
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                    Welcome back!
+                    <div class="weight-600 font-30 text-blue">@User.Identity?.Name</div>
+                </h4>
+                <div class="col-lg-4 col-md-4" style="position: relative; top:-240px; right: -400px; width: 96%;">
+                    <div class="card card-block card-stretch card-height">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-4 card-total-sale">
+                                <div class="icon iq-icon-box-2 bg-danger-light">
+                                    <img src="/assets/images/sales.jpg" class="img-fluid" alt="image">
+                                </div>
+                                <div>
+
+                                    <h4 class="mb-2" style="font-weight: bolder">GrandTotal Sales</h4>
+                                    <h>
+                                        <b>$@ViewBag.SALESGRANDTOTAL</b>
+                                    </h>
+
+                                </div>
+                            </div>
+                            <div class="iq-progress-bar mt-2">
+                                <span class="bg-danger iq-progress progress-1" data-percent="70">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                             
+<div class="container" xmlns="http://www.w3.org/1999/html" style="color: darkgoldenrod">
+    <div class="row justify-content-center">
+        <div class=" card col-md-6; position: relative; top: -240px; right: -400px">
+            <div class="card-body" style="color: darkgoldenrod">
+                <div class="bg-light" style="color: darkgoldenrod">
+                    <h4 class="tagcolor"  style="color:#22181f; position: center">Search Sales by Date</h4>
+                    <hr class="tagcolor" style="color:darkslategrey">
+                </div>
+                <form asp-action="GetSalesByDate" asp-controller="User" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row" style="position: center">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label" style="display-model: RoleName"></label>
+                            <input type="date" name="dateCreated" class="form-control" />
+                            <span asp-validation-for="DateCreated" class="text-danger"></span>
+                        </div>
+                        <div class="form-group ">
+                            <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12; color-light-blue" data-toggle="modal" />
+                        </div>
+                    </div>
+                    
+                </form>
+                
+            </div>
+        </div>
+        
+                
+                <p class="font-18 max-width-600">The Outstanding Innovation Begins Here...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-wrap pd-20 mb-20 card-box">
+        Inventory is Money, sitting around is another form...
+    </div>
+</div>
+
+
+    <script src="MyDesign/assets/js/backend-bundle.min.js"></script>
+
+    <!-- Table Treeview JavaScript -->
+    <script src="MyDesign/assets/js/table-treeview.js"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script src="MyDesign/assets/js/customizer.js"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script async src="MyDesign/assets/js/chart-custom.js"></script>
+
+    <!-- app JavaScript -->
+    <script src="MyDesign/assets/js/app.js"></script></div></div></div>
+</html>

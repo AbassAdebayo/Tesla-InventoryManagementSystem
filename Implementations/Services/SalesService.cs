@@ -15,21 +15,20 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
     public class SalesService:ISalesService
     {
         private readonly ISalesRepository _salesRepository;
-      
+        private readonly IStockRepository _stockRepository;
         private readonly IStockService _stockService;
-       
         private readonly IReturnGoodsRepository _returnGoodsRepository;
        private readonly IAllocateSalesItemToSalesManagerRepository _allocateSalesItemToSalesManager;
 
 
-        public SalesService(ISalesRepository salesRepository,
-            IStockService stockService, IReturnGoodsRepository returnGoodsRepository, IAllocateSalesItemToSalesManagerRepository allocateSalesItemToSalesManager)
-        {
-            _salesRepository = salesRepository;
-            _stockService = stockService;
-            _returnGoodsRepository = returnGoodsRepository;
-            _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
-        }
+       public SalesService(ISalesRepository salesRepository, IStockRepository stockRepository, IStockService stockService, IReturnGoodsRepository returnGoodsRepository, IAllocateSalesItemToSalesManagerRepository allocateSalesItemToSalesManager)
+       {
+           _salesRepository = salesRepository;
+           _stockRepository = stockRepository;
+           _stockService = stockService;
+           _returnGoodsRepository = returnGoodsRepository;
+           _allocateSalesItemToSalesManager = allocateSalesItemToSalesManager;
+       }
       
 
         public async Task<BaseResponse<SalesDto>> FindSalesById(int id)
@@ -81,34 +80,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             await _salesRepository.UpdateSales(model.SalesId, sales);
             return sales;
         }
-
-        // public async Task<bool> DeleteSales(int id, int stockItemId)
-        // {
-        //     var stockItem = await _stockService.GetStockItemById(stockItemId);
-        //     var sales = await _salesRepository.FindSalesById(id);
-        //
-        //     if (sales == null)
-        //     {
-        //         throw new Exception("Sales not found!");
-        //     }
-        //
-        //
-        //     var newStockItem = new UpdateStockItemRequestModel
-        //     {
-        //         StockItemId = stockItemId,
-        //         Quantity = sales.Quantity + stockItem.Quantity,
-        //         ItemId = stockItem.ItemId,
-        //         PricePerUnit = stockItem.PricePerUnit,
-        //         StockId = stockItem.StockId,
-        //
-        //     };
-        //
-        //     await _stockService.UpdateItemInStock(stockItemId, newStockItem);
-        //     await _salesRepository.DeleteSales(sales.Id);
-        //     return true;
-        // }
         
-
         public async Task<IEnumerable<Sales>> GetAllSales()
         {
             var sales = await _salesRepository.GetAllSales();
@@ -282,6 +254,11 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
         {
             var customerIdCount= _salesRepository.ManageCustomersPatronage(customerId);
             return new JsonResult(new {myCutomerIdCount = customerIdCount});
+        }
+
+        public IList<Sales> GetSalesByMonth(DateTime date)
+        {
+            return  _salesRepository.GetSalesByMonth(date);
         }
     }
 }

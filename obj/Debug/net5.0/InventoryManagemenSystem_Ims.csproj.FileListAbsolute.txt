@@ -352,8 +352,6 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-Invent
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\SalesManager\GetAllSalesManagers.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\SalesManager\RegisterSalesManager.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\SalesManager\SalesManagerProfile.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\SalesManager\SubmitReport.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\SalesManager\ViewSalesReports.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Sales\GenerateInvoice.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Sales\Index.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Sales\ReturnGoods.cshtml.g.cs
@@ -365,12 +363,9 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-Invent
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Shared\_Resturant.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Shared\_UserLayout.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\ShopManager\DeleteReport.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\ShopManager\DeleteShopManager.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\ShopManager\Profile.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\ShopManager\Register.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\ShopManager\ViewSalesApprovedReports.cshtml.g.cs
-C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\ShopManager\ViewSalesVerifiedReports.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\StockKeeper\GetAllStockKeepers.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\StockKeeper\RegisterStockKeeper.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\StockKeeper\StockKeeperProfile.cshtml.g.cs
@@ -455,3 +450,13 @@ C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-Invent
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\Index.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\Notification\GetUnreadNotifications.cshtml.g.cs
 C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\Notification\GetUnreadNotifications.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\User\SalesManagerIndex.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\User\StockKeeperIndex.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\User\SalesManagerIndex.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\User\StockKeeperIndex.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\User\GetCompanyMonthlySalesRate.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\User\GetSalesByMonth.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\User\GetSalesByMonth.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\User\GetSalesByDate.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Pages\User\GetStockItemByDate.cshtml.g.cs
+C:\Users\Dejik Concepts\Downloads\My Final Project\MyUpdatedProject\Tesla-InventoryManagementSystem\obj\Debug\net5.0\Razor\Views\User\GetStockItemByDate.cshtml.g.cs

@@ -1,0 +1,87 @@
+﻿@using System.Security.Claims
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+
+@model InventoryManagemenSystem_Ims.Entities.StockItem
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewData["Title"] = "User";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+@if (TempData["data"] != null)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>@TempData["data"]</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+}
+
+<!doctype html>
+<html lang="en">
+<div class="pd-ltr-20" style="background-color: #06163a">
+    <div class="card-box pd-20 height-100-p mb-30">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <img src="~/vendors/images/InvtRobot.gif" alt="">
+            </div> 
+            <div class="row">
+            <div class="col-md-8">
+                <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                    Welcome back!<div class="weight-600 font-30 text-blue">@User.Identity?.Name</div>
+                </h4>
+                
+                </div></div>
+                <p class="font-18 max-width-600">The Outstanding Innovation Begins Here...</p>
+            </div>
+        </div>
+    </div>
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row justify-content-center">
+        <div class=" card col-md-6; position: relative; top: -240px; right: -400px">
+            <div class="card-body" style="color: darkgoldenrod">
+                <div class="bg-light" style="color: darkgoldenrod">
+                    <h4 class="tagcolor"  style="color:#22181f; position: center"> Search StockItem by Date</h4>
+                    <hr class="tagcolor" style="color:darkslategrey">
+                </div>
+                <form asp-action="GetStockItemByDate" asp-controller="User" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row" style="position: center">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label" style="display-model: RoleName"></label>
+                            <input type="date" name="dateCreated" class="form-control" />
+                            <span asp-validation-for="DateCreated" class="text-danger"></span>
+                        </div>
+                        <div class="form-group ">
+                            <input href="#myModal" type="submit" value="Submit" class="btn btn-success trigger-btn col-sm-12; color-light-blue" data-toggle="modal" />
+                        </div>
+                    </div>
+                    
+                </form>
+                
+            </div>
+    </div>
+    <div class="footer-wrap pd-20 mb-20 card-box">
+        Inventory is Money, sitting around is another form...
+    </div></div></div>
+
+
+<script src="MyDesign/assets/js/backend-bundle.min.js"></script>
+
+<!-- Table Treeview JavaScript -->
+<script src="MyDesign/assets/js/table-treeview.js"></script>
+
+<!-- Chart Custom JavaScript -->
+<script src="MyDesign/assets/js/customizer.js"></script>
+
+<!-- Chart Custom JavaScript -->
+<script async src="MyDesign/assets/js/chart-custom.js"></script>
+
+<!-- app JavaScript -->
+<script src="MyDesign/assets/js/app.js"></script>
+</html>

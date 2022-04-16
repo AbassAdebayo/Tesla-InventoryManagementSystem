@@ -111,10 +111,10 @@
                         <div class="notification-list mx-h-350 customscroll">
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="Index.cshtml">
                                         <img src="~/vendors/images/img.jpg" alt="">
                                         <h3>John Doe</h3>
-                                        <p>@TempData["Data"]</p>
+                                        <p>@ViewBag.NOTIFICATIONSCOUNT</p>
                                     </a>
                                 </li>
 
@@ -457,6 +457,7 @@
                 <li><a asp-controller="Sales" asp-action="StartSales">Start Sales</a></li>
                 <li><a asp-controller="Sales" asp-action="ReturnGoods">Return Goods</a></li>
                 <li><a asp-controller="Sales" asp-action="Index">List</a></li>
+                <li><a asp-controller="User" asp-action="GetCompanyMonthlySalesRate">Sales Rate</a></li>
 
             </ul>
         </li>

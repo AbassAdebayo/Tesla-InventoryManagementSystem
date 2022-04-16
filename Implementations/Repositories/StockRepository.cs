@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.DTOs;
@@ -128,6 +129,27 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
             _imsContext.StockItems.Update(stockItem);
             await _imsContext.SaveChangesAsync();
             return stockItem;
+        }
+
+        public async Task<decimal> GetExpenses()
+        {
+            return await _imsContext.StockItems.SumAsync(x => x.TotalPrice);
+        }
+
+        public Task<List<StockItem>> GetStockItemByDate(DateTime date)
+        {
+            return _imsContext.StockItems.Include(x => x.Item).Include(x => x.Stock).Where(x=>x.DateCreated.Date==date.Date).Select(stockItem => new StockItem
+            {
+                
+                Id = stockItem.Id,
+                Item = stockItem.Item,
+                 Stock = stockItem.Stock,
+                 PricePerUnit = stockItem.PricePerUnit,
+                 TotalPrice = stockItem.TotalPrice,
+                 Quantity = stockItem.Quantity,
+                 StockName = stockItem.StockName,
+                 DateCreated = stockItem.DateCreated
+            }).ToListAsync();
         }
     }
 }

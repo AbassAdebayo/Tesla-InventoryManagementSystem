@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 {
-    public class SalesRepository:ISalesRepository
+    public class SalesRepository : ISalesRepository
     {
         private readonly ImsContext _imsContext;
 
@@ -19,6 +19,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
         {
             _imsContext = imsContext;
         }
+
         public async Task<Sales> CreateSales(Sales sales)
         {
             await _imsContext.Sales.AddAsync(sales);
@@ -29,7 +30,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
         public async Task<Sales> FindSalesById(int id)
         {
             return await _imsContext.Sales.FindAsync(id);
-            
+
         }
 
         public async Task<Sales> UpdateSales(int id, Sales sales)
@@ -41,7 +42,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<bool> DeleteSales(int id)
         {
-            var sales= await _imsContext.Sales.FindAsync(id);
+            var sales = await _imsContext.Sales.FindAsync(id);
             _imsContext.Sales.Remove(sales);
             await _imsContext.SaveChangesAsync();
             return true;
@@ -54,18 +55,19 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<IEnumerable<Sales>> GetAllSales()
         {
-            return await _imsContext.Sales.Include(i=>i.Item).Include(c=>c.Customer).Include(s=>s.SalesManager).Select(sale=>new Sales
-            {
-                Customer = sale.Customer,
-                Id = sale.Id,
-                Description = sale.Description,
-                Item = sale.Item,
-                SalesManager = sale.SalesManager,
-                PricePerUnit = sale.PricePerUnit,
-                Quantity = sale.Quantity,
-                DateCreated = sale.DateCreated
-                
-            }).ToListAsync();
+            return await _imsContext.Sales.Include(i => i.Item).Include(c => c.Customer).Include(s => s.SalesManager)
+                .Select(sale => new Sales
+                {
+                    Customer = sale.Customer,
+                    Id = sale.Id,
+                    Description = sale.Description,
+                    Item = sale.Item,
+                    SalesManager = sale.SalesManager,
+                    PricePerUnit = sale.PricePerUnit,
+                    Quantity = sale.Quantity,
+                    DateCreated = sale.DateCreated
+
+                }).ToListAsync();
         }
 
         public async Task<SalesItem> CreateSalesItem(SalesItem salesItem)
@@ -136,7 +138,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
         public async Task<IList<Sales>> GetSalesItemByDate(DateTime date)
         {
             return await _imsContext.Sales.Include(c => c.Customer).ThenInclude(c => c.Email).Include(c => c.Customer)
-                .ThenInclude(c => c.FirstName).Include(c => c.Customer).ThenInclude(c => c.LastName).Include(x=>x.SalesItems)
+                .ThenInclude(c => c.FirstName).Include(c => c.Customer).ThenInclude(c => c.LastName)
+                .Include(x => x.SalesItems)
                 .Where(d => d.DateCreated == date).Select(s => new Sales()
                 {
                     Id = s.Id,
@@ -144,31 +147,32 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                     SalesManagerId = s.SalesManagerId,
                     DateCreated = s.DateCreated,
                     Description = s.Description,
-                    ItemId =s.ItemId,
+                    ItemId = s.ItemId,
                     PricePerUnit = s.PricePerUnit,
                     Quantity = s.Quantity,
                     TotalPrice = s.TotalPrice
 
 
                 }).ToListAsync();
-            
+
         }
 
         public async Task<List<Sales>> GenerateInvoice(int id)
         {
-            var sales = await _imsContext.Sales.Include(c=>c.Customer).Include(i=>i.Item).Include(s=>s.SalesManager).Where(s=>s.Id==id).Select(s => new Sales
-            {
-                Customer = s.Customer,
-                SalesManager = s.SalesManager,
-                Description = s.Description,
-                Item = s.Item,
-                PricePerUnit = s.PricePerUnit,
-                Quantity = s.Quantity,
-                DateCreated = s.DateCreated,
-                Id = s.Id,
-                TotalPrice = s.TotalPrice
-                
-            }).ToListAsync();
+            var sales = await _imsContext.Sales.Include(c => c.Customer).Include(i => i.Item)
+                .Include(s => s.SalesManager).Where(s => s.Id == id).Select(s => new Sales
+                {
+                    Customer = s.Customer,
+                    SalesManager = s.SalesManager,
+                    Description = s.Description,
+                    Item = s.Item,
+                    PricePerUnit = s.PricePerUnit,
+                    Quantity = s.Quantity,
+                    DateCreated = s.DateCreated,
+                    Id = s.Id,
+                    TotalPrice = s.TotalPrice
+
+                }).ToListAsync();
             return sales;
         }
 
@@ -177,5 +181,27 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
             var customerIdCount = _imsContext.Sales.Count(c => c.CustomerId == customerId);
             return new JsonResult(new {myCutomerIdCount = customerIdCount});
         }
+        
+
+        public IList<Sales> GetSalesByMonth(DateTime date)
+        {
+            
+            return  _imsContext.Sales.Include(x=>x.Item).Include(x=>x.SalesManager).Include(x=>x.Customer).Where(x => x.DateCreated.Date== date.Date).Select(sales => new Sales
+            {
+                Customer = sales.Customer,
+                Description = sales.Description,
+                Id = sales.Id,
+                Item = sales.Item,
+                 SalesManager = sales.SalesManager,
+                 Quantity = sales.Quantity,
+                 PricePerUnit = sales.PricePerUnit,
+                 TotalPrice = sales.TotalPrice,
+                 DateCreated = sales.DateCreated
+            }).ToList();
+
+
+        }
+
+
     }
 }

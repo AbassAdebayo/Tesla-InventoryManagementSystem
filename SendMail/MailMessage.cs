@@ -4,6 +4,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using InventoryManagemenSystem_Ims.Entities;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
+using MailKit;
 using MailKit.Net.Smtp;
 using MimeKit;
 
@@ -19,68 +20,7 @@ namespace InventoryManagemenSystem_Ims.SendMail
             _stockKeeperService = stockKeeperService;
             _salesManagerService = salesManagerService;
         }
-        public void SendEmailAddressFromSalesManager(string recipient, string content, string subject)
-        {
-            MimeMessage message = new MimeMessage();
-            
-            message.From.Add(new MailboxAddress("Sales-InventoryManagementSystem", "greatmoh007@gmail.com"));
-            message.To.Add(MailboxAddress.Parse(recipient));
-            message.Subject = subject;
-            message.Body = new TextPart("plain")
-            {
-                Text = content
-            };
-
-            SmtpClient client = new SmtpClient();
-
-            try
-            {
-                client.Connect("smtp.gmail.com", 465, true);
-                client.Authenticate("greatmoh007@gmail.com", "Ayodejimoh");
-                client.Send(message);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                client.Disconnect(true);
-                client.Dispose();
-            }
-        }
-
-        public void SendEmailAddressFromStockKeeper(string recipient, string subject, string content)
-        {
-            MimeMessage stockKeeperMessage = new MimeMessage();
-            
-            stockKeeperMessage.From.Add(new MailboxAddress("Stock-InventoryManagementSystem", "greatmoh007@gmail.com"));
-            stockKeeperMessage.To.Add(MailboxAddress.Parse(recipient));
-            stockKeeperMessage.Subject = subject;
-            stockKeeperMessage.Body = new TextPart("plain")
-            {
-                Text = content
-            };
-
-            SmtpClient client = new SmtpClient();
-
-            try
-            {
-                client.Connect("smtp.gmail.com", 465, true);
-                client.Authenticate("greatmoh007@gmail.com", "Ayodejimoh");
-                client.Send(stockKeeperMessage);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                client.Disconnect(true);
-                client.Dispose();
-            }
-        }
-
+        
         public void SendLowQuantityReminderToEmail(StockItem stockItem, int id)
         {
             var stockKeeper = _stockKeeperService.GetStockKeeperById(id);
