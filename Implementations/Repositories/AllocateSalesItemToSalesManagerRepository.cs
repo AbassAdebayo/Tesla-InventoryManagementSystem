@@ -74,7 +74,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<AllocateSalesItemToSalesManager> GetAllocatedItemsByItemId(int itemId)
         {
-          return await _imsContext.AllocateSalesItemToSalesManagers.FirstOrDefaultAsync(x => x.ItemId == itemId);
+          return await _imsContext.AllocateSalesItemToSalesManagers.SingleOrDefaultAsync(x => x.ItemId == itemId);
         } 
     }
 }

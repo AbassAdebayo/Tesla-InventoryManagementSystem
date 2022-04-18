@@ -46,6 +46,8 @@ namespace InventoryManagemenSystem_Ims
             
            
            services.Configure<ReminderMailsConfig>(Configuration.GetSection("ReminderMailsConfig"));
+           //services.AddHostedService<ReminderMails>();
+           services.AddScoped<IMailMessage, MailMessage>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -71,12 +73,10 @@ namespace InventoryManagemenSystem_Ims
             services.AddScoped<IStockKeeperService, StockKeeperService>();
             services.AddScoped<ISalesManagerService, SalesManagerService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<ISalesItemService, SalesItemService>();
             services.AddScoped<ISalesService, SalesService>();
-            services.AddScoped<IMailMessage, MailMessage>();
             services.AddScoped<IAllocateSalesItemToSalesManagerService, AllocateSalesItemToSalesManagerService>();
             services.AddScoped<INotificationService, NotificationService>();
-            //services.AddHostedService<ReminderMails>();
+            
             
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(config =>

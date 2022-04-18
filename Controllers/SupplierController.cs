@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Interfaces.Services;
@@ -35,8 +36,9 @@ namespace InventoryManagemenSystem_Ims.Controllers
         public async Task<IActionResult> RegisterSupplier(CreateSupplierRequestModel model)
         {
             await _supplierService.CreateSupplier(model);
+            
             return RedirectToAction("Index");
-
+                
 
         }
         

@@ -15,96 +15,90 @@
 	</div>
 }
 
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
-<div class="card-header" style="background-color:midnightblue;">
-    <div class="card-title">
-        <h1 class="text-center">SalesItemAllocated</h1>
-    </div>
+<!-- Bootstrap CSS -->
+  <link href="assets1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- bootstrap theme -->
+  <link href="assets1/css/bootstrap-theme.css" rel="stylesheet">
+  <!--external css-->
+  <!-- font icon -->
+  <link href="assets1/css/elegant-icons-style.css" rel="stylesheet" />
+  <link href="assets1/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- Custom styles -->
+  <link href="assets1/css/style.css" rel="stylesheet">
+  <link href="assets1/css/style-responsive.css" rel="stylesheet" />
+@* *@
+@* <div class="card-header" style="background-color:midnightblue;"> *@
+@*     <div class="card-title"> *@
+@*         <h1 class="text-center">Category</h1> *@
+@*     </div> *@
+@* </div> *@
+
+<div class="row">
+  <div class="col-lg-12">
+    <h3 class="page-header"><i class="fa fa-table"></i> Allocate Item</h3>
+  </div>
 </div>
 
-<table class="bg-primary">
-    <thead>
-    <tr>
 
+<body>
+@foreach (var item in Model)
+{
+    <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading">
+                Allocation Table
+              </header>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
+              <table class="table table-striped table-advance table-hover">
+                <tbody>
+                  <tr>
+                    <th><i class="icon_profile"></i> Item</th>
+                    <th><i class="icon_profile"></i> SalesManager</th>
+                    <th><i class="icon_calendar"></i> StockKeeper</th>
+                    <th><i class="icon_profile"></i> Category</th>
+                    <th><i class="icon_calendar"></i> Date Created</th>
+                    <th><i class="icon_cogs"></i> Action</th>
+                  </tr>
+                  <tr>
+                    <td>@item.ItemName</td>
+                    <td>@item.Description</td>
+                    <td>@item.ExpiryDate</td>
+                    <td>@item.Categories</td>
+                    <td>@item.DateCreated</td>
+                    <td>
+                      <div class="btn-group">
+                        <a class="btn btn-primary" asp-action="EditItem" asp-route-id="@item.Id"><i class="icon_plus_alt2"></i></a>
+                        <a class="btn btn-success" asp-action="GetItem" asp-route-id="@item.Id"><i class="icon_check_alt2"></i></a>
+                        <a class="btn btn-danger" asp-action="DeleteItem" asp-route-id="@item.Id"><i class="icon_close_alt2"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </div>
+}
 
-        <th>
-            @Html.DisplayNameFor(model => model.Item)
-        </th>
+ <!-- container section end -->
+  <!-- javascripts -->
+  <script src="assets1/js/jquery.js"></script>
+  <script src="assets1/js/bootstrap.min.js"></script>
+  <!-- nicescroll -->
+  <script src="assets1/js/jquery.scrollTo.min.js"></script>
+  <script src="assets1/js/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--custome script for all page-->
+<script src="assets1/js/scripts.js"></script>
 
-        <th>
-            @Html.DisplayNameFor(model => model.QuantityAllocated)
-        </th>
+</body>
 
-        <th>
-            @Html.DisplayNameFor(model => model.StockKeeper)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SalesManager)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-
-
-        <th>
-            Update
-        </th>
-        <th>
-            Details
-        </th>
-        <th>
-            Delete
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-        @foreach (var allocatedItem in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => allocatedItem.Id)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => allocatedItem.Item)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => allocatedItem.QuantityAllocated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => allocatedItem.StockKeeper)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => allocatedItem.SalesManager)
-            </td>
-
-
-            <td>
-                @Html.DisplayFor(modelItem => allocatedItem.DateCreated)
-            </td>
-
-            @* <td> *@
-            @*     <a asp-action="UpdateStock" asp-route-id="@allocatedItem.Id">Update</a> *@
-            @* </td> *@
-            @* <td> *@
-            @*     <a asp-action="GetStock" asp-route-id="@allocatedItem.Id">Details</a> *@
-            @* </td> *@
-            @* <td> *@
-            @*     <a asp-action="DeleteStock" asp-route-id="@allocatedItem.Id">Delete</a> *@
-            @* </td> *@
-        </tr>
-        }
-    </tbody>
-</table>
+</html>
 <button style="background-color: midnightblue"><a asp-controller="AllocateSalesItem"  asp-action="AllocateItemsToSalesStore">Allocate</a> </button>
 
 <button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>

@@ -33,10 +33,6 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
 
         Task<IList<StockItem>> GetAllStockItems(IEnumerable<int> stockItemIds);
         
-
-        Task<decimal> CalculateGrandTotalPriceOfAllStockItem();
-        
-
         Task<StockItem> UpdateStockItem(int id, StockItem stockItem);
         
         public Task<decimal> GetExpenses();

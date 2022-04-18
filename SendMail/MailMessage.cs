@@ -12,22 +12,14 @@ namespace InventoryManagemenSystem_Ims.SendMail
 {
     public class MailMessage: IMailMessage
     {
-        private readonly IStockKeeperService _stockKeeperService;
-        private readonly ISalesManagerService _salesManagerService;
 
-        public MailMessage(IStockKeeperService stockKeeperService, ISalesManagerService salesManagerService)
+        public void SendLowQuantityReminderToEmail(StockItem stockItem)
         {
-            _stockKeeperService = stockKeeperService;
-            _salesManagerService = salesManagerService;
-        }
-        
-        public void SendLowQuantityReminderToEmail(StockItem stockItem, int id)
-        {
-            var stockKeeper = _stockKeeperService.GetStockKeeperById(id);
+            //var stockKeeper = _stockKeeperService.GetStockKeeperById(id);
             MimeMessage reminder = new MimeMessage();
             reminder.From.Add(new MailboxAddress("Stock-InventoryManagementSystem", "greatmoh007@gmail.com"));
             reminder.To.Add(new MailboxAddress("Stock-InventoryManagementSystem", "greatmoh007@gmail.com"));
-            reminder.Cc.Add(new MailboxAddress($"{stockKeeper.Result.FirstName}", $"{stockKeeper.Result.Email}"));
+            //reminder.Cc.Add(new MailboxAddress($"{stockKeeper.Result.FirstName}", $"{stockKeeper.Result.Email}"));
             
             reminder.Subject = "Low Item Quantity";
             reminder.Body = new TextPart("plain")
@@ -46,7 +38,7 @@ namespace InventoryManagemenSystem_Ims.SendMail
                 client.Authenticate("greatmoh007@gmail.com", "Ayodejimoh");
                 client.Send(reminder);
             }
-            catch (Exception e)
+            catch (ServiceNotConnectedException e)
             {
                 throw new Exception(e.Message);
             }

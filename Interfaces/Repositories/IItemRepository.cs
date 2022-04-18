@@ -17,7 +17,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
 
         Task<ItemDto> GetItemById(int id);
 
-        Task<IList<Item>> GetAllItems();
+        Task<List<Item>> GetAllItems();
         
         Task<IEnumerable<Item>> GetSelectedItems(IList<int> Ids);
     }

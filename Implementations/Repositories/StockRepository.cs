@@ -79,14 +79,16 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<IEnumerable<StockDto>> GetAllStocks()
         {
-            return await _imsContext.Stocks.Select(stock=>new StockDto
+            return await _imsContext.Stocks.Include(x=>x.Supplier).Select(stock=>new StockDto
             {
                 Description = stock.Description,
                 Id = stock.Id,
                 DateCreated = stock.DateCreated,
                 DateModified = stock.DateModified,
+                Supplier = stock.Supplier,
                 StockName = stock.StockName,
                 SupplierId = stock.Supplier.Id,
+                
                 
             }).ToListAsync();
         }
@@ -95,11 +97,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
         {
             return await _imsContext.StockItems.Where(stockItem => stockItemIds.Contains(stockItem.Id)).ToListAsync();
         }
-
-        public async Task<decimal> CalculateGrandTotalPriceOfAllStockItem()
-        {
-            return await _imsContext.StockItems.SumAsync(t => t.TotalPrice);
-        }
+        
 
        
 
@@ -113,7 +111,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                 TotalPrice = stockItem.TotalPrice,
                 Item = stockItem.Item,
                 Stock = stockItem.Stock,
-                StockName = stockItem.StockName
+                StockName = stockItem.StockName,
+                Expenses = stockItem.Expenses,
+                DateCreated = stockItem.DateCreated
                 
 
             }).ToListAsync();
@@ -133,7 +133,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<decimal> GetExpenses()
         {
-            return await _imsContext.StockItems.SumAsync(x => x.TotalPrice);
+            return await _imsContext.StockItems.SumAsync(x => x.Expenses);
         }
 
         public Task<List<StockItem>> GetStockItemByDate(DateTime date)
@@ -148,7 +148,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                  TotalPrice = stockItem.TotalPrice,
                  Quantity = stockItem.Quantity,
                  StockName = stockItem.StockName,
-                 DateCreated = stockItem.DateCreated
+                 DateCreated = stockItem.DateCreated,
+                 Expenses = stockItem.Expenses
             }).ToListAsync();
         }
     }

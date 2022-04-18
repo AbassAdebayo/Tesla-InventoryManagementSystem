@@ -19,7 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Alert" />
       <Folder Include="wwwroot\MyDesign\assets\vendor\@fortawesome" />
     </ItemGroup>
 

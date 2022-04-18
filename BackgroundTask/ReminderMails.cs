@@ -18,7 +18,7 @@ namespace InventoryManagemenSystem_Ims.BackgroundTask
 {
     public class ReminderMails:BackgroundService
     {
-        private readonly ReminderMailsConfig _configuration;
+        private readonly ReminderMailsConfig _config;
         private CrontabSchedule _schedule;
         private DateTime _nextRun;
         private readonly ILogger<ReminderMails> _logger;
@@ -28,10 +28,10 @@ namespace InventoryManagemenSystem_Ims.BackgroundTask
             IOptions<ReminderMailsConfig> configuration, ILogger<ReminderMails> logger)
         {
             
-            _configuration = configuration.Value;
+            _config = configuration.Value;
             _serviceScopeFactory = serviceScopeFactory;
             _logger = logger;
-            _schedule = CrontabSchedule.Parse(_configuration.CronExpression);
+            _schedule = CrontabSchedule.Parse(_config.CronExpression);
             _nextRun = _schedule.GetNextOccurrence(DateTime.UtcNow);
 
         }
@@ -44,18 +44,18 @@ namespace InventoryManagemenSystem_Ims.BackgroundTask
                 try
                 {
                     using var scope = _serviceScopeFactory.CreateScope();
-                    var salesManagerContext = scope.ServiceProvider.GetRequiredService<ISalesManagerService>();
+                   // var salesManagerContext = scope.ServiceProvider.GetRequiredService<ISalesManagerService>();
                     var stockKeeperContext = scope.ServiceProvider.GetRequiredService<IStockKeeperService>();
                     var stockContext = scope.ServiceProvider.GetRequiredService<IStockService>();
-                    var itemContext = scope.ServiceProvider.GetRequiredService<IItemService>();
+                    //var itemContext = scope.ServiceProvider.GetRequiredService<IItemService>();
                     var mailContext = scope.ServiceProvider.GetRequiredService<IMailMessage>();
                     var stockItems = await stockContext.GetAllStockItems();
-                    var items = await itemContext.GetAllItems();
-                    var salesManagers = await salesManagerContext.GetAllSalesManagers();
+                    //var items = await itemContext.GetAllItems();
+                    //var salesManagers = await salesManagerContext.GetAllSalesManagers();
 
                     foreach (var stockItem in stockItems)
                     {
-                        var stockKeeper = await stockKeeperContext.GetStockKeeperById(stockItem.Id);
+                        //var stockKeeper = await stockKeeperContext.GetStockKeeperById(stockItem.Id);
                         var itemInStock  = await stockContext.GetStockItemById(stockItem.Id);
                         var newStockItem = new StockItem
                         {
@@ -65,9 +65,9 @@ namespace InventoryManagemenSystem_Ims.BackgroundTask
                             ItemId = itemInStock.ItemId,
                             Item = itemInStock.Item,
                         };
-                        if (stockItem.Quantity==10)
+                        if (stockItem.Quantity==100)
                         {
-                            mailContext.SendLowQuantityReminderToEmail(newStockItem, stockKeeper.Id);
+                            mailContext.SendLowQuantityReminderToEmail(newStockItem);
                         }
                         
 
@@ -90,13 +90,14 @@ namespace InventoryManagemenSystem_Ims.BackgroundTask
                     //     }
                     //}
                 }
-                catch (Exception e)
+                catch (ServiceNotConnectedException e)
                 {
                     _logger.LogError($"Error occured while implementing reminder. {e.Message}");
                     _logger.LogError(e, e.Message);
                 }
                 _logger.LogInformation($"Background Hosted Service for {nameof(ReminderMails)} is stopping ");
                 var timeSpan = _nextRun - now;
+                await Task.Delay(timeSpan, stoppingToken);
                 _nextRun = _schedule.GetNextOccurrence(DateTime.UtcNow.AddHours(5));
             }
         }

@@ -7,6 +7,12 @@
     ViewData["Title"] = "Return";
 }
 
+@if (!string.IsNullOrEmpty(ViewBag.error))
+                                        {
+                                            <p class="alert alert-warning alert-dismissible" role="alert"> @ViewBag.error</p>
+                                        }
+
+
 <div class="container" xmlns="http://www.w3.org/1999/html">
     <div class="row justify-content-center">
         <div class=" card col-md-6">
@@ -18,7 +24,7 @@
 
                 </div>
                 <form asp-action="ReturnGoods" enctype="multipart/form-data">
-                        <h3 style="color: #e4220f">@TempData["data"]</h3>
+                        
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-row">
 

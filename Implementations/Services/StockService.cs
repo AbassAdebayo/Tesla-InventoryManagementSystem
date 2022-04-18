@@ -83,17 +83,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 Status = true
             };
         }
-
-        public async Task<BaseResponse<StockItem>> DeleteStockItem(int stockItemId)
-        {
-            await _stockRepository.DeleteStock(stockItemId);
-
-            return new BaseResponse<StockItem>
-            {
-                Message = "Stock successfully deleted",
-                Status = true
-            };
-        }
+        
 
         public async Task<Stock> ExistsByName(string stockName)
         {
@@ -128,22 +118,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
         public async Task<IEnumerable<StockDto>> GetAllStocks()
         {
-            try
-            {
-                var stocks = await _stockRepository.GetAllStocks();
-                return stocks.Select(s => new StockDto
-                {
-                    Id = s.Id,
-                    StockName = s.StockName,
-                    Description = s.Description,
-                     SupplierId = s.SupplierId,
-                     DateCreated = s.DateCreated
-                }).ToList();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            return await _stockRepository.GetAllStocks();
         }
 
         public async Task<BaseResponse<StockDto>> AddItemToStock(int id, AddItemToStockRequestModel model)
@@ -171,6 +146,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                         
                     };
 
+                    newStockItem.Expenses= newStockItem.TotalPrice;
                     await _stockRepository.CreateStockItem(newStockItem);
                 }
                 else
@@ -178,6 +154,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                     itemInStock.Quantity += model.Quantity;
                     itemInStock.PricePerUnit = model.PricePerUnit;
                     itemInStock.TotalPrice += model.PricePerUnit * model.Quantity;
+                    itemInStock.Expenses = itemInStock.TotalPrice;
                     await _stockRepository.UpdateStockItem(id, itemInStock);
                 }
 
@@ -223,13 +200,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
             };
         }
 
-
-        public async Task<decimal> CalculateGrandTotalPriceOfAllStockItem()
-        {
-           return await _stockRepository.CalculateGrandTotalPriceOfAllStockItem();
-           
-        }
-
+        
         public async Task<IEnumerable<StockItem>> GetAllStockItems()
         {
             var stockItems = await _stockRepository.GetAllStockItems();
@@ -243,7 +214,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 PricePerUnit = stockItem.PricePerUnit,
                 Quantity = stockItem.Quantity,
                 TotalPrice = stockItem.TotalPrice,
-                DateCreated = stockItem.DateCreated
+                DateCreated = stockItem.DateCreated,
+                Expenses = stockItem.Expenses
 
             }).ToList();
         }

@@ -26,23 +26,6 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CheckOutSales",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    ItemId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
-                    DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CheckOutSales", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
@@ -79,27 +62,6 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Reports",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    ReportStatus = table.Column<int>(type: "int", nullable: false),
-                    SalesManagerReport = table.Column<string>(type: "text", nullable: true),
-                    StockKeeperReport = table.Column<string>(type: "text", nullable: true),
-                    Content = table.Column<string>(type: "text", nullable: true),
-                    Subject = table.Column<string>(type: "text", nullable: true),
-                    DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
-                    DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reports", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -333,6 +295,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     PricePerUnit = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    Expenses = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
@@ -432,6 +395,45 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ReturnGoods",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    SalesId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    SalesManagerId = table.Column<int>(type: "int", nullable: false),
+                    ReturnType = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    QuantityReturned = table.Column<int>(type: "int", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
+                    DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReturnGoods", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ReturnGoods_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ReturnGoods_Sales_SalesId",
+                        column: x => x.SalesId,
+                        principalTable: "Sales",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ReturnGoods_SalesManagers_SalesManagerId",
+                        column: x => x.SalesManagerId,
+                        principalTable: "SalesManagers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SalesItems",
                 columns: table => new
                 {
@@ -459,11 +461,11 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    AllocateSalesItemToSalesManagerId = table.Column<int>(type: "int", nullable: false),
-                    NotificationStatus = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    AllocateSalesItemToSalesManagerId = table.Column<int>(type: "int", nullable: false),
+                    NotificationStatus = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -472,45 +474,6 @@ namespace InventoryManagemenSystem_Ims.Migrations
                         name: "FK_Notifications_AllocateSalesItemToSalesManagers_AllocateSales~",
                         column: x => x.AllocateSalesItemToSalesManagerId,
                         principalTable: "AllocateSalesItemToSalesManagers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ReturnGoods",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    SalesItemId = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    SalesManagerId = table.Column<int>(type: "int", nullable: false),
-                    ReturnType = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    QuantityReturned = table.Column<int>(type: "int", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime", nullable: false),
-                    DateModified = table.Column<DateTime>(type: "datetime", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReturnGoods", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ReturnGoods_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReturnGoods_SalesItems_SalesItemId",
-                        column: x => x.SalesItemId,
-                        principalTable: "SalesItems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReturnGoods_SalesManagers_SalesManagerId",
-                        column: x => x.SalesManagerId,
-                        principalTable: "SalesManagers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -551,9 +514,9 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReturnGoods_SalesItemId",
+                name: "IX_ReturnGoods_SalesId",
                 table: "ReturnGoods",
-                column: "SalesItemId");
+                column: "SalesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReturnGoods_SalesManagerId",
@@ -627,19 +590,16 @@ namespace InventoryManagemenSystem_Ims.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CheckOutSales");
-
-            migrationBuilder.DropTable(
                 name: "ItemCategories");
 
             migrationBuilder.DropTable(
                 name: "Notifications");
 
             migrationBuilder.DropTable(
-                name: "Reports");
+                name: "ReturnGoods");
 
             migrationBuilder.DropTable(
-                name: "ReturnGoods");
+                name: "SalesItems");
 
             migrationBuilder.DropTable(
                 name: "ShopManagers");
@@ -657,7 +617,7 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 name: "AllocateSalesItemToSalesManagers");
 
             migrationBuilder.DropTable(
-                name: "SalesItems");
+                name: "Sales");
 
             migrationBuilder.DropTable(
                 name: "Stocks");
@@ -669,12 +629,6 @@ namespace InventoryManagemenSystem_Ims.Migrations
                 name: "StockKeepers");
 
             migrationBuilder.DropTable(
-                name: "Sales");
-
-            migrationBuilder.DropTable(
-                name: "Suppliers");
-
-            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
@@ -682,6 +636,9 @@ namespace InventoryManagemenSystem_Ims.Migrations
 
             migrationBuilder.DropTable(
                 name: "SalesManagers");
+
+            migrationBuilder.DropTable(
+                name: "Suppliers");
 
             migrationBuilder.DropTable(
                 name: "Users");

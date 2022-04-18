@@ -67,13 +67,13 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "ShopManager,StockKeeper")]
+        [Authorize(Roles = "ShopManager,SalesManager")]
         public async Task<IActionResult> ReturnGoods()
         {
             var customers = await _customerService.GetAllCustomers();
             var salesManagers = await _salesManagerService.GetAllSalesManagers();
-            //var sales = await _salesService.GetAllSales();
-            //ViewData["Items"] = new SelectList(items, "Id", "ItemName");
+            // var items = await _itemService.GetAllItems();
+            // ViewData["Items"] = new SelectList(items, "Id", "ItemName");
             ViewData["Customers"] = new SelectList(customers, "Id", "CompanyName");
             ViewData["SalesManagers"] = new SelectList(salesManagers, "Id", "FirstName");
 
@@ -81,20 +81,23 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ReturnGoods(ReturnGoodsRequestModel model)
+        public async Task<IActionResult> ReturnGoods(ReturnGoodsRequestModel model, int id)
         {
            string errorMessage = "The time interval for returning goods has elapsed";
            
-            var check = await _salesService.ReturnGoods(model);
+           
+            var check = await _salesService.ReturnGoods(model, id);
 
             if (check.Status == true)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("SalesManagerIndex","User");
             }
-
-            TempData["data"] = errorMessage;
-           return View();
             
+            ViewBag.error = errorMessage;
+            return View();
+
+
+
 
 
         }

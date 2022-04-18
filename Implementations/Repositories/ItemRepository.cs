@@ -67,7 +67,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                 }).SingleOrDefaultAsync();
         }
 
-        public async Task<IList<Item>> GetAllItems()
+        public async Task<List<Item>> GetAllItems()
         {
             return await _imsContext.Items.ToListAsync();
         }

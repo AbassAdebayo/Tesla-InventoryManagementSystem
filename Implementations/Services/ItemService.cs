@@ -176,7 +176,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
 
         }
 
-        public async Task<IList<ItemDto>>GetAllItems()
+        public async Task<List<ItemDto>> GetAllItems()
         {
             var items = await _itemRepository.GetAllItems();
 

@@ -17,6 +17,6 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         Task<ItemDto> GetItemById(int id);
 
-        Task<IList<ItemDto>> GetAllItems();
+        Task<List<ItemDto>> GetAllItems();
     }
 }

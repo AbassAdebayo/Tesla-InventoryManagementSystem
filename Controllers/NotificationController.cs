@@ -85,16 +85,6 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View(rejectedNotifications);
         }
         
-        [HttpGet]
-        [Authorize(Roles = "SalesManager, ShopManager, StockKeeper")]
-        public async Task<IActionResult> GetUnreadNotifications()
-        {
-            TempData["check"]= await _notificationService.GetNewNotifications();
-            
-            return View();
-            
-            
-        }
 
         
        

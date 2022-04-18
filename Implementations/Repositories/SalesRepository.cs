@@ -29,7 +29,7 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
 
         public async Task<Sales> FindSalesById(int id)
         {
-            return await _imsContext.Sales.FindAsync(id);
+            return await _imsContext.Sales.SingleAsync(x=>x.Id==id);
 
         }
 
@@ -70,24 +70,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
                 }).ToListAsync();
         }
 
-        public async Task<SalesItem> CreateSalesItem(SalesItem salesItem)
-        {
-            await _imsContext.SalesItems.AddAsync(salesItem);
-            await _imsContext.SaveChangesAsync();
-            return salesItem;
-        }
-
-        public async Task<SalesItem> UpdateSalesItem(int id, SalesItem salesItem)
-        {
-            _imsContext.SalesItems.Update(salesItem);
-            await _imsContext.SaveChangesAsync();
-            return salesItem;
-        }
-
-        public async Task<SalesItem> FindSalesItemById(int id)
-        {
-            return await _imsContext.SalesItems.FindAsync(id);
-        }
+        
+        
 
         public async Task<bool> DeleteSalesItem(int id)
         {
@@ -96,23 +80,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
             await _imsContext.SaveChangesAsync();
             return true;
         }
-
-        public async Task<bool> DeleteSalesItems()
-        {
-            var salesItems = await _imsContext.SalesItems.ToListAsync();
-            foreach (var saleItem in salesItems)
-            {
-                _imsContext.SalesItems.Remove(saleItem);
-                await _imsContext.SaveChangesAsync();
-            }
-
-            return true;
-        }
-
-        public async Task<IList<SalesItem>> GetAllSalesItems(IEnumerable<int> salesItemIds)
-        {
-            return await _imsContext.SalesItems.Where(salesItem => salesItemIds.Contains(salesItem.Id)).ToListAsync();
-        }
+        
+        
 
         public async Task<IList<SalesItem>> GetAllSalesItems()
         {
@@ -120,9 +89,9 @@ namespace InventoryManagemenSystem_Ims.Implementations.Repositories
         }
 
 
-        public async Task<SalesItem> GetSalesItemById(int id)
+        public async Task<Sales> FindSalesByItemId(int itemId)
         {
-            return await _imsContext.SalesItems.FindAsync(id);
+            return await _imsContext.Sales.SingleOrDefaultAsync(x=>x.Id==itemId);
         }
 
         public async Task<decimal> GetGrandTotalOfAllSales()

@@ -15,8 +15,6 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
 
         Task<BaseResponse<StockDto>> DeleteStock(int id);
         
-        Task<BaseResponse<StockItem>> DeleteStockItem(int stockItemId);
-
         Task<Stock> ExistsByName(string stockName);
 
         Task<StockDto> GetStockById(int id);
@@ -29,9 +27,7 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Services
         Task<BaseResponse<StockDto>> AddItemToStock(int id, AddItemToStockRequestModel model);
 
         Task<BaseResponse<StockDto>> UpdateItemInStock(int itemId, UpdateStockItemRequestModel model);
-
-        Task<decimal> CalculateGrandTotalPriceOfAllStockItem();
-
+        
         Task<IEnumerable<StockItem>> GetAllStockItems();
 
         Task<decimal> GetExpenses();

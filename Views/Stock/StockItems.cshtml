@@ -38,6 +38,9 @@
                 @Html.DisplayNameFor(model => model.TotalPrice)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Expenses)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.DateCreated)
             </th>
             
@@ -72,6 +75,10 @@
             </th>
             <th>
                 @Html.DisplayFor(modelItem => stockItem.TotalPrice)
+            </th> 
+            
+            <th>
+                @Html.DisplayFor(modelItem => stockItem.Expenses)
             </th>
             
             <td>
@@ -91,6 +98,6 @@
         }
     </tbody>
 </table>
-<button style="background-color: midnightblue"><a asp-controller="Supplier"  asp-action="RegisterSupplier">Register Supplier</a> </button>
+<button style="background-color: midnightblue"><a asp-controller="Stock"  asp-action="AddItemToStock">Add to Stock</a> </button>
 
-<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="Index">Return to your Dashboard</a> </button>
+<button style="background-color: midnightblue"><a asp-controller="User"  asp-action="StockKeeperIndex">Return to your Dashboard</a> </button>

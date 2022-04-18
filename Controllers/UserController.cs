@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using InventoryManagemenSystem_Ims.Annotations;
 using InventoryManagemenSystem_Ims.Auth;
 using InventoryManagemenSystem_Ims.DTOs;
 using InventoryManagemenSystem_Ims.Entities;
@@ -137,7 +138,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             if (currentCount>ChangeInNotification)
             {
                 ChangeInNotification = currentCount;
-                ViewBag.Message = $"You have {ChangeInNotification - 1} notification(s)";
+                ViewBag.Message = $"You have {ChangeInNotification} notification(s)";
             }
 
             return View();
@@ -145,24 +146,43 @@ namespace InventoryManagemenSystem_Ims.Controllers
         
         [HttpGet]
         [Authorize(Roles = "StockKeeper")]
-        public IActionResult StockKeeperIndex()
+        public async Task<IActionResult> StockKeeperIndex()
         {
             
             var overallSales = _salesService.GetGrandTotalOfAllSales();
-
+            var notifications = await _notificationService.GetNewNotifications();
             ViewBag.SALESGRANDTOTAL = overallSales.Result.Data;
+            
+            int ChangeInNotification = 0;
+            
+            int currentCount = notifications.Count;
+            if (currentCount>ChangeInNotification)
+            {
+                ChangeInNotification = currentCount;
+                ViewBag.Message = $"You have {ChangeInNotification} notification(s)";
+            }
             return View();
         }
         
         [HttpGet]
         [Authorize(Roles =  "SalesManager")]
-        public IActionResult SalesManagerIndex()
+        [ItemCanBeNull]
+        public async Task<IActionResult> SalesManagerIndex()
         {
             
             var overallSales = _salesService.GetGrandTotalOfAllSales();
 
             ViewBag.SALESGRANDTOTAL = overallSales.Result.Data;
+            int ChangeInNotification = 0;
+            var notifications = await _notificationService.GetNewNotifications();
+            int currentCount = notifications.Count;
+            if (currentCount>ChangeInNotification)
+            {
+                ChangeInNotification = currentCount;
+                ViewBag.Message = $"You have {ChangeInNotification} notification(s)";
+            }
             return View();
+            
         }
        
         [HttpPost]

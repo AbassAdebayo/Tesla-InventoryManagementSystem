@@ -8,9 +8,9 @@ namespace InventoryManagemenSystem_Ims.DTOs
     {
         public int Id { get; set; }
         
-        public int SalesItemId { get; set; }
+        public int SalesId { get; set; }
         
-        public SalesItem SalesItem { get; set; }
+        public Sales Sales { get; set; }
         
         public int CustomerId { get; set; }
         
@@ -33,7 +33,7 @@ namespace InventoryManagemenSystem_Ims.DTOs
         
         public int SalesId { get; set; }
         
-        public int SalesItemId { get; set; }
+        public Sales Sales { get; set; }
         
         public int CustomerId { get; set; }
         

@@ -194,10 +194,10 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
            };
         }
 
-        public async Task<BaseResponse<ReturnGoodsDto>> ReturnGoods(ReturnGoodsRequestModel model)
+        public async Task<BaseResponse<ReturnGoodsDto>> ReturnGoods(ReturnGoodsRequestModel model, int id)
         {
             //var checkSalesItem = await _salesRepository.FindSalesItemById(model.SalesItemId);
-            var sales = await _salesRepository.FindSalesById(model.SalesId);
+            var sales = await _salesRepository.FindSalesById(id);
             if (sales==null)
             {
                 return new BaseResponse<ReturnGoodsDto>
@@ -221,8 +221,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 {
                     CustomerId = model.CustomerId,
                     Description = model.Description,
+                    SalesId = model.SalesId,
                     QuantityReturned = model.QuantityReturned,
-                    SalesItemId = model.SalesItemId,
                     SalesManagerId = model.SalesManagerId,
                     ReturnType = model.ReturnType,
                     DateCreated = DateTime.UtcNow
@@ -231,10 +231,8 @@ namespace InventoryManagemenSystem_Ims.Implementations.Services
                 sales.Quantity = sales.Quantity - returnGoods.QuantityReturned;
                 sales.TotalPrice = sales.Quantity * sales.PricePerUnit;
                 
-                
                 await _salesRepository.UpdateSales(sales.Id, sales);
-                await _salesRepository.UpdateSales(sales.Id, sales);
-                await _returnGoodsRepository.ReturnGoods(returnGoods);
+                //await _returnGoodsRepository.ReturnGoods(returnGoods);
 
 
             }

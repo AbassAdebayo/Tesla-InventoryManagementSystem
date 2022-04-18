@@ -78,7 +78,7 @@ namespace InventoryManagemenSystem_Ims.Controllers
             if (currentCount>ChangeInNotification)
             {
                 ChangeInNotification = currentCount;
-                ViewBag.Message = $"You have {ChangeInNotification - 1} notification(s)";
+                ViewBag.Message = $"You have {ChangeInNotification} notification(s)";
             }
             string alertMessage =
                 $"The remaining quantity for the selected item is {stockItem.Quantity}";

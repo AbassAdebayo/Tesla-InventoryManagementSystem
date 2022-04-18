@@ -128,45 +128,6 @@ namespace InventoryManagemenSystem_Ims.Controllers
         }
         
         
-       
-        // [HttpGet]
-        // [Authorize(Roles = "StockKeeper, SalesManager")]
-        // public async Task<IActionResult> UpdateStockItem()
-        // {
-        //     var items =  await _itemService.GetAllItems();
-        //     var stocks = await _stockService.GetAllStocks();
-        //     ViewData["Items"] = new SelectList(items, "Id", "ItemName");
-        //     ViewData["Stocks"] = new SelectList(stocks, "Id", "StockName");
-        //     return View();
-        // }
-        //
-        // [HttpPost]
-        // public async Task<IActionResult> UpdateStockItem(int id, UpdateStockItemRequestModel model)
-        // {
-        //     await _stockService.UpdateItemInStock(id, model);
-        //     return RedirectToAction("StockItems");
-        //
-        // }
-        
-        // [HttpGet]
-        // [Authorize(Roles = "StockKeeper")]
-        // public async Task<IActionResult> DeleteStockItem(int id)
-        // {
-        //     var stockItem = await _stockService.GetStockItemById(id);
-        //     if (stockItem==null)
-        //     {
-        //         throw new Exception("StockItem doesn't exist!");
-        //     }
-        //     return View(stockItem);
-        // }
-        //
-        // [HttpPost]
-        // public async Task<IActionResult> DeleteStockItemConfirmed(int stockItemId)
-        // {
-        //     await _stockService.DeleteStock(stockItemId);
-        //     return RedirectToAction("StockItems");
-        // }
-        
         [HttpGet]
         [Authorize(Roles = "ShopManager, StockKeeper")]
         public async Task<IActionResult> GetStockItem(int id)
@@ -176,13 +137,6 @@ namespace InventoryManagemenSystem_Ims.Controllers
             return View(stockItem);
         }
         
-        [HttpGet]
-        [Authorize(Roles = "ShopManager, StockKeeper")]
-        public async Task<IActionResult> GetGrandTotalPriceForStockItem()
-        {
-            var grandTotal= await _stockService.CalculateGrandTotalPriceOfAllStockItem();
-            return View(grandTotal);
-        }
         
         [Authorize(Roles = "ShopManager,StockKeeper, SalesManager")]
         [HttpGet]

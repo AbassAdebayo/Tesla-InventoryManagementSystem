@@ -2,9 +2,9 @@
 {
     public class ReturnGoods:BaseEntity
     {
-        public int SalesItemId { get; set; }
+        public int SalesId { get; set; }
         
-        public SalesItem SalesItem { get; set; }
+        public Sales Sales { get; set; }
         
         public int CustomerId { get; set; }
         

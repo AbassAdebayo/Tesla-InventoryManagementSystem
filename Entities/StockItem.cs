@@ -21,6 +21,8 @@ namespace InventoryManagemenSystem_Ims.Entities
         [DataType(DataType.Currency)]
         public decimal TotalPrice { get; set; }
         
+        [DataType(DataType.Currency)]
+        public decimal Expenses { get; set; }
         
         
     }

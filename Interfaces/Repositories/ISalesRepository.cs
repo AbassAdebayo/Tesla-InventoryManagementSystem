@@ -20,22 +20,14 @@ namespace InventoryManagemenSystem_Ims.Interfaces.Repositories
         public Task<bool> ExistsById(int id);
 
         public Task<IEnumerable<Sales>> GetAllSales();
-
-        public Task<SalesItem> CreateSalesItem(SalesItem salesItem);
-
-        public Task<SalesItem> UpdateSalesItem(int id, SalesItem salesItem);
-
-        public Task<SalesItem> FindSalesItemById(int id);
+        
+        public Task<Sales> FindSalesByItemId(int itemId);
 
         public Task<bool> DeleteSalesItem(int id);
 
-        public Task<bool> DeleteSalesItems();
-
-        public Task<IList<SalesItem>> GetAllSalesItems(IEnumerable<int> salesItemIds);
         
         public Task<IList<SalesItem>> GetAllSalesItems();
         
-        public Task<SalesItem> GetSalesItemById(int id);
         
         public Task<decimal> GetGrandTotalOfAllSales();
         
